@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TITAN MOD -->
+
+<includes>
+	<!-- THUMB LAYOUT -->
+	<include name="ThumbsViewLayout">
+        <control type="image">
+			<visible>!String.EndsWith(Window(Home).Property(widgetstyle),details)</visible>
+            <texture background="true">home/home_matte2.png</texture>
+            <colordiffuse>$PARAM[colordiffuse]</colordiffuse>
+            <include condition="Skin.String($PARAM[border], 0)">thumbborder_0</include>
+            <include condition="Skin.String($PARAM[border], 2)">thumbborder_2</include>
+            <include condition="Skin.String($PARAM[border], 4)">thumbborder_4</include>
+            <include condition="Skin.String($PARAM[border], 6)">thumbborder_6</include>
+            <visible>[![Window.IsActive(Home) + Skin.HasSetting(Home_TransParentTiles)] | Control.IsVisible(525)]</visible>
+        </control>
+		<control type="image">
+            <bordersize>8</bordersize>
+            <texture background="true" diffuse="home/home_matte2.png" fallback="colors/color_keyboard.png">$VAR[LandscapeImage]</texture>
+            <aspectratio scalediffuse="false" align="center" aligny="center">stretch</aspectratio>
+            <visible>![!String.IsEmpty(ListItem.Thumb) + String.IsEqual(ListItem.Thumb,ListItem.Property(channellogo))]</visible>
+            <visible>String.IsEmpty(ListItem.Property(defaultID))</visible>
+        </control>
+		<control type="image" description="check, better use params overlayvisability true or false in the calls">
+            <width>50%</width>
+			<height>50%</height>
+			<left>15</left>
+			<bottom>5</bottom>
+			<aspectratio align="left" aligny="bottom">keep</aspectratio>
+			<texture background="true">$VAR[ClearLogoFallback]</texture>
+            <aspectratio scalediffuse="false" align="center" aligny="bottom">keep</aspectratio>
+			<visible>
+			[[String.IsEqual(ListItem.DBType,episode) | Container.Content(episodes)] + ![Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(525)]] | 
+			![String.IsEqual(ListItem.DBType,episode) | Container.Content(episodes)] + String.IsEmpty(ListItem.Art(landscape)) + String.IsEmpty(ListItem.Property(landscape)) + String.IsEmpty(ListItem.Art(tvshow.landscape)) + String.IsEmpty(ListItem.Art(season.landscape)) + !$EXP[InGameMode]
+			</visible>
+			<visible>String.IsEmpty(ListItem.Property(defaultID))</visible>
+			<visible>!Window.IsVisible(script-script.extendedinfo-DialogInfo.xml)</visible>
+		</control>
+		<control type="multiimage">
+            <left>8</left>
+            <right>8</right>
+            <top>8</top>
+            <bottom>8</bottom>
+            <imagepath background="true" diffuse="home/home_matte2.png" fallback="home/titan.png">$INFO[ListItem.Icon]</imagepath>
+            <aspectratio scalediffuse="false" align="center" aligny="top">scale</aspectratio>
+            <include>fanartSpeed</include>
+            <fadetime>450</fadetime>
+            <include condition="Skin.HasSetting(RandomizeBackground)">randomizeImages</include>
+            <visible>!String.IsEmpty(ListItem.Property(defaultID))</visible>
+        </control>
+		<include condition="!Window.IsActive(Home) + !Window.IsActive(1100)">ThumbsTagOverlay</include>
+		<control type="group">
+            <right>8</right>
+            <top>8</top>
+            <animation effect="slide" end="-1,1" time="0" condition="!Skin.HasTheme(skindefault)">Conditional</animation>
+            <include content="WatchedIndicatorLayout">
+                <param name="width" value="60" />
+                <param name="height" value="60" />
+                <param name="font" value="indicator_small" />
+                <param name="overlay" value="normal" />
+                <param name="overlay_texture" value="diffuse/icon_overlay_landscape.png" />
+            </include>
+        </control>
+    </include>
+	
+	<!-- LANDSCAPE + THUMB BG for Use of Transparent Tiles -->
+	<include name="Home_BG_TransParentTiles">
+		<control type="image">
+			<texture border="5">home/home_focus.png</texture>
+			<colordiffuse>$VAR[ViewDetailsBorderFocusColor]</colordiffuse>
+			<aspectratio>stretch</aspectratio>
+			<bordersize>-4</bordersize>
+		</control>
+	</include>
+	
+	<!-- LANDSCAPE LAYOUT -->
+	<include name="LandscapeLayout">
+        <control type="image">
+            <texture diffuse="home/home_matte2.png">colors/color_white.png</texture>
+			<colordiffuse>$PARAM[colordiffuse]</colordiffuse>
+			<aspectratio>stretch</aspectratio>
+			<include condition="Skin.String($PARAM[border], 0)">thumbborder_0</include>
+            <include condition="Skin.String($PARAM[border], 2)">thumbborder_2</include>
+            <include condition="Skin.String($PARAM[border], 4)">thumbborder_4</include>
+            <include condition="Skin.String($PARAM[border], 6)">thumbborder_6</include>
+            <visible>![Window.IsActive(Home) + Skin.HasSetting(Home_TransParentTiles)]</visible>
+        </control>
+		<control type="image">
+            <bordersize>8</bordersize>
+            <texture background="true" diffuse="home/home_matte2.png" fallback="colors/color_keyboard.png">$VAR[LandscapeImage]</texture>
+            <aspectratio scalediffuse="false" align="center" aligny="top">scale</aspectratio>
+            <visible>![!String.IsEmpty(ListItem.Thumb) + String.IsEqual(ListItem.Thumb,ListItem.Property(channellogo))]</visible>
+            <visible>String.IsEmpty(ListItem.Property(defaultID))</visible>
+        </control>
+		<control type="image">
+            <width>300</width>
+			<height>100</height>
+			<left>10</left>
+			<bottom>10</bottom>
+			<aspectratio align="left" aligny="bottom">keep</aspectratio>
+			<texture background="true">$VAR[ClearLogoFallback]</texture>
+            <aspectratio scalediffuse="false" align="center" aligny="bottom">keep</aspectratio>
+            <visible>String.IsEmpty(Listitem.Art(landscape)) + String.IsEmpty(ListItem.Property(landscape)) + !String.IsEqual(ListItem.DBTYPE,episode) + !String.IsEqual(ListItem.Property(DBTYPE),episode) + !Container.Content(episodes)</visible>
+            <visible>String.IsEmpty(ListItem.Property(defaultID))</visible>
+        </control>
+		<control type="multiimage">
+            <description>thumb image for home tiles can be splittet if not merged with thumb</description>
+			<left>8</left>
+            <right>8</right>
+            <top>8</top>
+            <bottom>8</bottom>
+            <imagepath background="true" diffuse="home/home_matte2.png" fallback="home/titan.png">$INFO[ListItem.Icon]</imagepath>
+            <aspectratio scalediffuse="false" align="center" aligny="top">scale</aspectratio>
+            <include>fanartSpeed</include>
+            <fadetime>450</fadetime>
+            <include condition="Skin.HasSetting(RandomizeBackground)">randomizeImages</include>
+            <visible>!String.IsEmpty(ListItem.Property(defaultID))</visible>
+        </control>
+        <include condition="!Window.IsActive(Home)">LandscapeTagOverlay</include>
+		<control type="group">
+			<right>8</right>
+			<top>8</top>
+            <animation effect="slide" end="-2,2" time="0" condition="!Skin.HasTheme(skindefault)">Conditional</animation>
+			<include content="WatchedIndicatorLayout">
+                <param name="width" value="80" />
+                <param name="height" value="80" />
+                <param name="font" value="indicator_normal" />
+                <param name="labeloffsetx" value="-30" />
+                <param name="labeloffsety" value="-4" />
+                <param name="overlay" value="normal" />
+                <param name="overlay_texture" value="diffuse/icon_overlay_landscape.png" />
+            </include>
+		 </control>
+    </include>
+	
+	<!-- LANDSCAPE and Thumb TAG OVERLAYS check, need revisit -->
+	<include name="LandscapeTagOverlayVisibility">
+        <visible>
+			![Skin.HasSetting(NoTitleOnHomeMenuTiles) + !String.IsEmpty(ListItem.Property(defaultID))] + 
+			!String.IsEqual(ListItem.Property(disableLabel), disable) +
+			!String.IsEqual(ListItem.Label,..)
+        </visible>
+		<visible>![String.IsEqual(ListItem.DBTYPE,episode) | String.IsEqual(ListItem.Property(DBTYPE),episode)]</visible>
+        <visible>
+           [[!String.IsEqual(ListItem.DBTYPE,episode) | !String.IsEqual(ListItem.Property(DBTYPE),episode)] + String.IsEmpty(ListItem.Art(landscape)) + String.IsEmpty(ListItem.Art(clearlogo)) + !String.Contains(ListItem.Thumb,icon.png)] |
+            !String.IsEmpty(ListItem.Property(defaultID))
+        </visible>
+	</include>
+	
+	<!-- THUMB TAG OVERLAYS check, need revisit -->
+	<include name="ThumbsTagOverlay">
+		
+        <control type="image">
+		<visible>!Window.IsActive(movieinformation)</visible>
+            <!--Panel Ovelay-->
+            <bordersize>8</bordersize>
+            <texture diffuse="home/home_matte2.png">diffuse/home_overlay.png</texture>
+            <include condition="!Window.IsActive(Home)">LandscapeTagOverlayVisibility</include>
+            <colordiffuse>$INFO[Skin.String(TagOverlaysPanelColor)]</colordiffuse>
+        </control>
+        <control type="textbox">
+		<visible>!Window.IsActive(movieinformation)</visible>
+            <!--Label-->
+            <left>16</left>
+            <right>16</right>
+            <bottom>10</bottom>
+            <height>50</height>
+            <include condition="Skin.HasSetting(ThumbsLabelAlignmentCenter)">aligncenter</include>
+            <align>left</align>
+            <aligny>center</aligny>
+            <label>$VAR[ThumbListDetails]</label>
+            <font>Reg20</font>
+            <textcolor>$INFO[Skin.String(TagOverlaysTextColor)]</textcolor>
+            <include condition="!Window.IsActive(Home)">LandscapeTagOverlayVisibility</include>
+        </control>
+    </include>
+    
+	<!-- LANDSCAPE TAG OVERLAYS check, need revisit -->
+    <include name="LandscapeTagOverlay">
+        <control type="image">
+            <!--Panel Overlay-->
+			<bordersize>8</bordersize>
+            <texture diffuse="home/home_matte2.png">diffuse/home_overlay.png</texture>
+            <include condition="!Window.IsActive(Home)">LandscapeTagOverlayVisibility</include>
+            <colordiffuse>$INFO[Skin.String(TagOverlaysPanelColor)]</colordiffuse>
+        </control>
+        <control type="textbox">
+            <!--Label-->
+            <left>8</left>
+            <right>8</right>
+            <bottom>8</bottom>
+            <height>33%</height>
+            <include condition="Skin.HasSetting(ThumbsLabelAlignmentCenter)">aligncenter</include>
+            <align>left</align>
+            <aligny>center</aligny>
+            <label>$VAR[ThumbListDetails]</label>
+            <font>Reg38</font>
+            <textcolor>$INFO[Skin.String(TagOverlaysTextColor)]</textcolor>
+            <include condition="!Window.IsActive(Home)">LandscapeTagOverlayVisibility</include>
+        </control>
+    </include>
+	
+	<!-- POSTER LAYOUT -->
+	<include name="PosterPanelLayout">
+		<control type="image">
+			<visible>!String.EndsWith(Window(Home).Property(widgetstyle),details)</visible>
+			<animation effect="zoom" end="102,102" time="0" condition="Skin.HasSetting(CaseOverlays)">Conditional</animation>
+			<texture border="0">diffuse/poster.png</texture>
+			<colordiffuse>$PARAM[colordiffuse]</colordiffuse>
+			<include condition="Skin.String($PARAM[border], 0)">thumbborder_0</include>
+			<include condition="Skin.String($PARAM[border], 2)">thumbborder_2</include>
+			<include condition="Skin.String($PARAM[border], 4)">thumbborder_4</include>
+			<include condition="Skin.String($PARAM[border], 6)">thumbborder_6</include>
+		</control>
+		<control type="image">
+			<description>Normal thumb stretched aspect</description>
+			<texture border="1" background="true" diffuse="diffuse/poster.png" fallback="DefaultVideo.png">$VAR[PosterThumbList]</texture>
+			<aspectratio scalediffuse="true" aligny="bottom" align="center">stretch</aspectratio>
+			<bordersize>8</bordersize>
+			<visible>!String.IsEmpty(ListItem.Art(poster)) | !String.IsEmpty(ListItem.Art(tvshow.poster)) | $EXP[InGameMode] | String.IsEqual(ListItem.DBTYPE,genre)</visible>
+		</control>
+		<control type="image">
+			<description>Fallback Poster thumb keep aspect for all other</description>
+			<texture border="1" background="true" diffuse="diffuse/poster.png" fallback="DefaultVideo.png">$VAR[PosterThumbList]</texture>
+			<aspectratio scalediffuse="false" aligny="top" align="center">keep</aspectratio>
+			<bordersize>8</bordersize>
+			<visible>[String.IsEmpty(ListItem.Art(poster)) + String.IsEmpty(ListItem.Art(tvshow.poster))] + !$EXP[InGameMode]</visible>
+		</control>
+		<!--include condition="!Window.IsActive(Home)">PosterTagOverlay</include-->
+		<control type="group">
+			<include condition="Skin.HasSetting(CaseOverlays)">PosterCaseOverlay</include>
+		</control>
+		<control type="group">
+			<right>8</right>
+			<top>8</top>
+			<include>$PARAM[WatchedIndicator]</include>
+			<animation type="Conditional" condition="Skin.HasSetting(CaseOverlays)">
+				<effect type="slide" end="6,0" time="0" />
+			</animation>
+		</control>
+		
+	</include>
+	<!-- POSTER LAYOUT CAST Scale -->
+	<include name="CastThumb">
+		<control type="image">
+			<texture border="0">diffuse/poster.png</texture>
+			<colordiffuse>$PARAM[colordiffuse]</colordiffuse>
+			<include condition="Skin.String($PARAM[border], 0)">thumbborder_0</include>
+			<include condition="Skin.String($PARAM[border], 2)">thumbborder_2</include>
+			<include condition="Skin.String($PARAM[border], 4)">thumbborder_4</include>
+			<include condition="Skin.String($PARAM[border], 6)">thumbborder_6</include>
+		</control>
+		<control type="image">
+			<description>Scale Cast Thumbs</description>
+			<texture border="1" background="true" diffuse="diffuse/poster.png" fallback="DefaultActor.png">$INFO[ListItem.Art(thumb)]</texture>
+			<aspectratio scalediffuse="false" aligny="bottom" align="center">scale</aspectratio>
+			<bordersize>8</bordersize>
+		</control>
+	</include>
+	
+	<!-- POSTER 523 maybe also 525 Reflections -->
+	<include name="523_reflections">
+		<control type="image">
+			<animation effect="fade" start="100" end="50" condition="true">Conditional</animation>
+			<texture border="1" background="true" diffuse="diffuse/poster_reflect-mod.3.png" flipy="true" fallback="DefaultVideo.png">$VAR[PosterThumbList]</texture>
+			<aspectratio scalediffuse="true" aligny="bottom" align="center">stretch</aspectratio>
+			<bordersize>8</bordersize>
+		</control>
+	</include>
+	
+	<!-- GENERIC LAYOUT FOR POSTERS -->
+	<include name="PosterThumb">
+		<texture border="0">diffuse/poster.png</texture>
+		<colordiffuse>$PARAM[colordiffuse]</colordiffuse>
+	</include>
+	
+	<!-- POSTER Tag Overlay Conditions -->
+	<include name="PosterTagOverlayVisibility">
+		<visible>!String.IsEqual(ListItem.Label,..)</visible>
+		<visible>
+            [[String.Contains(Window.Property(xmlfile),Nav) | Window.Isactive(Home)] + String.IsEmpty(ListItem.Art(poster)) + String.IsEmpty(ListItem.Art(tvshow.poster))] | 
+            [Window.IsActive(script-ExtendedInfo Script-DialogVideoInfo.xml) + String.IsEmpty(ListItem.Art(fanart))] | 
+            [!String.IsEmpty(ListItem.Episode) + !String.IsEmpty(ListItem.Season) + !Container.Content(seasons) + !String.IsEqual(ListItem.Label, ListItem.TvshowTitle) + Skin.HasSetting(ShowLabelsPosterEpisodes)]
+		</visible>
+	</include>
+	
+	<!-- POSTER TAGS -->
+	<include name="PosterTagOverlay">
+		<control type="group">
+			<include condition="!Window.IsActive(Home)">PosterTagOverlayVisibility</include>
+			<!--Panel-->
+			<control type="image">
+				<bottom>0</bottom>
+				<height>80</height>
+				<bordersize>8</bordersize>
+				<texture border="1">diffuse/poster_tag.png</texture>
+				<colordiffuse>$INFO[Skin.String(TagOverlaysPanelColor)]</colordiffuse>
+			</control>
+			<control type="textbox">
+				<left>15</left>
+				<right>15</right>
+				<bottom>10</bottom>
+				<height>65</height>
+				<include condition="Skin.HasSetting(ThumbsLabelAlignmentCenter)">aligncenter</include>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>$VAR[ThumbListDetailsPoster]</label>
+				<font>Reg22</font>
+				<autoscroll delay="2000" time="2000" repeat="500">false</autoscroll>
+				<textcolor>$INFO[Skin.String(TagOverlaysTextColor)]</textcolor>
+				<visible>!String.IsEqual(System.CurrentControl,ListItem.Label)</visible>
+			</control>
+			<control type="textbox">
+				<left>15</left>
+				<right>15</right>
+				<bottom>10</bottom>
+				<height>65</height>
+				<include condition="Skin.HasSetting(ThumbsLabelAlignmentCenter)">aligncenter</include>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>$VAR[ThumbListDetailsPoster]</label>
+				<font>Reg22</font>
+				<autoscroll delay="2000" time="2000" repeat="500">true</autoscroll>
+				<textcolor>$INFO[Skin.String(TagOverlaysTextColor)]</textcolor>
+				<visible>String.IsEqual(System.CurrentControl,ListItem.Label)</visible>
+			</control>
+		</control>
+	</include>
+	
+	<!-- POSTER CASE OVERLAYS -->
+	<include name="PosterCaseOverlay">
+		<control type="group">
+			<visible>
+                !String.IsEqual(Skin.String(CaseOverlays.Fallback),None) | 
+                String.Contains(ListItem.Filenameandpath,.3d) | 
+                Integer.IsGreater(ListItem.VideoResolution,1080) | String.Contains(ListItem(0).Filenameandpath,4k) |
+                [String.Contains(ListItem.FilenameAndPath,bdmv) | String.Contains(ListItem.FilenameAndPath,blu-ray) | String.Contains(ListItem.FilenameAndPath,bluray) | String.Contains(ListItem.FilenameAndPath,bdrip) | String.Contains(ListItem.FilenameAndPath,bd25) | String.Contains(ListItem.FilenameAndPath,bd50)] | 
+                String.EndsWith(ListItem.Filenameandpath,dvd) | String.EndsWith(ListItem.Filenameandpath,.ifo) | String.Contains(ListItem.Filenameandpath,.iso) | 
+                String.IsEqual(ListItem.VideoResolution,480) | String.IsEqual(ListItem.VideoResolution,540) | String.IsEqual(ListItem.VideoResolution,576) | String.IsEqual(ListItem.VideoResolution,720) | String.IsEqual(ListItem.VideoResolution,1080) | String.StartsWith(ListItem.Path,videodb://movies/sets)
+			</visible>
+			<visible>!String.IsEmpty(ListItem.Art(poster)) | !String.IsEmpty(ListItem.Art(tvshow.poster))</visible>
+			<control type="image">
+				<texture diffuse="diffuse/poster.png">cases/default_top2.png</texture>
+				<!-- border left,top,right,bottom  -->
+				<bordersize>7,7,7,7</bordersize>
+				<colordiffuse>$INFO[Skin.String(CaseOverlays.Color)]</colordiffuse>
+				<animation effect="zoom" end="102.1,102" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="image">
+				<texture background="true">$VAR[PosterCaseOverlayVar]</texture>
+				<top>5</top>
+				<left>25%</left>
+				<width>50%</width>
+				<height>9%</height>
+				<aspectratio aligny="center" align="center">keep</aspectratio>
+				<!-- border left,top,right,bottom  -->
+				<bordersize>2,2,2,2</bordersize>
+				<colordiffuse>$INFO[Skin.String(CaseOverlays.TextColor)]</colordiffuse>
+			</control>
+		</control>
+	</include>
+
+	<!-- CIRCLED LAYOUT -->
+	<include name="Circle_Layout">
+		<control type="image">
+			<texture border="0">diffuse/roundmask.png</texture>
+			<colordiffuse>$PARAM[colordiffuse]</colordiffuse>
+		</control>
+		<control type="image">
+			<texture border="1" background="true" diffuse="diffuse/roundmask.png" fallback="DefaultVideo.png">$VAR[FanartLandscapeImage]</texture>
+			<aspectratio scalediffuse="false" aligny="bottom" align="center">scale</aspectratio>
+			<bordersize>$PARAM[bordersize]</bordersize>
+		</control>
+		<control type="image">
+			<visible>
+				[!String.IsEmpty(ListItem.Art(clearlogo)) + !$EXP[IsEpisode]] | 
+				[!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + $EXP[IsEpisode]] | 
+				!String.IsEmpty(ListItem.Art(artist.clearlogo)) | 
+				!String.IsEmpty(ListItem.Art(albumartist.clearlogo))
+			</visible>
+			<bottom>-70</bottom>
+			<height>50%</height>
+			<texture background="true" fallback="colors/color_transparent.png">$VAR[ListItemClearLogo]</texture>
+			<aspectratio align="center" aligny="center">keep</aspectratio>
+		</control>
+		<control type="textbox">
+			<visible>
+				String.IsEmpty(ListItem.Art(tvshow.clearlogo)) +
+				String.IsEmpty(ListItem.Art(artist.clearlogo)) +
+				String.IsEmpty(ListItem.Art(albumartist.clearlogo)) +
+				String.IsEmpty(ListItem.Art(clearlogo))</visible>
+			<visible>!String.IsEqual(ListItem.label,..)</visible>
+			<visible>!Window.IsVisible(3019)</visible>
+			<autoscroll delay="3000" time="1500" repeat="1500">$PARAM[autoscroll]</autoscroll>
+			<bottom>-70</bottom>
+			<left>5</left>
+			<right>5</right>
+			<wrapmultiline>true</wrapmultiline>
+			<height max="105">auto</height>
+			<!-- <font>Title_CircleC_Header46</font> -->
+			<font>Bold40</font>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>$INFO[Skin.String(ViewDetailsHighlightTextColor)]</textcolor>
+			<selectedcolor>$INFO[Skin.String(ViewDetailsHighlightTextColor)]</selectedcolor>
+			<label>$INFO[ListItem.Label,[B],[/B]]</label>
+		</control>
+	</include>
+	
+	<!-- BANNER LAYOUT -->
+	<include name="BannerLayout">
+		<control type="image">
+			<texture border="5">diffuse/banner.png</texture>
+			<colordiffuse>$PARAM[colordiffuse]</colordiffuse>
+			<aspectratio scalediffuse="false" align="left">stretch</aspectratio>
+			<include condition="Skin.String($PARAM[border], 0)">thumbborder_0</include>
+			<include condition="Skin.String($PARAM[border], 2)">thumbborder_2</include>
+			<include condition="Skin.String($PARAM[border], 4)">thumbborder_4</include>
+			<include condition="Skin.String($PARAM[border], 6)">thumbborder_6</include>
+		</control>
+		<control type="image">
+            <bordersize>8</bordersize>
+            <texture fallback="resource://resource.images.skinicons.wide/video.png" diffuse="diffuse/banner.png" border="5" background="true">$VAR[BannerImage]</texture>
+            <aspectratio align="center" aligny="center">stretch</aspectratio>
+            <visible>!String.IsEmpty(ListItem.Art(banner)) | !String.IsEmpty(ListItem.Art(tvshow.banner)) | !String.IsEmpty(ListItem.Property(banner))</visible>
+        </control>
+        <control type="image">
+            <bordersize>8</bordersize>
+            <texture fallback="resource://resource.images.skinicons.wide/video.png" diffuse="diffuse/banner.png" border="0" background="true">$VAR[BannerImageFallback]</texture>
+            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+            <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Property(banner))</visible>
+        </control>
+		<control type="image">
+            <bordersize>15</bordersize>
+            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+            <texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>
+            <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Property(banner))</visible>
+        </control>
+        <control type="label">
+            <left>5%</left>
+            <width>90%</width>
+            <height>100%</height>
+            <align>center</align>
+            <label>$INFO[ListItem.Label]</label>
+            <font>Bold34</font>
+            <shadowcolor>black</shadowcolor>
+            <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Property(banner))</visible>
+            <visible>!String.IsEmpty(ListItem.Art(fanart))</visible>
+        </control>
+        <control type="group">
+            <right>8</right>
+            <top>8</top>
+            <include>$PARAM[WatchedIndicator]</include>
+        </control>
+	</include>
+	
+	<!-- SQUARE -->
+	<include name="SquarePosterPanelLayout">
+       <control type="image">
+            <texture>diffuse/music_cover.png</texture>
+			<colordiffuse>$PARAM[colordiffuse]</colordiffuse>
+			<include condition="Skin.String($PARAM[border], 0)">thumbborder_0</include>
+            <include condition="Skin.String($PARAM[border], 2)">thumbborder_2</include>
+            <include condition="Skin.String($PARAM[border], 4)">thumbborder_4</include>
+            <include condition="Skin.String($PARAM[border], 6)">thumbborder_6</include>
+        </control>
+        <control type="image">
+            <bordersize>8</bordersize>
+			<texture background="true" diffuse="diffuse/music_cover.png" fallback="DefaultMusicRecentlyPlayed.png" border="0">$VAR[SquarePosterThumb]</texture>
+			<aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
+        </control>
+		<control type="group">
+            <right>8</right>
+            <top>8</top>
+            <include>WatchedIndicatorSmall</include>
+        </control>
+        <include condition="!Window.IsActive(Home)">SquarePosterTagOverlay</include>
+    </include>
+	
+	<!-- SQUARE TAG VISIBILITY -->
+    <include name="SquarePosterTagOverlayVisibility">
+        <visible>
+           !String.IsEqual(ListItem.Label,..) + 
+			![Skin.HasSetting(NoTitleOnHomeMenuTiles) + !String.IsEmpty(ListItem.Property(defaultID))] + 
+            !String.IsEqual(ListItem.Property(disableLabel), disable)
+        </visible>
+        <visible>
+           !String.IsEmpty(ListItem.Property(defaultID)) | 
+            [String.Contains(ListItem.Thumb,icon.png)] | 
+            [String.Contains(ListItem.Thumb,icon.png)] |
+            Window.IsActive(settings)
+        </visible>
+    </include>
+	
+	<!-- SQUARE TAG OVERLAY -->
+    <include name="SquarePosterTagOverlay">
+        <control type="group">
+            <include condition="!Window.IsActive(Home)">SquarePosterTagOverlayVisibility</include>
+            <control type="image">
+                <bottom>0</bottom>
+                <height>74</height>
+                <bordersize>8</bordersize>
+                <texture>diffuse/poster_tag.png</texture>
+                <colordiffuse>$INFO[Skin.String(TagOverlaysPanelColor)]</colordiffuse>
+            </control>
+            <control type="textbox">
+                <left>15</left>
+                <right>15</right>
+                <bottom>10</bottom>
+                <height>55</height>
+                <include condition="Skin.HasSetting(ThumbsLabelAlignmentCenter)">aligncenter</include>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$VAR[ThumbListDetailsSquare]</label>
+                <font>Reg18</font>
+                <autoscroll>false</autoscroll>
+                <textcolor>$INFO[Skin.String(TagOverlaysTextColor)]</textcolor>
+                <visible>!String.IsEqual(System.CurrentControl,ListItem.Label)</visible>
+            </control>
+            <control type="textbox">
+                <left>15</left>
+                <right>15</right>
+                <bottom>10</bottom>
+                <height>55</height>
+                <include condition="Skin.HasSetting(ThumbsLabelAlignmentCenter)">aligncenter</include>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$VAR[ThumbListDetailsSquare]</label>
+                <font>Reg18</font>
+                <autoscroll delay="2000" time="2000" repeat="500">true</autoscroll>
+                <textcolor>$INFO[Skin.String(TagOverlaysTextColor)]</textcolor>
+                <visible>String.IsEqual(System.CurrentControl,ListItem.Label)</visible>
+            </control>
+        </control>
+    </include>
+	
+	<!-- HUB LAYOUT - Genre,Studio-->
+	<include name="HUB_Layouts">
+        <control type="image">
+			<texture background="true">home/home_matte2.png</texture>
+            <colordiffuse>$PARAM[colordiffuse]</colordiffuse>
+            <include condition="Skin.String($PARAM[border], 0)">thumbborder_0</include>
+            <include condition="Skin.String($PARAM[border], 2)">thumbborder_2</include>
+            <include condition="Skin.String($PARAM[border], 4)">thumbborder_4</include>
+            <include condition="Skin.String($PARAM[border], 6)">thumbborder_6</include>
+            <visible>[![Window.IsActive(Home) + Skin.HasSetting(Home_TransParentTiles)] | Control.IsVisible(525)]</visible>
+        </control>
+		<control type="image">
+            <bordersize>8</bordersize>
+            <texture background="true" diffuse="home/home_matte2.png" colordiffuse="grey">Genre_Red.png</texture>
+            <aspectratio scalediffuse="false" align="center" aligny="center">stretch</aspectratio>
+        </control>
+		
+    </include>
+	
+	<!-- Netflix Artwork (right) -->
+	<include name="SpotlightArtwork">
+		<control type="image">
+			<fadetime>350</fadetime>
+			<right>0</right>
+			<top>0</top>
+			<width>$PARAM[width]</width>
+			<height>$PARAM[height]</height>         
+			<texture background="true" diffuse="$PARAM[diffuse]">$VAR[netflixThumb]</texture>
+			<aspectratio scalediffuse="true" aligny="top">scale</aspectratio>
+			<animation effect="zoom" start="110" end="130" center="auto" time="12000" tween="cubic" easing="inout" pulse="true" condition="Skin.HasSetting(BackgroundAnimation)">Conditional</animation>
+			<animation effect="slide" start="-10,-10" end="10,10" time="8000" tween="cubic" easing="inout" pulse="true" condition="Skin.HasSetting(BackgroundAnimation)">Conditional</animation>
+			<animation effect="fade" start="100" end="0" delay="200" time="1000" pulse="false" condition="Player.HasVideo">Conditional</animation>
+		</control>
+	</include>
+	
+	<!-- Netflix Preview ViedoWindow (right) -->
+	<include name="SpotlightVideoWindow">
+		<right>0</right>
+		<top>0</top>
+		<width>$PARAM[width]</width>
+		<height>$PARAM[height]</height>
+		<visible>$EXP[PlayerHasVideo]</visible>
+		<include>Preview_GameVideoWindow</include>			
+		<control type="image">
+			<texture colordiffuse="$VAR[Netflix_Preview_Colordiffuse]">overlay/Netflix_origin.png</texture>
+		</control>
+		<animation effect="slide" start="0" end="0,-60" time="0" condition="Integer.IsEqual(VideoPlayer.VideoAspect,2.4) | Integer.IsEqual(VideoPlayer.VideoAspect,1.85) | Integer.IsEqual(VideoPlayer.VideoAspect,2.35) | Integer.IsEqual(VideoPlayer.VideoAspect,2.55) | Integer.IsEqual(VideoPlayer.VideoAspect,2.76)" reversible="true">Conditional</animation>
+	</include>
+	
+	<!-- Netflix - FramedCodecInfo -->
+	<include name="FramedCodecInfo">
+		<control type="group" id="$PARAM[id]">	
+			<visible>!String.IsEmpty(Control.GetLabel($PARAM[label_id]))</visible>
+			<left>2</left>
+			<posy>5</posy>
+			<width>70</width>
+			<height>40</height>
+			<include>Default_Fade</include>
+			<control type="image">
+				<description>use netflix bg</description>
+				<bordersize>2</bordersize>
+				<width>60</width>
+				<height>35</height>
+				<texture colordiffuse="$VAR[Netflix_Preview_Colordiffuse]">colors/color_trans_50.png</texture>
+			</control>
+			<control type="image">
+				<width>60</width>
+				<height>35</height>
+				<texture colordiffuse="$INFO[Skin.String(NetflixDetailsFlagColor)]">$VAR[audiovideoframe]</texture>
+			</control>
+			<control type="label" id="$PARAM[label_id]">
+				<width>60</width>
+				<height>35</height>
+				<aligny>center</aligny>
+				<align>center</align>
+				<textcolor>$VAR[CodecSameLabelColorAsFrames]</textcolor>
+				<include condition="Skin.HasSetting(UseHelveticaNeueNetflix_font)">font_Netflix_DetailRow_Codec</include>
+				<include condition="!Skin.HasSetting(UseHelveticaNeueNetflix_font)">font_Def_DetailRow_Codec</include>
+				<scroll>false</scroll>
+				<label>$PARAM[infolabel]</label>
+			</control>
+		</control>
+	</include>
+	
+	
+	
+	
+	
+	<!-- dimm focus listitem overlay -->
+	<include name="FocusOverlay">
+		<control type="group">
+		<visible>![Control.HasFocus(8601) | Control.HasFocus(8606) | Control.HasFocus(8607)]</visible>
+			<animation reversible="false" effect="fade" start="0" end="100" time="350" tween="quadratic" easing="in">Focus</animation>
+			<animation reversible="false" effect="fade" start="100" end="0" time="0">UnFocus</animation>
+			<control type="image">
+				<bordersize>8</bordersize>
+				<visible>!Skin.HasTheme(modern_rounded)</visible>
+				<colordiffuse>ff000000</colordiffuse>
+				<texture>overlay/overlay_dimm.png</texture>
+				<aspectratio>stretch</aspectratio>
+			</control>
+			<control type="image">
+				<bordersize>8</bordersize>
+				<visible>Skin.HasTheme(modern_rounded)</visible>
+				<colordiffuse>ff000000</colordiffuse>
+				<texture diffuse="home/home_matte2.png">overlay/roundedoverlay_dimm2.png</texture>
+				<aspectratio>stretch</aspectratio>
+			</control>
+			<control type="group">
+				<control type="image">
+					<centerleft>50%</centerleft>
+					<centertop>50%</centertop>
+					<width>35%</width>
+					<height>35%</height>
+					<colordiffuse>$INFO[Skin.String(Lib_PlayButtonColor)]</colordiffuse>
+					<aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+					<texture>overlay/overlay_button_play.png</texture>
+					<visible>![String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album) | ListItem.IsFolder | String.IsEqual(ListItem.Property(IsFolder),true)]</visible>
+					</control>
+				<control type="image">
+					<centerleft>50%</centerleft>
+					<centertop>50%</centertop>
+					<width>25%</width>
+					<height>25%</height>
+					<colordiffuse>$INFO[Skin.String(Lib_PlayButtonColor)]</colordiffuse>
+					<aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+					<texture>overlay/overlay_button_folder.png</texture>
+					<visible>[String.IsEqual(ListItem.Label,..) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album)]</visible>
+				</control>
+			</control>
+		</control>
+	</include>
+	
+</includes>

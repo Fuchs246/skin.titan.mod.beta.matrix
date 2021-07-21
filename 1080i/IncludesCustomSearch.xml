@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="SearchInfoDefPos">
+		<top>-45</top>
+		<height>880</height>
+	</include>
+	<include name="SearchInfoSpotlighPos">
+		<top>395</top>
+		<height>438</height>
+	</include>
+	
+	<!-- HEADER -->
+	<include name="SkinSearch_ContainerHeader">
+		<definition>
+            <control type="group" id="$PARAM[groupid]">
+                <top>50</top>
+                <height>50</height>
+                <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) | !Container($PARAM[id]).IsUpdating</visible>
+                <nested />
+				<control type="grouplist">
+                    <height>52</height>
+                    <orientation>horizontal</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+                    <itemgap>10</itemgap>
+                    <control type="label">
+                        <top>18</top>
+                        <left>15</left>
+                        <width>auto</width>
+                        <label>$PARAM[label]</label>
+                        <aligny>center</aligny>
+                        <textcolor>$INFO[Skin.String(ViewDetailsTextColor)]</textcolor>
+						<shadowcolor>$INFO[Skin.String(ViewDetailsTextShadowColor)]</shadowcolor>
+                        <font>Bold30</font>
+                        <height>24</height>
+                        <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) | Container($PARAM[id]).IsUpdating</visible>
+                    </control>
+					<control type="label">
+                        <top>16</top>
+                        <width>auto</width>
+                        <label> | </label>
+						<aligny>center</aligny>
+                        <textcolor>$INFO[Skin.String(ViewDetailsHighlightTextColor)]</textcolor>
+                        <font>Bold36</font>
+                        <height>24</height>
+                        <visible>Control.HasFocus($PARAM[id])</visible>
+                        <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Label)</visible>
+                        <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
+                    </control>
+					<control type="label">
+                        <top>20</top>
+                        <width>auto</width>
+						<label>$VAR[SearchInfoHeader_Title]</label>
+                        <aligny>center</aligny>
+                        <textcolor>$INFO[Skin.String(ViewDetailsTextColor)]</textcolor>
+						<shadowcolor>$INFO[Skin.String(ViewDetailsTextShadowColor)]</shadowcolor>
+                        <font>Reg30</font>
+                        <height>24</height>
+                        <visible>Control.HasFocus($PARAM[id])</visible>
+                        <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
+                    </control>
+                </control>
+            </control>
+        </definition>
+    </include>
+	<include name="Search_Container">
+		<control type="$PARAM[type]" id="$PARAM[id]">
+			<nested />
+			<scrolltime tween="quadratic">400</scrolltime>
+			<top>50</top>
+			<right>-10</right>
+			<preloaditems>2</preloaditems>
+			<focusposition>0</focusposition>
+			<orientation>horizontal</orientation>
+			<height max="380">auto</height>
+			<visible>$PARAM[visible]</visible>
+			<itemlayout height="$PARAM[height]" width="$PARAM[width]">
+				<control type="group">
+					<width>$PARAM[width]</width>
+					<height>$PARAM[height]</height>
+					<include content="$PARAM[layout]">
+						<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+						<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+						<param name="border" value="thumbsborder_unfocused" />
+					</include>
+					<control type="group">
+						<visible>!Skin.HasSetting(search_info_spotlight)</visible>
+						<visible>Skin.HasSetting(SkinSearch_ShowTags)</visible>
+						<height>45</height>
+						<include content="Tag_NF">
+							<param name="tagwidth" value="$PARAM[width]"/>
+							<param name="tagtop" value="$PARAM[height].9" />
+						</include>
+					</control>
+				</control>
+			</itemlayout>
+			<focusedlayout height="$PARAM[height]" width="$PARAM[width]" condition="!Control.HasFocus($PARAM[id])">
+				<control type="group">
+					<width>$PARAM[width]</width>
+					<height>$PARAM[height]</height>
+					<include>Focus_Zoom_Animation</include>
+					<!-- workaround for unfocused fixedlist check -->
+					<control type="group">
+						<visible>Control.HasFocus($PARAM[id])</visible>
+						<include content="$PARAM[layout]">
+							<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+							<param name="colordiffuse" value="$VAR[ViewDetailsBorderFocusColor]" />
+							<param name="border" value="thumbsborder_focused" />
+						</include>
+						<include condition="Skin.HasSetting(LibItems_FocusOverlay)">FocusOverlay</include>
+					</control>
+					<control type="group">
+						<visible>!Control.HasFocus($PARAM[id])</visible>
+						<include content="$PARAM[layout]">
+							<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+							<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+							<param name="border" value="thumbsborder_unfocused" />
+						</include>
+					</control>
+					<control type="group">
+						<visible>!Skin.HasSetting(search_info_spotlight)</visible>
+						<visible>Skin.HasSetting(SkinSearch_ShowTags)</visible>
+						<height>45</height>
+						<include content="Tag_FO">
+							<param name="tagwidth" value="$PARAM[width]"/>
+							<param name="tagtop" value="$PARAM[height].9" />
+						</include>
+					</control>
+					
+				</control>
+				
+			</focusedlayout>
+			<focusedlayout height="$PARAM[height]" width="$PARAM[info_panelwidth]" condition="Skin.HasSetting(search_info_widget) + Control.HasFocus($PARAM[id])">
+				<control type="group">
+					<width>$PARAM[info_panelwidth]</width>
+					<height>$PARAM[height]</height>
+					<control type="image">
+						<width>$PARAM[info_panelwidth]</width>
+						<texture background="true">home/home_matte2.png</texture>
+						<colordiffuse>$INFO[Skin.String(ViewDetailsFocusColor)]</colordiffuse>
+						<include condition="Skin.String(thumbsborder_unfocused, 0)">thumbborder_0</include>
+						<include condition="Skin.String(thumbsborder_unfocused, 2)">thumbborder_2</include>
+						<include condition="Skin.String(thumbsborder_unfocused, 4)">thumbborder_4</include>
+						<include condition="Skin.String(thumbsborder_unfocused, 6)">thumbborder_6</include>
+					</control>
+					<control type="image">
+						<width>$PARAM[info_panelwidth]</width>
+						<texture border="8">$VAR[FocusFrame525]</texture>
+						<colordiffuse>$INFO[Skin.String(ViewDetailsBorderFocusColor)]</colordiffuse>
+						<animation effect="zoom" start="0,100" end="100,100" time="100" center="auto" tween="quadratic" easing="out" delay="100" reversible="false">Focus</animation>
+					</control>
+					<control type="image">
+						<width>$PARAM[width]</width>
+						<height>$PARAM[height]</height>
+						<bordersize>8</bordersize>
+						<texture background="true" diffuse="home/home_matte2.png" fallback="colors/color_keyboard.png">$PARAM[layouticon]</texture>
+						<aspectratio scalediffuse="false" align="center" aligny="center">stretch</aspectratio>
+						</control>
+					<control type="image">
+						<width>200</width>
+						<height>100</height>
+						<bottom>7</bottom>
+						<left>15</left>
+						<texture background="true">$VAR[ClearLogoFallback]</texture>
+						<aspectratio align="left" aligny="bottom">keep</aspectratio>
+						<visible>String.IsEqual(ListItem.DBTYPE,episode) | [String.IsEqual(ListItem.DBTYPE,musicvideo) + String.IsEmpty(ListItem.Art(Landscape))]</visible>
+					</control>
+					<control type="label">
+						<right>20</right>
+						<width>$PARAM[info_plotwidth]</width>
+						<top>10</top>
+						<height>25</height>
+						<align>left</align>
+						<aligny>top</aligny>
+						<font>Bold26</font>
+						<textcolor>$INFO[Skin.String(ViewDetailsHighlightTextColor)]</textcolor>
+						<selectedcolor>$INFO[Skin.String(ViewDetailsHighlightTextColor)]</selectedcolor>
+						<label>$INFO[ListItem.Label,[B],[/B]]</label>
+						<!-- <label>$VAR[SearchInfoHeader_Title]</label> -->
+					</control>
+					<control type="image">
+						<top>45</top>
+						<right>20</right>
+						<width>$PARAM[info_plotwidth]</width>
+						<height>3</height>
+						<texture>colors/color_white.png</texture>
+						<colordiffuse>$INFO[Skin.String(ViewDetailsBorderFocusColor)]</colordiffuse>
+						<animation effect="zoom" start="0,100" end="100,100" time="300" center="auto" tween="quadratic" easing="out" reversible="false">Focus</animation>
+					</control>
+					<control type="textbox">
+						<right>20</right>
+						<top>60</top>
+						<height>$PARAM[info_plotheight]</height>
+						<width>$PARAM[info_plotwidth]</width>
+						<align>justify</align>
+						<font>Reg25</font>
+						<textcolor>$INFO[Skin.String(ViewDetailsListItemTextFocusColor)]</textcolor>
+						<selectedcolor>$INFO[Skin.String(ViewDetailsListItemTextFocusColor)]</selectedcolor>
+						<label>$VAR[SearchInfoWidget_Description]</label>
+						<autoscroll delay="4000" time="4000" repeat="2000">true</autoscroll>
+					</control>
+					<control type="label">
+						<width>$PARAM[info_plotwidth]</width>
+						<right>15</right>
+						<height>38</height>
+						<bottom>8</bottom>
+						<aligny>center</aligny>
+						<align>right</align>
+						<font>Bold24</font>
+						<textcolor>$INFO[Skin.String(ViewDetailsListItemTextFocusColor)]</textcolor>
+						<selectedcolor>$INFO[Skin.String(ViewDetailsListItemTextFocusColor)]</selectedcolor>
+						<label>$VAR[SearchInfoWidget_BottomInfo]</label>
+					</control>
+					<control type="group">
+						<right>5</right>
+						<top>5</top>
+						<include>WatchedIndicatorExtraSmall</include>
+					 </control>
+				</control>
+			</focusedlayout>
+		</control>
+	</include>
+	
+	<!--extra fanart sourcing -->
+    <variable name="extraFanartLocation">
+        <value condition="String.Contains(listitem.filenameandpath,extrafanart) + [container.content(movies) | String.IsEqual(ListItem.DBTYPE,movie)]">$INFO[listitem.path,,extrafanart]</value>
+        <value condition="String.Contains(listitem.filenameandpath,extrafanart) + [container.content(tvshows) | String.IsEqual(ListItem.DBTYPE,tvshow)]">$INFO[listitem.filenameandpath,,extrafanart]</value>
+        <value condition="String.Contains(listitem.filenameandpath,extrafanart) + [container.content(seasons) | String.IsEqual(ListItem.DBTYPE,season)]">$INFO[container.listitem.path,,extrafanart]</value>
+    </variable>
+	<!--extra thumbs sourcing-->
+    <variable name="extraThumbsLocation">
+        <value condition="String.Contains(listitem.filenameandpath,extrathumbs) + [container.content(movies) | String.IsEqual(ListItem.DBTYPE,movie)]">$INFO[listitem.path,,extrathumbs]</value>
+        <value condition="String.Contains(listitem.filenameandpath,extrathumbs) + [container.content(tvshows) | String.IsEqual(ListItem.DBTYPE,tvshow)]">$INFO[listitem.filenameandpath,,extrathumbs]</value>
+        <value condition="String.Contains(listitem.filenameandpath,extrathumbs) + [container.content(seasons) | String.IsEqual(ListItem.DBTYPE,season)]">$INFO[container.listitem.path,,extrathumbs]</value>
+    </variable>
+	
+	<!-- video extra(s) -->
+	<variable name="BonusContent">
+        <value condition="String.Contains(listitem.filenameandpath,VIDEO_TS)">$INFO[listitem.path,,VIDEO_TS\extras]</value>
+		<value condition="String.Contains(listitem.filenameandpath,BDMV)">$INFO[listitem.path,,BDMV\extras]</value>
+		<value condition="String.Contains(listitem.filenameandpath,extras)">$INFO[listitem.path,,extras]</value>
+	</variable>
+	
+	<!-- videoinfo -->
+	<include name="VideoInfo_ContainerHeader">
+		<definition>
+            <control type="group" id="$PARAM[groupid]">
+                <top>50</top>
+                <height>50</height>
+                <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) | Container($PARAM[id]).IsUpdating</visible>
+                <nested />
+				<control type="grouplist">
+                    <height>52</height>
+                    <orientation>horizontal</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+                    <itemgap>10</itemgap>
+                    <control type="label">
+                        <top>18</top>
+                        <left>15</left>
+                        <width>auto</width>
+                        <label>$PARAM[label]</label>
+                        <aligny>center</aligny>
+                        <textcolor>white</textcolor>
+						<font>Bold30</font>
+                        <height>24</height>
+                        <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) | !Container($PARAM[id]).IsUpdating</visible>
+                    </control>
+					<control type="label">
+                        <top>16</top>
+                        <width>auto</width>
+                        <label>$VAR[VideoInfoHeader_Seperator]</label>
+						<aligny>center</aligny>
+                        <textcolor>$INFO[Skin.String(ViewDetailsHighlightTextColor)]</textcolor>
+                        <font>Bold36</font>
+                        <height>24</height>
+                        <visible>Control.HasFocus($PARAM[id])</visible>
+                        <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Label)</visible>
+                        <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
+                    </control>
+					<control type="label">
+                        <top>20</top>
+                        <width>auto</width>
+						<label>$VAR[VideoInfoHeader_Title]</label>
+                        <aligny>center</aligny>
+						<textcolor>white</textcolor>
+						<font>Reg30</font>
+                        <height>24</height>
+                        <visible>Control.HasFocus($PARAM[id])</visible>
+                        <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
+                    </control>
+					<control type="image">
+						<visible>Container($PARAM[id]).IsUpdating</visible>
+						<top>10</top>
+						<width>40</width>
+						<height>40</height>
+						<aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+						<texture colordiffuse="green">special://skin/extras/busy/skypishball.apng</texture>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+					</control>
+					
+				</control>
+            </control>
+        </definition>
+    </include>
+	<include name="VideoInfo_Container">
+		<control type="$PARAM[type]" id="$PARAM[id]">
+			<nested />
+			<scrolltime tween="quadratic">400</scrolltime>
+			<top>50</top>
+			
+			<onclick condition="Control.HasFocus(8606)">SetFocus(9001)</onclick>
+			<onclick condition="Control.HasFocus(8607)">SetFocus(9002)</onclick>
+			
+			<onclick condition="Control.HasFocus(8601) + String.IsEqual(Skin.String(videoinfo_castaction),library_search) + !String.IsEmpty(Skin.String(SearchTerm))">Skin.Reset(SearchTerm)</onclick>
+			<onclick condition="Control.HasFocus(8601) + String.IsEqual(Skin.String(videoinfo_castaction),library_search)">Dialog.Close(movieinformation,true)</onclick>
+			<onclick condition="Control.HasFocus(8601) + String.IsEqual(Skin.String(videoinfo_castaction),library_search)">Skin.SetString(SearchTerm,$INFO[ListItem.Label])</onclick>
+			<onclick condition="Control.HasFocus(8601) + String.IsEqual(Skin.String(videoinfo_castaction),library_search)">ActivateWindow(1100),return</onclick>
+			<onclick condition="Control.HasFocus(8601) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo)">RunScript(script.extendedinfo,info=extendedactorinfo,name=$INFO[ListItem.Label])</onclick>
+			<oninfo condition="Control.HasFocus(8601)">RunScript(script.extendedinfo,info=extendedactorinfo,name=$INFO[ListItem.Label])</oninfo>
+	
+			
+			<preloaditems>2</preloaditems>
+			<movement>$PARAM[movement]</movement>
+			<orientation>horizontal</orientation>
+			<height>385</height>
+			<visible>$PARAM[visible]</visible>
+			<itemlayout height="$PARAM[height]" width="$PARAM[width]">
+				<control type="group">
+					<width>$PARAM[width]</width>
+					<height>$PARAM[height]</height>
+					<include content="$PARAM[layout]">
+						<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+						<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+						<param name="border" value="thumbsborder_unfocused" />
+					</include>
+					<control type="group">
+						<top>-2</top>
+						<include content="Tag_NF">
+							<param name="tagwidth" value="$PARAM[width]"/>
+							<param name="tagtop" value="$PARAM[height]" />
+						</include>
+					</control>
+				</control>
+			</itemlayout>
+			<focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+				<control type="group">
+					<width>$PARAM[width]</width>
+					<height>$PARAM[height]</height>
+					<include>Focus_Zoom_Animation</include>
+					<control type="group">
+						<visible>Control.HasFocus($PARAM[id])</visible>
+						<include content="$PARAM[layout]">
+							<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+							<param name="colordiffuse" value="$VAR[ViewDetailsBorderFocusColor]" />
+							<param name="border" value="thumbsborder_focused" />
+						</include>
+						<include condition="Skin.HasSetting(LibItems_FocusOverlay)">FocusOverlay</include>
+					</control>
+					<control type="group">
+						<visible>!Control.HasFocus($PARAM[id])</visible>
+						<include content="$PARAM[layout]">
+							<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+							<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+							<param name="border" value="thumbsborder_unfocused" />
+						</include>
+					</control>
+					<control type="group">
+						<top>-2</top>
+						<include content="Tag_FO">
+							<param name="tagwidth" value="$PARAM[width]"/>
+							<param name="tagtop" value="$PARAM[height]" />
+						</include>
+					</control>					
+				</control>			
+			</focusedlayout>
+		</control>
+	</include>
+	
+	<include name="HUB_Container">
+		<control type="$PARAM[type]" id="$PARAM[id]">
+			<nested />
+			<scrolltime tween="quadratic">400</scrolltime>
+			<top>50</top>
+			
+			
+			<preloaditems>2</preloaditems>
+			<movement>$PARAM[movement]</movement>
+			<orientation>horizontal</orientation>
+			<height>200</height>
+			<visible>$PARAM[visible]</visible>
+			<itemlayout height="$PARAM[height]" width="$PARAM[width]">
+				<control type="group">
+					<width>$PARAM[itemwidth]</width>
+					<height>$PARAM[itemheight]</height>
+					<include content="$PARAM[layout]">
+						<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+						<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+						<param name="border" value="thumbsborder_unfocused" />
+					</include>
+					<control type="textbox">
+						<visible>$PARAM[tagoverlay]</visible>
+						<align>center</align>
+						<aligny>center</aligny>
+						<wrapmultiline>true</wrapmultiline>
+						<left>20</left>
+						<right>20</right>
+						<font>Bold34</font>
+						<textcolor>black</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</control>
+				<control type="textbox">
+							<visible>$PARAM[tagbottom]</visible>
+							<wrapmultiline>true</wrapmultiline>
+							<top>$PARAM[itemheight]</top>
+							<left>20</left>
+							<right>20</right>
+							<font>Bold34</font>
+							<textcolor>black</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+			</itemlayout>
+			<focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+				<control type="group">
+					<width>$PARAM[itemwidth]</width>
+					<height>$PARAM[itemheight]</height>
+					<include>Focus_Zoom_Animation</include>
+					<control type="group">
+						<include content="$PARAM[layout]">
+							<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+							<param name="colordiffuse" value="$VAR[ViewDetailsBorderFocusColor]" />
+							<param name="border" value="thumbsborder_focused" />
+						</include>
+						<control type="textbox">
+							<visible>$PARAM[tagoverlay]</visible>
+							<align>center</align>
+							<aligny>center</aligny>
+							<wrapmultiline>true</wrapmultiline>
+							<left>20</left>
+							<right>20</right>
+							<font>Bold34</font>
+							<textcolor>black</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<include condition="Skin.HasSetting(LibItems_FocusOverlay)">FocusOverlay</include>
+					</control>
+					<control type="textbox">
+							<visible>$PARAM[tagbottom]</visible>
+							<wrapmultiline>true</wrapmultiline>
+							<top>$PARAM[itemheight]</top>
+							<left>20</left>
+							<right>20</right>
+							<font>Bold34</font>
+							<textcolor>black</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					
+					
+									
+				</control>			
+			</focusedlayout>
+		</control>
+	</include>
+	
+	<variable name="PercentPlayed">
+		<value condition="!Integer.IsGreater(ListItem.PlayCount,0) + !ListItem.IsResumable">watched 0%</value>
+		<value condition="Integer.IsGreater(ListItem.PlayCount,0) + !ListItem.IsResumable">watched 100%</value>
+		<value>$INFO[ListItem.PercentPlayed,watched ,%]</value>
+	</variable>
+	
+	<variable name="VideoInfoHeader_Title">
+		<value condition="Control.HasFocus(8601) | Control.HasFocus(8606) | Control.HasFocus(8607)"></value>
+		<value condition="Control.HasFocus(8610)">$INFO[Container.ListItem.Season,$LOCALIZE[20373] [B],[/B] • ]$INFO[Container.ListItem.Episode,$LOCALIZE[20452] [B],[/B]]$INFO[Container.ListItem.Title,[B] : ,[/B]]</value>
+		<value>$INFO[Container.ListItem.Label,[B],[/B]]</value>
+	</variable>
+	<variable name="VideoInfoHeader_Seperator">
+		<value condition="Control.HasFocus(8601) | Control.HasFocus(8606) | Control.HasFocus(8607)"></value>
+		<value> | </value>
+	</variable>
+	<variable name="SearchInfoHeader_Title">
+		<value condition="Control.HasFocus(5009)">$INFO[ListItem.Label,[B],[/B]]</value>
+		<value condition="String.IsEqual(ListItem.DBType,musicvideo)">$INFO[ListItem.Artist,[B],[/B]]$INFO[ListItem.Title,  [B]•  ,[/B]]</value>
+		<value condition="String.IsEqual(ListItem.DBType,song)">$INFO[ListItem.Artist,[B],[/B]]$INFO[ListItem.Title,  [B]•  ,[/B]]</value>
+		<value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.TvShowTitle,[B],  |  [/B]]$INFO[ListItem.Season,[B]$LOCALIZE[20373]  , • [/B]]$INFO[ListItem.Episode, [B]$LOCALIZE[20359]  , • [/B]]$INFO[ListItem.Title,[B],[/B]]</value>
+		<value condition="Control.HasFocus(5007)">$INFO[ListItem.Genre, &quot; , &quot;   |  ]$INFO[ListItem.Label,[B],[/B]]</value>
+		<value condition="Control.HasFocus(5011)">$INFO[ListItem.Studio, &quot; , &quot;   |  ]$INFO[ListItem.Label,[B],[/B]]</value>
+		<value condition="Control.HasFocus(5012)">$INFO[ListItem.Country, &quot; , &quot;  |  ]$INFO[ListItem.Label,[B],[/B]]</value>
+		<value condition="Control.HasFocus(5013)">$INFO[ListItem.Director, &quot; , &quot;  |  ]$INFO[ListItem.Label,[B],[/B]]</value>
+		<value condition="Control.HasFocus(5014)">$INFO[ListItem.AddonName,[B],[/B]]</value>
+		<value>$INFO[ListItem.Label,[B],[/B]]</value>
+	</variable>
+	<variable name="SearchInfoWidget_Description">
+		<value condition="String.IsEqual(ListItem.DBTYPE,album) + !String.IsEmpty(ListItem.Property(Album_Description))">$INFO[ListItem.Property(Album_Description)][CR]$INFO[ListItem.ContributorAndRole]</value>
+		<value condition="[String.IsEqual(ListItem.DBTYPE,song) | String.IsEqual(ListItem.DBTYPE,artist)]">$INFO[ListItem.Property(Artist_Description)][CR]$INFO[ListItem.ContributorAndRole]</value>
+		<value condition="!String.IsEmpty(ListItem.AddonName)">$INFO[ListItem.AddonDescription]</value>
+		<value condition="!String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
+		<value>$LOCALIZE[19055]</value>
+	</variable>
+	<variable name="SearchInfoWidget_BottomInfo">
+		<value condition="[String.IsEqual(ListItem.DBTYPE,episode) | String.IsEqual(ListItem.DBTYPE,movie)]">$VAR[premiere_date,, • ]$VAR[ListItemDuration]$INFO[ListItem.Rating, • ,]</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,tvshow)">$INFO[ListItem.Premiered,, • ]$VAR[ListItemDuration]$INFO[ListItem.Rating, • ,]</value>
+		<value condition="[String.IsEqual(ListItem.DBTYPE,musicvideo) | String.IsEqual(ListItem.DBTYPE,album)]">$INFO[ListItem.Year,, • ]$INFO[ListItem.Artist]$INFO[ListItem.Genre, • ,]</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,artist)">$INFO[ListItem.Property(Artist_YearsActive),, •]$INFO[ListItem.Property(Artist_Formed),$LOCALIZE[21894] :, ]$INFO[ListItem.Property(Artist_Disbanded),$LOCALIZE[21896] :,]</value> 
+		<value condition="!String.IsEmpty(ListItem.AddonName)">$INFO[ListItem.AddonType]$INFO[ListItem.Property(Addon.Status),  •,•]</value>
+		<value condition="Control.HasFocus(5009)">$INFO[ListItem.Year,, • ]$INFO[ListItem.Duration(m),,m ]$INFO[ListItem.Duration(ss),,sec]</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,song)">$INFO[ListItem.Artist]$INFO[ListItem.Album, • ,]$INFO[ListItem.Year, • (,)]</value>
+		<value>$LOCALIZE[19055]</value>
+	</variable>
+	
+	
+</includes>

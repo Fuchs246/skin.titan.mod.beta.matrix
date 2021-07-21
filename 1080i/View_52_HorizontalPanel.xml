@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+
+	<include name="View52_layout">
+            <animation effect="slide" center="auto" end="0,-410" time="450" condition="Skin.HasSetting(InfoBottom_View52)">Conditional</animation>
+			
+			<posx>65</posx>
+            <bottom>12%</bottom>
+            <width>1806</width>
+            <height>385</height>
+            <ondown condition="!Player.HasVideo + Integer.IsLessOrEqual(Container(52).NumItems,7)">9000</ondown>
+			<ondown condition="Skin.HasSetting(EnableQuickJump) + Integer.IsGreater(Container(52).NumItems,7) + !Player.HasVideo">7000</ondown>
+			<ondown condition="!Skin.HasSetting(EnableQuickJump) + Integer.IsGreater(Container(52).NumItems,7) + !Player.HasVideo">60</ondown>
+			<onleft>52</onleft>
+            <onright>52</onright>
+			<include>trailer_onup</include>
+			<pagecontrol>60</pagecontrol>
+            <viewtype label="31445">bigwrap</viewtype>
+			<!--  <scrolltime tween="quadratic">200</scrolltime> -->
+			<scrolltime tween="sine" easing="inout">300</scrolltime>
+            <focusposition>3</focusposition>
+            <preloaditems>2</preloaditems>
+            <orientation>horizontal</orientation>
+            <preloaditems>2</preloaditems>
+            <visible>String.IsEqual(Window(Home).Property(SkinHelper.ForcedView),52) | String.IsEmpty(Window(Home).Property(SkinHelper.ForcedView))</visible>
+            <itemlayout height="395" width="258">
+				
+				<control type="group">
+					<animation effect="slide" center="auto" end="0,-15" time="200" condition="Skin.HasSetting(View52_ShowTags)">Conditional</animation>
+					<width>233</width>
+					<height>340</height>
+					<include content="PosterPanelLayout">
+						<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+						<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+						<param name="border" value="thumbsborder_unfocused" />
+					</include>
+				</control>
+				<control type="group">
+					<visible>Skin.HasSetting(View52_ShowTags)</visible>
+					<include content="Tag_NF">
+						<param name="tagwidth" value="230"/>
+						<param name="tagtop" value="330" />
+					</include>
+					</control>
+			</itemlayout>
+			<focusedlayout height="365" width="258">
+				<control type="group">
+					<animation effect="slide" center="auto" end="0,-15" time="0" condition="true">Conditional</animation>
+					<width>233</width>
+					<height>340</height>
+					<!-- default flow -->
+					<animation type="Focus" reversible="false" condition="true">
+						<effect type="zoom" end="135" time="150" tween="sine" easing="out" center="auto" />
+						<effect type="zoom" end="90" time="100" tween="sine" delay="150" easing="out" center="auto" />
+					</animation>
+					<include content="PosterPanelLayout">
+						<param name="WatchedIndicator" value="WatchedIndicatorNormal"/>
+						<param name="colordiffuse" value="$VAR[ViewDetailsBorderFocusColor]" />
+						<param name="border" value="thumbsborder_focused" />
+					</include>
+					<include condition="Skin.HasSetting(LibItems_FocusOverlay)">FocusOverlay</include>
+					<include content="AutoTrailerButton">
+						<param name="id" value="52"/>
+					</include>
+				</control>
+			</focusedlayout>
+	</include>
+
+	<include name="View52_layout_fixed">
+		<control type="fixedlist" id="52">
+			<include>View52_layout</include>
+		</control>
+	</include>
+	
+	<include name="View52_layout_normal">
+		<control type="panel" id="52">
+			<include>View52_layout</include>
+		</control>
+	</include>
+	
+	
+	
+    <include name="View_52_HorizontalPanel">
+		<!-- panel no info -->
+        <control type="group">
+            <visible>Control.IsVisible(52)</visible>
+            <include>animation_view_change</include>
+			
+			
+			<!-- movie details default-->
+			<control type="group">
+				<animation effect="slide" center="auto" end="0,420" time="450" condition="Skin.HasSetting(InfoBottom_View52)">Conditional</animation>
+				<visible>Skin.HasSetting(PanelViewShowInfo)</visible>
+				<visible>!Skin.HasSetting(PanelViewShowFanart)</visible>
+				<include>MovieDetailsTop</include>
+			</control> 
+			
+			<!-- movie fanart left , info n plot right -->
+			<control type="group" id="888">
+				<include>animation_view_change</include>
+				<visible>Integer.IsGreater(Container.NumItems,0)</visible>
+				<height>830</height>
+				<top>11%</top>
+				<visible>Skin.HasSetting(PanelViewShowFanart)</visible>
+				<visible>!Skin.HasSetting(PanelViewShowInfo)</visible>
+				<animation effect="slide" center="auto" end="0,420" time="450" condition="Skin.HasSetting(InfoBottom_View52)">Conditional</animation>
+				<!-- bg panel -->
+				<control type="image">
+					<animation effect="slide" center="auto" end="0,-420" time="450" condition="Skin.HasSetting(InfoBottom_View52)">Conditional</animation>
+					<visible>!String.IsEmpty(ListItem.Label)</visible>
+					<visible>!Skin.HasSetting(DetailsTopHidepanel)</visible>
+					<top>-10</top>
+					<height>855</height>
+					<width>1920</width>
+					<texture border="15">diffuse/bgpanel.png</texture>
+					<colordiffuse>$VAR[ViewDetailsFocusColor]</colordiffuse>
+				</control>
+				<!--Info-->
+				<control type="grouplist">
+					<posx>60</posx>
+					<posy>10</posy>
+					<width>1920</width>
+					<height>400</height>
+					<orientation>horizontal</orientation>
+					<!-- fanart -->
+					<control type="image">
+						<width>672</width>
+						<height>378</height>
+						<bordersize>8</bordersize>
+						<texture background="true" diffuse="home/home_matte2.png" fallback="colors/color_keyboard.png">$VAR[FanartLandscapeImage]</texture>
+						<aspectratio scalediffuse="false" align="center" aligny="center">stretch</aspectratio>
+						<visible>![!String.IsEmpty(ListItem.Thumb) + String.IsEqual(ListItem.Thumb,ListItem.Property(channellogo))]</visible>
+					</control>
+					<!-- Info -->
+					<control type="group">
+						<control type="label">
+							<top>0</top>
+							<left>20</left>
+							<width>1080</width>
+							<height>30</height>
+							<align>center</align>
+							<label>[UPPERCASE][B]$VAR[mediatitle][/B][/UPPERCASE]</label>
+							<textcolor>$INFO[Skin.String(ViewDetailsHighlightTextColor)]</textcolor>
+							<align>left</align>
+						</control>
+						<control type="label">
+							<top>50</top>
+							<left>20</left>
+							<width>1080</width>
+							<height>30</height>
+							<align>center</align>
+							<label>[B]$VAR[Details][/B]</label>
+							<shadowcolor>$INFO[Skin.String(ViewDetailsTextShadowColor)]</shadowcolor>
+							<textcolor>$INFO[Skin.String(ViewDetailsTextColor)]</textcolor>
+							<align>left</align>
+						</control>
+						<control type="textbox">
+							<top>80</top>
+							<left>20</left>
+							<width>1080</width>
+							<height>305</height>
+							<align>center</align>
+							<label>$VAR[Plots]</label>
+							<shadowcolor>$INFO[Skin.String(ViewDetailsTextShadowColor)]</shadowcolor>
+							<textcolor>$INFO[Skin.String(ViewDetailsTextColor)]</textcolor>
+							<align>justify</align>
+						</control>
+					</control>
+				</control>
+     		</control>
+					
+			<!--cdart image-->
+            <control type="group">
+                <width>220</width>
+                <height>220</height>
+                <bottom>23%</bottom>
+                <posx>70</posx>
+                <control type="image">
+                    <texture background="true" diffuse="diffuse/cdmask_new.png" fallback="defaultcovers/cd_big.png">$VAR[DiscArtImage]</texture>
+                    <aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+                    <animation effect="slide" start="0" end="0,-160" tween="cubic" easing="inout" time="1200" delay="800">Visible</animation>
+                    <animation effect="fade" start="0" end="100" delay="800" time="800" pulse="false">Visible</animation>
+                    <animation effect="rotate" end="-360" center="auto" time="20000" loop="true" reversible="false" condition="Skin.HasSetting(AnimateDiscArt)">Conditional</animation>
+                    <visible>Skin.HasSetting(View52_ShowCDart) + ![String.StartsWith(ListItem.Thumb,Default) | String.IsEmpty(ListItem.Thumb)] + !Container.IsScrolling + !Container.OnScrollNext + !Container.OnScrollPrevious</visible>
+                </control>
+                <animation effect="slide" end="258" time="0" delay="0" condition="!Skin.HasSetting(View52_UseFixedLayout) + Integer.IsGreater(Container.Position,0)">Conditional</animation>
+                <animation effect="slide" end="258" time="0" delay="0" condition="!Skin.HasSetting(View52_UseFixedLayout) + Integer.IsGreater(Container.Position,1)">Conditional</animation>
+                <animation effect="slide" end="258" time="0" delay="0" condition="!Skin.HasSetting(View52_UseFixedLayout) + Integer.IsGreater(Container.Position,2)">Conditional</animation>
+                <animation effect="slide" end="258" time="0" delay="0" condition="!Skin.HasSetting(View52_UseFixedLayout) + Integer.IsGreater(Container.Position,3)">Conditional</animation>
+                <animation effect="slide" end="258" time="0" delay="0" condition="!Skin.HasSetting(View52_UseFixedLayout) + Integer.IsGreater(Container.Position,4)">Conditional</animation>
+                <animation effect="slide" end="258" time="0" delay="0" condition="!Skin.HasSetting(View52_UseFixedLayout) + Integer.IsGreater(Container.Position,5)">Conditional</animation>
+                <animation effect="slide" end="774" time="0" delay="0" condition="Skin.HasSetting(View52_UseFixedLayout)">Conditional</animation>
+            </control>
+            
+			<!-- View 52 -->
+			<include condition="Skin.HasSetting(View52_UseFixedLayout)">View52_layout_fixed</include>
+			<include condition="!Skin.HasSetting(View52_UseFixedLayout)">View52_layout_normal</include>
+            
+            <!--horizontal Scrollbar-->
+			<control type="scrollbar" id="60">
+				<visible>Control.IsVisible(52) + Integer.IsGreater(Container.Numitems,0)</visible>
+				<left>70</left>
+				<bottom>10%</bottom>
+				<width>1780</width>
+				<height>10</height>
+				<onup>52</onup>
+				<onleft>60</onleft>
+				<onright>60</onright>
+				<ondown>9000</ondown>
+				<orientation>horizontal</orientation>
+				<animation effect="fade" start="0" end="100" time="400" condition="[Control.HasFocus(60) | Skin.HasSetting(EnableTouchSupport) | Container.Scrolling | Skin.HasSetting(alwaysShowScrollbars)] + !Control.IsVisible(7002)">Conditional</animation>
+                <animation effect="fade" start="100" end="0" time="400" condition="![Control.HasFocus(60) | Skin.HasSetting(EnableTouchSupport) | Container.Scrolling | Skin.HasSetting(alwaysShowScrollbars)] | Control.IsVisible(7002)">Conditional</animation>
+			</control>
+			
+		</control>
+		<control type="group">
+			<visible>$EXP[PlayerHasVideo] + String.IsEmpty(VideoPlayer.DBID) + !VideoPlayer.Content(livetv) + Control.IsVisible(52)</visible>
+			<animation effect="slide" center="auto" end="0,430" time="450" condition="Skin.HasSetting(InfoBottom_View52)">Conditional</animation>
+			<posx>55</posx>
+			<posy>125</posy>
+			<width>672</width>
+			<height>378</height>
+			<control type="image">
+				<aligny>bottom</aligny>
+				<texture border="15">diffuse/bgpanel.png</texture>
+				<colordiffuse>ff000000</colordiffuse>
+			</control>
+			<include>Preview_GameVideoWindow</include>
+		</control>
+    </include>
+</includes>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+  
+  
+  <include name="View_509_PanelSquare">
+    <control type="group">
+      <visible>Control.IsVisible(509)</visible>
+      <include>animation_view_change</include>
+      <control type="panel" id="509">
+		<animation effect="slide" start="0" end="-40,0" time="150" condition="Control.HasFocus(60) | Control.HasFocus(6002)">Conditional</animation>
+		<animation effect="slide" start="0" end="40,0" time="150" condition="Skin.HasSetting(View509_ShowTags)">Conditional</animation>
+		
+		<viewtype label="31436">icons</viewtype>
+        <posx>40</posx>
+        <bottom>13%</bottom>
+        <width>1891</width>
+        <height>819</height>
+        <orientation>vertical</orientation>
+        <onleft>9000</onleft>
+        <onright condition="Skin.HasSetting(EnableQuickJump)">6000</onright>
+        <onright condition="!Skin.HasSetting(EnableQuickJump)">60</onright>
+        <onup>509</onup>
+        <ondown>509</ondown>
+        <preloaditems>4</preloaditems>
+        <pagecontrol>60</pagecontrol>
+        <scrolltime tween="quadratic" easing="out">300</scrolltime>
+		<visible>String.IsEqual(Window(Home).Property(SkinHelper.ForcedView),509) | String.IsEmpty(Window(Home).Property(SkinHelper.ForcedView))</visible>
+        <itemlayout height="270" width="270" condition="!Skin.HasSetting(View509_ShowTags)">
+            <control type="group">
+                <width>255</width>
+                <height>255</height>
+				<include content="SquarePosterPanelLayout">
+					<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+					<param name="border" value="thumbsborder_unfocused" />
+				</include>
+            </control>
+        </itemlayout>
+        <focusedlayout height="270" width="270" condition="!Skin.HasSetting(View509_ShowTags)">
+			<include content="AutoTrailerButton">
+				<param name="id" value="509"/>
+			</include>
+			<control type="group">
+				<include>Focus_Zoom_Animation</include>
+                <width>255</width>
+                <height>255</height>
+				<include content="SquarePosterPanelLayout">
+					<param name="colordiffuse" value="$VAR[ViewDetailsBorderFocusColor]" />
+					<param name="border" value="thumbsborder_focused" />
+				</include>
+				<include condition="Skin.HasSetting(LibItems_FocusOverlay)">FocusOverlay</include>
+            </control>
+        </focusedlayout>
+		<itemlayout height="295" width="260" condition="Skin.HasSetting(View509_ShowTags)">
+            <control type="group">
+                <width>235</width>
+                <height>235</height>
+				<include content="SquarePosterPanelLayout">
+					<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+					<param name="border" value="thumbsborder_unfocused" />
+				</include>
+				<include content="Tag_NF">
+					<param name="tagwidth" value="235" />
+					<param name="tagtop" value="239" />
+				</include>
+            </control>
+        </itemlayout>
+        <focusedlayout height="295" width="260" condition="Skin.HasSetting(View509_ShowTags)">
+			<include content="AutoTrailerButton">
+				<param name="id" value="509"/>
+			</include>
+			<control type="group">
+                <include>Focus_Zoom_Animation</include>
+				<width>235</width>
+                <height>235</height>
+				<include content="SquarePosterPanelLayout">
+					<param name="colordiffuse" value="$VAR[ViewDetailsBorderFocusColor]" />
+					<param name="border" value="thumbsborder_focused" />
+				</include>
+				<include content="Tag_FO">
+					<param name="tagwidth" value="235" />
+					<param name="tagtop" value="239" />
+				</include>
+				<include condition="Skin.HasSetting(LibItems_FocusOverlay)">FocusOverlay</include>
+			</control>
+        </focusedlayout>
+	  </control>
+      
+	  <!--vertical Scollbar-->
+		<control type="scrollbar" id="60">
+			<visible>Control.IsVisible(509) + Integer.IsGreater(Container.Numitems,0)</visible>
+			<right>15</right>
+			<bottom>13%</bottom>
+			<width>10</width>
+			<height>811</height>
+			<onup>60</onup>
+			<ondown>6000</ondown>
+			<onleft>509</onleft>
+			<animation effect="fade" start="0" end="100" time="400" condition="[Control.HasFocus(60) | Skin.HasSetting(EnableTouchSupport) | Container.Scrolling | Skin.HasSetting(alwaysShowScrollbars)] + !Control.IsVisible(6002)">Conditional</animation>
+			<animation effect="fade" start="100" end="0" time="400" condition="![Control.HasFocus(60) | Skin.HasSetting(EnableTouchSupport) | Container.Scrolling | Skin.HasSetting(alwaysShowScrollbars)] | Control.IsVisible(6002)">Conditional</animation>
+		</control>
+	  
+		
+    </control>
+	
+	
+  </include>
+</includes>

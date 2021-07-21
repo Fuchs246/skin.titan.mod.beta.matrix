@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<!-- Tags -->
+	<expression name="NetflixHomeIsVisible">[Window.IsActive(Home) + !Window.IsActive(movieinformation) + String.Contains(Skin.String(HomeLayout),netflix)]</expression>
+	
+	
+	<!-- avoid online lookups if offline , 
+	!String.IsEmpty(Network.IPAddress)
+	!String.EndsWith(Network.LinkState,$LOCALIZE[15208]] not connected
+	-->
+	<expression name="IsOfflineMode">[String.EndsWith(Network.LinkState,$LOCALIZE[15208]) + String.IsEmpty(Network.IPAddress)]</expression>
+	
+	<!-- Backgroundbuilding [Window.IsActive(movieinformation) + Skin.HasSetting(UseNetflixInfoDialog)] | -->
+	<!-- anpassen für Mod_Enhanced_Info bei aufruf mit Color Monitor aus den netfix ansichten (eine lösung finden???) -->
+		<!-- NetflixLayout -->
+			<expression name="IsNetflixLayout">
+				[[Window.IsActive(Home) + !Window.IsActive(movieinformation) + String.Contains(Skin.String(HomeLayout),netflix)] | 
+				 [Window.IsActive(movieinformation) + Skin.HasSetting(UseNetflixInfoDialog)] | 
+				  Window.IsActive(3017) | Window.IsActive(3018) | 
+				 Control.IsVisible(523) | 
+				 Control.IsVisible(525) | 
+				 Control.IsVisible(529) | 
+				[Control.IsVisible(526) + Skin.HasSetting(View526_DisableFanArt)] |
+				[Control.IsVisible(527) + Skin.HasSetting(View527_DisableFanArt)]]
+			</expression>
+	
+	<!-- Home -->
+	<!-- studio or Ratings footer-->
+	<expression name="UseStudio_or_RatingFoo">[
+		Skin.HasSetting(StudioInFooter) | 
+		Skin.HasSetting(show_imdb_RatingInFooter) | 
+		Skin.HasSetting(show_themoviedb_RatingInFooter) | 
+		Skin.HasSetting(show_tvdb_RatingInFooter) | 
+		Skin.HasSetting(show_imdbtop250_RatingInFooter) |
+		Skin.HasSetting(show_metacritic_RatingInFooter) |
+		Skin.HasSetting(show_tomatometerallaudience_RatingInFooter) |
+		Skin.HasSetting(show_tomatometerallcritics_RatingInFooter)]
+	</expression>
+	
+	<!-- Artwork -->
+	<expression name="NoClearlogo">
+		String.IsEmpty(ListItem.Art(tvshow.clearlogo)) +
+		String.IsEmpty(ListItem.Art(artist.clearlogo)) +
+		String.IsEmpty(ListItem.Art(albumartist.clearlogo)) +
+		String.IsEmpty(ListItem.Art(clearlogo)) + 
+		String.IsEmpty(Container.ListItem.Property(ListItem.Art(clearlogo))) +
+		String.IsEmpty(Window(home).Property(SkinHelper.ListItem.ClearLogo)) +
+		String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Art.ClearLogo))
+	</expression>
+	
+	<!-- Playing -->
+	<expression name="PlayerHasVideo">[Player.HasVideo | Player.HasGame]</expression>
+	<expression name="HasAutoTrailer">Skin.HasSetting(DetailsAutoTrailer) | Skin.HasSetting(GameModeAutoTrailer)</expression>
+	
+	<!-- Content -->
+	<expression name="IsTVShow">String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.Property(DBTYPE),tvshow) | String.IsEqual(Window(Home).Property(ListItem.DBTYPE,tvshow)) | String.IsEqual(Window(Home).Property(ListItem.Property(DBTYPE)),tvshow)</expression>
+	<expression name="IsEpisode">String.IsEqual(ListItem.DBTYPE,episode) | String.IsEqual(ListItem.Property(DBTYPE),episode) | String.IsEqual(Window(Home).Property(ListItem.DBTYPE,episode)) | String.IsEqual(Window(Home).Property(ListItem.Property(DBTYPE)),episode)</expression>
+	<expression name="IsSeason">Container.Content(seasons) | String.IsEqual(ListItem.DBTYPE,season)</expression>
+	<expression name="IsMovie">String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.Property(DBTYPE),movie) | String.IsEqual(Window(Home).Property(ListItem.DBTYPE,movie)) | String.IsEqual(Window(Home).Property(ListItem.Property(DBTYPE)),movie)</expression>
+	<expression name="IsArtist">String.IsEqual(ListItem.DBTYPE,artist) | String.IsEqual(ListItem.Property(DBTYPE),artist) | String.IsEqual(Window(Home).Property(ListItem.DBTYPE,artist)) | String.IsEqual(Window(Home).Property(ListItem.Property(DBTYPE)),artist)</expression>
+	<expression name="IsAlbum">String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.Property(DBTYPE),album) | String.IsEqual(Window(Home).Property(ListItem.DBTYPE,album)) | String.IsEqual(Window(Home).Property(ListItem.Property(DBTYPE)),album)</expression>
+	<expression name="IsSong">String.IsEqual(ListItem.DBTYPE,song) | String.IsEqual(ListItem.Property(DBTYPE),song) | String.IsEqual(Window(Home).Property(ListItem.DBTYPE,song)) | String.IsEqual(Window(Home).Property(ListItem.Property(DBTYPE)),song)</expression>
+	
+	<!-- ArtWork -->
+	
+	<!-- Games -->
+	<expression name="InVideoMode">Window.IsActive(Videos)</expression>
+    <expression name="InGameMode">String.Contains(Container.FolderPath,plugin://plugin.program.ael) | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.launcher) | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.emulator.launcher) |  Window.IsActive(games)</expression>
+
+    <!-- Game platforms -->
+    <expression name="PlatformIsWindows">String.Contains(Container.ListItem(1).Property(platform),Windows) | String.Contains(Window(10000).Property(AEL_Launch_Platform),Windows) | String.Contains(Container.ListItem(1).Property(Game.Platform),Windows)</expression>
+    <expression name="PlatformIsDos">String.Contains(Container.ListItem(1).Property(platform),DOS) | String.Contains(Window(10000).Property(AEL_Launch_Platform),DOS) | String.Contains(Container.ListItem(1).Property(Game.Platform),DOS)</expression>
+    <expression name="PlatformIsSNES">String.Contains(Container.ListItem(1).Property(platform),SNES) | String.Contains(Window(10000).Property(AEL_Launch_Platform),SNES) | String.Contains(Container.ListItem(1).Property(Game.Platform),SNES)</expression>
+    <expression name="PlatformIsNES">String.IsEqual(Container.ListItem(1).Property(platform),Nintendo NES) | String.Contains(Window(10000).Property(AEL_Launch_Platform),Nintendo NES) | String.Contains(Container.ListItem(1).Property(Game.Platform),Nintendo NES)</expression>
+    <expression name="PlatformIsN64">String.Contains(Container.ListItem(1).Property(platform),Nintendo 64) | String.Contains(Window(10000).Property(AEL_Launch_Platform),Nintendo 64) | String.Contains(Container.ListItem(1).Property(Game.Platform),Nintendo 64)</expression>
+    <expression name="PlatformIsNDS">String.Contains(Container.ListItem(1).Property(platform),DS) | String.Contains(Window(10000).Property(AEL_Launch_Platform),DS) | String.Contains(Container.ListItem(1).Property(Game.Platform),DS)</expression>
+    <expression name="PlatformIsGameboy">String.Contains(Container.ListItem(1).Property(platform),GameBoy) | String.Contains(Window(10000).Property(AEL_Launch_Platform),GameBoy) | String.Contains(Container.ListItem(1).Property(Game.Platform),GameBoy)</expression>
+    <expression name="PlatformIsSwitch">String.Contains(Container.ListItem(1).Property(platform),Switch) | String.Contains(Window(10000).Property(AEL_Launch_Platform),Switch) | String.Contains(Container.ListItem(1).Property(Game.Platform),Switch)</expression>
+    <expression name="PlatformIsPs3">String.Contains(Container.ListItem(1).Property(platform),PlayStation 3) | String.Contains(Window(10000).Property(AEL_Launch_Platform),PlayStation 3) | String.Contains(Container.ListItem(1).Property(Game.Platform),PlayStation 3)</expression>
+    <expression name="PlatformIsPs2">String.Contains(Container.ListItem(1).Property(platform),PlayStation 2) | String.Contains(Window(10000).Property(AEL_Launch_Platform),PlayStation 2) | String.Contains(Container.ListItem(1).Property(Game.Platform),PlayStation 2)</expression>
+    <expression name="PlatformIsPSP">String.Contains(Container.ListItem(1).Property(platform),PlayStation Portable) | String.Contains(Window(10000).Property(AEL_Launch_Platform),PlayStation Portable) | String.Contains(Container.ListItem(1).Property(Game.Platform),PlayStation Portable)</expression>
+    <expression name="PlatformIsPS1">String.IsEqual(Container.ListItem(1).Property(platform),Sony PlayStation) | String.Contains(Window(10000).Property(AEL_Launch_Platform),Sony PlayStation) | String.Contains(Container.ListItem(1).Property(Game.Platform),Sony PlayStation)</expression>
+    <expression name="PlatformIsDreamcast">String.Contains(Container.ListItem(1).Property(platform),Dreamcast) | String.Contains(Window(10000).Property(AEL_Launch_Platform),Dreamcast) | String.Contains(Container.ListItem(1).Property(Game.Platform),Dreamcast)</expression>
+    <expression name="PlatformIsSaturn">String.Contains(Container.ListItem(1).Property(platform),Saturn) | String.Contains(Window(10000).Property(AEL_Launch_Platform),Saturn) | String.Contains(Container.ListItem(1).Property(Game.Platform),Saturn)</expression>
+    <expression name="PlatformIsMasterSystem">String.Contains(Container.ListItem(1).Property(platform),Master System) | String.Contains(Window(10000).Property(AEL_Launch_Platform),Master System) | String.Contains(Container.ListItem(1).Property(Game.Platform),Master System)</expression>
+    <expression name="PlatformIsMegadrive">String.Contains(Container.ListItem(1).Property(platform),Megadrive) | String.Contains(Container.ListItem(1).Property(platform),Genesis) | String.Contains(Window(10000).Property(AEL_Launch_Platform),Megadrive) | String.Contains(Container.ListItem(1).Property(Game.Platform),Megadrive)</expression>
+    <expression name="PlatformIsGameGear">String.Contains(Container.ListItem(1).Property(platform),Game Gear) | String.Contains(Window(10000).Property(AEL_Launch_Platform),Game Gear) | String.Contains(Container.ListItem(1).Property(Game.Platform),Game Gear)</expression>
+    <expression name="PlatformIs32x">String.Contains(Container.ListItem(1).Property(platform),32X) | String.Contains(Window(10000).Property(AEL_Launch_Platform),32X) | String.Contains(Container.ListItem(1).Property(Game.Platform),32X)</expression>
+
+	<!-- Preferred thumb shapes -->	
+    <expression name="UsePosterShape">String.IsEqual(Control.GetLabel(5595),poster)</expression>
+    <expression name="UseTitanShape">String.IsEqual(Control.GetLabel(5595),titan)</expression>
+    <expression name="UseDvdShape">String.IsEqual(Control.GetLabel(5595),dvd)</expression>
+    <expression name="UseCdShape">String.IsEqual(Control.GetLabel(5595),cd)</expression>
+    <expression name="UseBlurayShape">String.IsEqual(Control.GetLabel(5595),bluray)</expression>
+    <expression name="UseWideShape">String.IsEqual(Control.GetLabel(5595),widebox)</expression>
+    <expression name="Use3dsShape">String.IsEqual(Control.GetLabel(5595),3dsbox)</expression>
+    <expression name="UseSquareShape">String.IsEqual(Control.GetLabel(5595),squarebox)</expression>
+    <expression name="UseSlimShape">String.IsEqual(Control.GetLabel(5595),slimbox)</expression>
+    <expression name="UseSteamShape">String.IsEqual(Control.GetLabel(5595),steambanner)</expression>
+    <expression name="UseScreenshotShape">String.IsEqual(Control.GetLabel(5595),screenshot)</expression>
+
+	<expression name="Widget_Fix">!String.IsEqual(Skin.String(widgetstyle),landscapedetails) | !String.IsEqual(Skin.String(widgetstyle),landscapewidedetails) | !String.IsEqual(Skin.String(widgetstyle),posterdetails) | !String.IsEqual(Skin.String(widgetstyle),widebox) | !String.IsEqual(Skin.String(widgetstyle),singlebox)</expression>
+</includes>

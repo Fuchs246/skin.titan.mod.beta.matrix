@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Titan-->
+<window>
+    <defaultcontrol always="true">1000</defaultcontrol>
+    <include>DefaultSkinSettings</include>
+    <include condition="Skin.HasSetting(KeepWidgetFocus)">WidgetPlaybackFocus</include>
+    <onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=300&amp;group=mainmenu|powermenu)</onload>
+	<onload condition="Skin.HasSetting(DisableColors)">Skin.SetBool(TMDbHelper.EnableColors)</onload>  <!-- (DisableColors) name ändern in (Enable_Colors) --> 
+	<onload condition="!Skin.HasSetting(DisableColors)">Skin.Reset(TMDbHelper.EnableColors)</onload>
+	<onload condition="Skin.HasSetting(LightColors)">Skin.SetString(TMDbHelper.Colors.Luminance,0.4)</onload>    
+	<onload condition="Skin.HasSetting(LightColors)">Skin.SetString(TMDbHelper.Colors.Saturation,0.6)</onload>
+	<onload condition="!Skin.HasSetting(LightColors)">Skin.SetString(TMDbHelper.Colors.Luminance,0.13)</onload>    
+	<onload condition="!Skin.HasSetting(LightColors)">Skin.SetString(TMDbHelper.Colors.Saturation,0.6)</onload>
+	<onload>SetProperty(TMDbHelper.WidgetContainer,$PARAM[widgetid],Home)</onload>
+    <onload>SetProperty(TMDbHelper.Colors.SourceImage,fanart,Home)</onload>
+	<!-- <onload>RunScript(script.embuary.helper,action=getkodisetting,setting=myvideos.selectaction)</onload> - custom defined actions possible, but huge workaraound - var/include RespectBool_selectaction -->
+	<include condition="Skin.String(widgets_rotate) + !Skin.String(widgets_rotate,disabled)">WidgetsAutoRotateUnload</include>
+    <onunload condition="!Skin.HasSetting(SectionBackgroundHomeOnly)">SetProperty(SectionBackground,$INFO[Control.GetLabel(99004)])</onunload>
+	<!-- auto close homemenu and focus mainmenu when home is unloaded -->
+    <onunload>ClearProperty(submenu,Home)</onunload>
+    <onunload>ClearProperty(ShowWidget,Home)</onunload>
+    <onunload>ClearProperty(ShowViewSubMenu,Home)</onunload>
+    <onunload>ClearProperty(SkinHelper.WidgetContainer,Home)</onunload>
+	<onload condition="!String.IsEmpty(Window(Home).Property(FocusSpotlightButtons))">ClearProperty(FocusSpotlightButtons, Home)</onload>
+    <onload condition="Skin.String(HomeLayout,netflix2)">SetProperty(netflixview,active,Home)</onload>
+    <onunload>ClearProperty(netflixview, Home)</onunload>
+    <onunload condition="!String.IsEmpty(Window(Home).Property(FocusSpotlightButtons))">ClearProperty(FocusSpotlightButtons, Home)</onunload>
+	<menucontrol>300</menucontrol>
+	<controls>
+	
+        <!--Global Background-->
+        <include>GlobalBackground</include>
+		
+		<control type="button" id="1000">
+			<description>hidden button for onload actions as placing them in onload causes strange behaviour</description>
+            <!--focus 77777 more consistently on first load-up, but nav issue if no widget available/dont show all widget option -->
+            <onfocus condition="String.IsEmpty(Window(Home).Property(HomeFirstLoadDone)) + [String.Contains(Skin.String(HomeLayout), netflix) | Skin.String(HomeLayout, win10)] + !Skin.HasSetting(AutoFocusHome) + String.IsEmpty(Window(Home).Property(LastFocusWidget))">AlarmClock(focus_delay,SetFocus(77777),00:01,silent)</onfocus>
+            <onfocus condition="!String.IsEmpty(Window(Home).Property(HomeFirstLoadDone)) + [String.Contains(Skin.String(HomeLayout), netflix) | Skin.String(HomeLayout, win10)] + !Skin.HasSetting(AutoFocusHome) + String.IsEmpty(Window(Home).Property(LastFocusWidget))">SetFocus(77777)</onfocus>
+            <onfocus condition="Integer.IsEqual(Container(77777).NumItems,0) + [String.IsEmpty(Window(Home).Property(HomeFirstLoadDone)) + [String.Contains(Skin.String(HomeLayout), netflix) | Skin.String(HomeLayout, win10)] + !Skin.HasSetting(AutoFocusHome)+ String.IsEmpty(Window(Home).Property(LastFocusWidget))]">AlarmClock(focus_delay,SetFocus(300),00:01,silent)</onfocus>
+            <onfocus condition="Integer.IsEqual(Container(77777).NumItems,0) + [!String.IsEmpty(Window(Home).Property(HomeFirstLoadDone)) + [String.Contains(Skin.String(HomeLayout), netflix) | Skin.String(HomeLayout, win10)] + !Skin.HasSetting(AutoFocusHome) + String.IsEmpty(Window(Home).Property(LastFocusWidget))]">SetFocus(300)</onfocus>
+            <onfocus condition="[[!String.Contains(Skin.String(HomeLayout), netflix) + !Skin.String(HomeLayout, win10)] | Skin.HasSetting(AutoFocusHome)] + !Skin.String(home.defaultfocus) + String.IsEmpty(Window(Home).Property(LastFocusWidget))">SetFocus(300)</onfocus>
+            <onfocus condition="[[!String.Contains(Skin.String(HomeLayout), netflix) + !Skin.String(HomeLayout, win10)] | Skin.HasSetting(AutoFocusHome)] + Skin.String(home.defaultfocus) + String.IsEmpty(Window(Home).Property(LastFocusWidget))">SetFocus(300,$INFO[Skin.String(home.defaultfocus)])</onfocus>
+            <include content="WidgetsAutoRotate" condition="[String.Contains(Skin.String(HomeLayout), netflix) | Skin.String(HomeLayout, win10)] + Skin.String(widgets_rotate_delay) + !Skin.String(widgets_rotate,disabled)">
+                <param name="interval" value="$INFO[Skin.String(widgets_rotate_delay)]" />
+            </include>
+            <onfocus condition="String.IsEmpty(Window(Home).Property(widgetstyle))">SetProperty(widgetstyle, $INFO[Skin.String(widgetstyle)])</onfocus>
+            <onfocus>SetProperty(HomeFirstLoadDone,done)</onfocus>
+			<!-- <posx>-400</posx>
+			<posy>-400</posy> -->	
+			<texturenofocus></texturenofocus>
+			<texturefocus></texturefocus>
+            <onleft>300</onleft>
+            <onright>300</onright>
+            <onup>300</onup>
+            <ondown>300</ondown>
+            <onback>300</onback>
+            <label></label>
+            <visible allowhiddenfocus="true">false</visible>
+		</control>
+		
+		<!--NowPlaying-->
+		<include condition="!String.EndsWith(Skin.String(HomeLayout), netflix2)">NowPlayingBackground</include>
+		
+        <!-- Hidden control to preload weather conditions -->
+		<control type="label">
+			<font></font>
+			<label>$INFO[Weather.Conditions]</label>
+		</control>
+		
+        <!-- hidden submenu for count calculations -->
+        <include condition="!Skin.String(HomeLayout, enhanced) + !Skin.HasSetting(DisableAllSubmenus)">hiddenSubmenu</include>
+        
+        <!--NowPlaying-->
+		<include condition="!String.EndsWith(Skin.String(HomeLayout), netflix2)">NowPlayingInfoBar</include>
+        
+        <!-- PVR recording icon -->
+        <include condition="Skin.HasSetting(Home_RecordingIndicator)">NowRecordingIcon</include>
+		
+		<!-- Home Screen -->
+        <include condition="Skin.String(HomeLayout, 1) | Skin.String(HomeLayout, 2) | Skin.String(HomeLayout, 3) | Skin.String(HomeLayout, 1small) | Skin.String(HomeLayout, 2small) | Skin.String(HomeLayout, 3small)">HomeTitanTiles</include>
+        <include condition="Skin.String(HomeLayout, simplehor) | String.Contains(Skin.String(HomeLayout), lowhorizontal)">HorizontalHome</include>
+        <include condition="String.Contains(Skin.String(HomeLayout), ver) + !Skin.HasSetting(UseDefaultVerticalLayout)">VerticalHome</include>
+		<include condition="String.Contains(Skin.String(HomeLayout), ver) + Skin.HasSetting(UseDefaultVerticalLayout)">VerticalHomeDefault</include>
+        <include condition="Skin.String(HomeLayout, enhanced)">EnhancedHome</include>
+        <include condition="Skin.String(HomeLayout, netflix)">HomeNetflix</include>
+        <include condition="Skin.String(HomeLayout, netflix2)">HomeNetflix2</include>
+        <include condition="Skin.String(HomeLayout, win10)">HomeWin10</include>
+        <include condition="Skin.HasSetting(DebugGrid) | Skin.HasSetting(DebugInfo)">DebugInfo</include>
+		
+		<!-- check, WIP,  vertical custom shutdown, avoid autoclose setting after choosing it trough activate stutdown via on back -->
+		<control type="group" >
+			<include>DialogOverlayExtra</include>
+			<visible>String.Contains(Skin.String(HomeLayout), ver) + Control.HasFocus(311055)</visible>
+		</control>
+		<!-- <include name="home_shutdown_onback"> -->
+		<!-- CUSTOM/FAKE SHUTDOWN MENU -->
+		<control type="group" >
+			<visible>String.Contains(Skin.String(HomeLayout), ver)</visible>
+			<bottom>-200</bottom>
+			<posx>10</posx>
+			<height>110</height>
+			<scrolltime tween="cubic" easing="inout">500</scrolltime>
+			<animation effect="slide" center="auto" start="0,0" end="0,-100" time="200" >Focus</animation>
+			<animation effect="slide" center="auto" start="0,-100" end="0,0" time="200" >UnFocus</animation>
+			
+			<control type="image">
+				<bottom>100</bottom>
+				<left>10</left>
+				<width>1800</width>
+				<height>100</height>
+				<texture border="15">diffuse/bgpanel.png</texture>
+				<colordiffuse>$INFO[Skin.String(GeneralPanelsColor)]</colordiffuse>
+			</control>
+			<!--Menu-Label-->
+			<control type="label">
+				<bottom>80</bottom>
+				<left>-20</left>
+				<label>[B]$INFO[Container(311055).ListItem.Label][/B]</label>
+				<width>560</width>
+				<height>130</height>
+				<align>right</align>
+				<aligny>center</aligny>
+				<font>Reg42</font>
+				<textcolor>$INFO[Skin.String(GeneralTextColor)]</textcolor>
+			</control>	
+			
+			<control type="list" id="311055">
+				<posx>600</posx>
+				<bottom>100</bottom>
+				<width>1180</width>
+				<height>75</height>
+				<align>center</align>
+				<onup>Dialog.Close(shutdownmenu)</onup>
+				<ondown>Dialog.Close(shutdownmenu)</ondown>
+				<onup>300</onup>
+				<ondown>300</ondown>
+				<onright>311055</onright>
+				<onleft>311055</onleft>
+				<onback>ClearProperty(ShowViewSubMenu, Home)</onback>
+				<onback>300</onback>
+				<orientation>horizontal</orientation>
+				<include>DialogOverlayExtra</include>
+				
+				<itemlayout width="170" height="64">
+					<control type="image">
+						<width>64</width>
+						<height>64</height>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<colordiffuse>$INFO[Skin.String(GeneralTextColor)]</colordiffuse>
+						<animation end="50" effect="fade" time="0" delay="0" condition="true">Conditional</animation>
+					</control>
+				</itemlayout>
+				<focusedlayout width="170" height="64">
+					<control type="image">
+						<width>64</width>
+						<height>64</height>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<colordiffuse>$INFO[Skin.String(GeneralTextColor)]</colordiffuse>
+					</control>
+				</focusedlayout>
+				<content>
+					<include condition="!Window.IsActive(loginscreen)">skinshortcuts-group-powermenu</include>
+				</content>
+			</control>
+		 <!-- </include> -->
+		</control>
+        
+	</controls>
+</window>

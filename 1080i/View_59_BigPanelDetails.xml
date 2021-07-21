@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+	<include name="View_59_BigPanelDetails">
+
+		<control type="group">
+			<visible>Control.IsVisible(59)</visible>
+			<include>animation_view_change</include>
+
+			<!-- details -->
+			<include>MovieDetailsLeft</include>
+
+			<control type="panel" id="59">
+				<animation effect="slide" end="-627" time="250" condition="Skin.HasSetting(View59_ShowInfoRight)">Conditional</animation>
+				<viewtype label="31428">mediainfo</viewtype>
+				<right>30</right>
+				<bottom>11%</bottom>
+				<height>830</height>
+				<width>1190</width>
+				<orientation>vertical</orientation>
+				<onleft>9000</onleft>
+				<onright condition="Skin.HasSetting(EnableQuickJump)">6000</onright>
+				<onright condition="!Skin.HasSetting(EnableQuickJump)">60</onright>
+				<onup>59</onup>
+				<ondown>59</ondown>
+				<preloaditems>4</preloaditems>
+				<pagecontrol>60</pagecontrol>
+				<visible>String.IsEqual(Window(Home).Property(SkinHelper.ForcedView),59) | String.IsEmpty(Window(Home).Property(SkinHelper.ForcedView))</visible>
+				<itemlayout height="415" width="268" condition="!Skin.HasSetting(View59_ShowTags) + Skin.HasSetting(View59_ShowCDart)">
+					<control type="group">
+						<width>246</width>
+						<height>369</height>
+						<include content="PosterPanelLayout">
+							<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+							<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+							<param name="border" value="thumbsborder_unfocused" />
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="415" width="268" condition="!Skin.HasSetting(View59_ShowTags) + Skin.HasSetting(View59_ShowCDart)">
+					<control type="group">
+						<include>Focus_Zoom_Animation</include>
+						<width>254</width>
+						<height>380</height>
+						<left>-4</left>
+						<include content="PosterPanelLayout">
+							<param name="WatchedIndicator" value="WatchedIndicatorNormal"/>
+							<param name="colordiffuse" value="$VAR[ViewDetailsBorderFocusColor]" />
+							<param name="border" value="thumbsborder_focused" />
+						</include>
+						<include condition="Skin.HasSetting(LibItems_FocusOverlay)">FocusOverlay</include>
+						<include content="AutoTrailerButton">
+							<param name="id" value="59"/>
+						</include>
+					</control>
+					<control type="image">
+						<top>215</top>
+						<right>-100</right>
+						<width>200</width>
+						<height>200</height>
+						<aligny>center</aligny>
+						<fadetime>300</fadetime>
+						<animation effect="rotate" end="-360" center="auto" time="13000" loop="true" reversible="false" condition="Skin.HasSetting(AnimateDiscArt)">Conditional</animation>
+						<texture background="true" diffuse="diffuse/cdmask_medium_new.png" fallback="defaultcovers/cd_medium.png" border="5">$VAR[DiscArtImage]</texture>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+					</control>
+				</focusedlayout>
+				<itemlayout height="415" width="273" condition="!Skin.HasSetting(View59_ShowTags) + !Skin.HasSetting(View59_ShowCDart)">
+					<control type="group">
+						<height>414</height>
+						<width>276</width>
+						<include content="PosterPanelLayout">
+							<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+							<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+							<param name="border" value="thumbsborder_unfocused" />
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="415" width="273" condition="!Skin.HasSetting(View59_ShowTags) + !Skin.HasSetting(View59_ShowCDart)">
+					<control type="group">
+						<include>Focus_Zoom_Animation</include>
+						<include content="AutoTrailerButton">
+							<param name="id" value="59"/>
+						</include>
+						<height>414</height>
+						<width>276</width>
+						<include content="PosterPanelLayout">
+							<param name="WatchedIndicator" value="WatchedIndicatorNormal"/>
+							<param name="colordiffuse" value="$VAR[ViewDetailsBorderFocusColor]" />
+							<param name="border" value="thumbsborder_focused" />
+						</include>
+						<include condition="Skin.HasSetting(LibItems_FocusOverlay)">FocusOverlay</include>
+					</control>
+				</focusedlayout>
+				<itemlayout height="415" width="255" condition="Skin.HasSetting(View59_ShowTags)">
+					<control type="group">
+						<width>233</width>
+						<height>350</height>
+						<include content="PosterPanelLayout">
+							<param name="WatchedIndicator" value="WatchedIndicatorNormal" />
+							<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+							<param name="border" value="thumbsborder_unfocused" />
+						</include>
+						<include content="Tag_NF">
+							<param name="tagwidth" value="251" />
+							<param name="tagtop" value="350" />
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="415" width="255" condition="Skin.HasSetting(View59_ShowTags)">
+					<control type="group">
+						<include content="AutoTrailerButton">
+							<param name="id" value="59"/>
+						</include>
+						<include>Focus_Zoom_Animation</include>
+						<width>233</width>
+						<height>350</height>
+						<include content="PosterPanelLayout">
+							<param name="WatchedIndicator" value="WatchedIndicatorNormal"/>
+							<param name="colordiffuse" value="$VAR[ViewDetailsBorderFocusColor]" />
+							<param name="border" value="thumbsborder_focused" />
+						</include>
+						<include content="Tag_FO">
+							<param name="tagwidth" value="251" />
+							<param name="tagtop" value="350" />
+						</include>
+						
+						<include condition="Skin.HasSetting(LibItems_FocusOverlay)">FocusOverlay</include>
+						<control type="image">
+							<visible>Skin.HasSetting(View59_ShowCDart)</visible>
+							<top>215</top>
+							<right>-100</right>
+							<width>170</width>
+							<height>170</height>
+							<aligny>center</aligny>
+							<fadetime>300</fadetime>
+							<animation effect="rotate" end="-360" center="auto" time="13000" loop="true" reversible="false" condition="Skin.HasSetting(AnimateDiscArt)">Conditional</animation>
+							<texture background="true" diffuse="diffuse/cdmask_medium_new.png" fallback="defaultcovers/cd_medium.png" border="5">$VAR[DiscArtImage]</texture>
+							<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+			
+			<!-- scrollbar -->
+			<include content="scollbar">
+				<param name="view_id" value="59" />
+				<param name="visibleitems" value="8" />
+				<param name="id" value="60" />
+				<param name="id_alphabet" value="6002" />
+				<param name="orientation" value="vertical" />
+				<param name="right" value="1" />
+				<param name="bottom" value="140" />
+				<param name="height" value="830" />
+				<param name="width" value="10" />
+				<param name="onup" value="60" />
+				<param name="ondown" value="60" />
+				<param name="onleft" value="59" />
+				<param name="onright" value="59" />
+			</include>
+			
+	  </control>
+
+	</include>
+</includes>

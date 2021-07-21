@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+  
+  
+  <include name="View_511_Thumbs">
+    <control type="group">
+      <visible>Control.IsVisible(511)</visible>
+      <include>animation_view_change</include>
+      <control type="panel" id="511">
+        <viewtype label="31438">icons</viewtype>
+        <posx>60</posx>
+        <bottom>13%</bottom>
+        <width>1820</width>
+        <height>768</height>
+        <orientation>vertical</orientation>
+        <onleft>9000</onleft>
+        <onright condition="Skin.HasSetting(EnableQuickJump)">6000</onright>
+        <onright condition="!Skin.HasSetting(EnableQuickJump)">60</onright>
+        <onup>511</onup>
+        <ondown>511</ondown>
+        <preloaditems>4</preloaditems>
+        <pagecontrol>60</pagecontrol>
+		<visible>String.IsEqual(Window(Home).Property(SkinHelper.ForcedView),511) | String.IsEmpty(Window(Home).Property(SkinHelper.ForcedView))</visible>
+        <itemlayout height="192" width="364"  condition="!Skin.HasSetting(View511_ShowTags)">
+			<control type="group">
+                <width>354</width>
+                <height>185</height>
+                <include content="ThumbsViewLayout">
+					<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+					<param name="border" value="thumbsborder_unfocused" />
+				</include>
+            </control>
+        </itemlayout>
+        <focusedlayout height="192" width="364" condition="!Skin.HasSetting(View511_ShowTags)">
+			<control type="group">
+				<include>Focus_Zoom_Animation</include>
+				<width>354</width>
+                <height>185</height>
+				<include content="AutoTrailerButton">
+					<param name="id" value="511"/>
+				</include>
+				<include content="ThumbsViewLayout">
+					<param name="colordiffuse" value="$VAR[ViewDetailsBorderFocusColor]" />
+					<param name="border" value="thumbsborder_focused" />
+				</include>
+				<include condition="Skin.HasSetting(LibItems_FocusOverlay)">FocusOverlay</include>
+			</control>
+        </focusedlayout>
+        <itemlayout height="260" width="300" condition="Skin.HasSetting(View511_ShowTags)">
+			<control type="group">
+                <width>299</width>
+                <height>184</height>
+                <include content="ThumbsViewLayout">
+					<param name="colordiffuse" value="$VAR[ViewDetailsPanelColor]" />
+					<param name="border" value="thumbsborder_unfocused" />
+				</include>
+				<include content="Tag_NF">
+					<param name="tagwidth" value="295" />
+					<param name="tagtop" value="192" />
+				</include>
+            </control>
+        </itemlayout>
+        <focusedlayout height="260" width="300" condition="Skin.HasSetting(View511_ShowTags)">
+			<control type="group">
+				<include>Focus_Zoom_Animation</include>
+				<width>305</width>
+                <height>190</height>
+				<include content="ThumbsViewLayout">
+					<param name="colordiffuse" value="$VAR[ViewDetailsBorderFocusColor]" />
+					<param name="border" value="thumbsborder_focused" />
+				</include>
+				<include content="Tag_FO">
+					<param name="tagwidth" value="295" />
+					<param name="tagtop" value="192" />
+				</include>
+				<include condition="Skin.HasSetting(LibItems_FocusOverlay)">FocusOverlay</include>
+			</control>
+        </focusedlayout>
+	  </control>
+      
+	  <!--vertical Scollbar-->
+		<control type="scrollbar" id="60">
+			<visible>Control.IsVisible(511) + Integer.IsGreater(Container.Numitems,0)</visible>
+			<right>15</right>
+			<bottom>13%</bottom>
+			<height>768</height>
+			<onup>60</onup>
+			<ondown>6000</ondown>
+			<onleft>511</onleft>
+			<animation effect="fade" start="0" end="100" time="400" condition="[Control.HasFocus(60) | Skin.HasSetting(EnableTouchSupport) | Container.Scrolling | Skin.HasSetting(alwaysShowScrollbars)] + !Control.IsVisible(6002)">Conditional</animation>
+			<animation effect="fade" start="100" end="0" time="400" condition="![Control.HasFocus(60) | Skin.HasSetting(EnableTouchSupport) | Container.Scrolling | Skin.HasSetting(alwaysShowScrollbars)] | Control.IsVisible(6002)">Conditional</animation>
+		</control>
+    
+    
+	</control>
+	
+	
+
+  </include>
+</includes>

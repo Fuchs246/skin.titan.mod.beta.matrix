@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Titan-->
+<window>
+  <defaultcontrol always="true">9000</defaultcontrol>
+  <controls>
+	<include condition="Skin.HasSetting(UseFullscreenDialog)">EnhancedFullsccreenLayoutMusicInfo</include>
+	<include condition="!Skin.HasSetting(UseFullscreenDialog)">TitanDefaultMusicInfo</include>
+  </controls>
+</window>
