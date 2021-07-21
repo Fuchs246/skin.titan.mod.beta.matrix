@@ -2650,12 +2650,12 @@
         </item>
         <item>
             <label>$LOCALIZE[13271]</label>
-            <label2>[CR]$INFO[System.CpuUsage] • $INFO[System.CpuFrequency]</label2>
+            <label2>[CR]$INFO[System.CpuUsage]</label2>
             <thumb>resource://resource.images.skinicons.wide/cpu2.png</thumb>
             <property name="poster">resource://resource.images.skinicons.wide/cpu_poster.png</property>
             <property name="DBTYPE">systeminfo</property>
             <property name="fanart">resource://resource.images.skinbackgrounds.titanium/cpu.jpg</property>
-            <property name="plot">[CR]$LOCALIZE[401]: $INFO[System.CPUTemperature] • $LOCALIZE[13300]: $INFO[System.FanSpeed][CR]$LOCALIZE[12390]: $INFO[System.Uptime]</property>
+            <property name="plot">[CR]$LOCALIZE[13284]$INFO[System.CpuFrequency]:[CR]$LOCALIZE[401]: $INFO[System.CPUTemperature] • $LOCALIZE[13300]: $INFO[System.FanSpeed][CR]$LOCALIZE[12390]: $INFO[System.Uptime]</property>
             <onclick>ActivateWindow(systeminfo)</onclick>
         </item>
         <item>
@@ -2970,6 +2970,8 @@
         
         <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.ChannelLogo))">$INFO[Window(Home).Property(SkinHelper.ListItem.ChannelLogo)]</value>
         <value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Art.ClearLogo))">$INFO[Window(home).Property(SkinHelper.ListItem.Art.ClearLogo)]</value>
+		<value condition="String.Contains(Container.FolderPath,pvr://)">resource://resource.images.skinbackgrounds.titanium/hover_my tv.jpg</value>
+		
     </variable>
     <variable name="SpotLightWidgetInfoclearlogo">
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo))">$INFO[ListItem.Art(tvshow.clearlogo)]</value>

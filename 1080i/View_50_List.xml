@@ -210,7 +210,7 @@
                     <width>870</width>
                     <include>ListDetailsBtn</include>
                     <label>[B]$LOCALIZE[180]:[/B]</label>
-                    <label2>$INFO[Window(home).Property(SkinHelper.ListItem.Duration)]$INFO[ListItem.Duration, (, min.)]</label2>
+                    <label2>$VAR[ListItemDuration]</label2>
                     <visible>!String.IsEmpty(ListItem.Duration)</visible>
                 </control>
                 <control type="button">

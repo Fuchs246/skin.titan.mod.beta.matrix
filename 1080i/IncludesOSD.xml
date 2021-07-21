@@ -20,14 +20,14 @@
                 <visible>Player.HasAudio + !Skin.HasSetting(HideOSDDisc)</visible>
                 <!-- cover background -->
                 <control type="group">
-                    <posx>0</posx>
-                    <posy>40</posy>
+                    <posx>5</posx>
+                    <posy>30</posy>
                     <width>320</width>
                     <height>320</height>
 					<!-- Album Cover -->
                     <control type="image">
                         <aspectratio scalediffuse="true" align="center" aligny="center">stretch</aspectratio>
-                        <texture border="5">diffuse/music_cover_cd.png</texture>
+                        <texture border="0">diffuse/music_cover_cd.png</texture>
                         <colordiffuse>$INFO[Skin.String(OSDPanelColor)]</colordiffuse>
                     </control>
 					<!-- Disc Art -->
@@ -45,7 +45,7 @@
                     <control type="image">
                         <fadetime>200</fadetime>
                         <bordersize>5</bordersize>
-                        <texture background="true" border="5" fallback="DefaultMusicSongs.png" diffuse="diffuse/music_cover_cd.png">$VAR[AudioPlayerCoverImage]</texture>
+                        <texture background="true" border="0" fallback="DefaultMusicSongs.png" diffuse="diffuse/music_cover_cd.png">$VAR[AudioPlayerCoverImage]</texture>
                         <aspectratio align="left" aligny="center" scalediffuse="false">keep</aspectratio>
                     </control>
 				</control>
@@ -57,15 +57,15 @@
                 <!-- cover background + cover image-->
                 <control type="group">
                     <posx>5</posx>
-                    <posy>40</posy>
+                    <posy>30</posy>
                     <width>320</width>
                     <height>320</height>
 					<control type="image">
                         <aspectratio scalediffuse="true" align="center" aligny="center">stretch</aspectratio>
-                        <texture border="5">diffuse/panel.png</texture>
+                        <texture border="0">diffuse/music_cover.png</texture>
                         <colordiffuse>$INFO[Skin.String(OSDPanelColor)]</colordiffuse>
                     </control>
-					<control type="image">
+					<!--control type="image">
                         <aspectratio scalediffuse="true" align="center" aligny="center">stretch</aspectratio>
                         <texture border="5">diffuse/panel.png</texture>
                         <colordiffuse>$INFO[Skin.String(OSDPanelColor)]</colordiffuse>
@@ -74,11 +74,11 @@
                         <aspectratio scalediffuse="true" align="center" aligny="center">stretch</aspectratio>
                         <texture border="5">diffuse/panel.png</texture>
                         <colordiffuse>$INFO[Skin.String(OSDPanelColor)]</colordiffuse>
-                    </control>
+                    </control-->
 					<control type="image">
                         <fadetime>200</fadetime>
                         <bordersize>5</bordersize>
-                        <texture background="true" border="5" fallback="DefaultMusicSongs.png" diffuse="diffuse/panel.png">$VAR[AudioPlayerCoverImage]</texture>
+                        <texture background="true" border="0" fallback="DefaultMusicSongs.png" diffuse="diffuse/music_cover.png">$VAR[AudioPlayerCoverImage]</texture>
                         <aspectratio align="left" aligny="center" scalediffuse="false">keep</aspectratio>
                     </control>
                 </control>
@@ -356,11 +356,12 @@
 				</control>
 				<!-- MUSIC media flags -->
 				<control type="group">
-					<posx>285</posx>
-					<posy>310</posy>
+					<posx>330</posx>
+					<posy>320</posy>
 					<include>mediaflagsAudio</include>
 					<visible>![Window.IsActive(musicosd) + ![Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)]]</visible>
 					<visible>!Player.HasVideo</visible>
+					<animation effect="slide" end="-50,0" time="0" condition="!Skin.HasSetting(HideOSDDisc)">Conditional</animation>
 					<animation effect="fade" time="400" delay="500" reversible="false">Visible</animation>
 				</control>
 			</control>
@@ -1147,10 +1148,10 @@
             <control type="group">
                 <!-- disc art -->
                 <control type="image">
-                    <posx>300</posx>
-                    <bottom>8</bottom>
-                    <width>300</width>
-                    <height>300</height>
+                    <posx>280</posx>
+                    <bottom>33</bottom>
+                    <width>290</width>
+                    <height>290</height>
                     <aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
                     <fadetime>300</fadetime>
                     <animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
@@ -1159,14 +1160,26 @@
                 </control>
 				<!-- cover background + cover image-->
                 <control type="image">
-					<posx>2</posx>
-					<bottom>3</bottom>
-					<width>330</width>
-					<height>330</height>
+					<posx>5</posx>
+					<bottom>30</bottom>
+					<width>305</width>
+					<height>305</height>
 					<fadetime>200</fadetime>
-					<bordersize>2</bordersize>
-					<texture background="true" border="2" fallback="DefaultMusicSongs.png" diffuse="diffuse/music_cover_cd.png">$VAR[AudioPlayerCoverImage]</texture>
+					<bordersize>0</bordersize>
+					<texture background="true" border="0" fallback="DefaultMusicSongs.png" diffuse="diffuse/music_cover_cd.png">$VAR[AudioPlayerCoverImage]</texture>
 					<aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+					<visible>!Skin.HasSetting(HideOSDDisc)</visible>
+                </control>
+				<control type="image">
+					<posx>5</posx>
+					<bottom>30</bottom>
+					<width>305</width>
+					<height>305</height>
+					<fadetime>200</fadetime>
+					<bordersize>0</bordersize>
+					<texture background="true" border="0" fallback="DefaultMusicSongs.png" diffuse="diffuse/music_cover.png">$VAR[AudioPlayerCoverImage]</texture>
+					<aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+					<visible>Skin.HasSetting(HideOSDDisc)</visible>
                 </control>
 			</control>
 

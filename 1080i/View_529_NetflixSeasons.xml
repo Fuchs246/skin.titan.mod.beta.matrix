@@ -26,7 +26,7 @@
 					<visible>Skin.HasSetting(View529_EnableBottomPanel) + ControlGroup(529005).HasFocus</visible>
 					<fadetime>350</fadetime>
 					<bordersize>0,0,0,415</bordersize>
-					<texture background="true" diffuse="colors/color_trans_20.png">$VAR[netflixThumb]</texture>
+					<texture background="true" diffuse="colors/color_trans_15.png">$VAR[netflixThumb]</texture>
 					<aspectratio scalediffuse="true" aligny="top">scale</aspectratio>
 					<animation effect="slide" delay="200" start="0,1080" end="0,0" tween="quadratic" easing="in" time="0">VisibleChange</animation>
 				</control>
@@ -35,7 +35,7 @@
 					<description>Dimmed Fanart BG</description>
 					<visible>!Control.HasFocus(529001)</visible>
 					<fadetime>350</fadetime>
-					<texture background="true" diffuse="colors/color_trans_10.png">$VAR[netflixThumb]</texture>
+					<texture background="true" diffuse="colors/color_trans_15.png">$VAR[netflixThumb]</texture>
 					<aspectratio scalediffuse="true" aligny="top">scale</aspectratio>
 					<animation effect="slide" delay="200" start="0,1080" end="0,0" tween="quadratic" easing="in" time="0">VisibleChange</animation>
 				</control>
@@ -679,7 +679,7 @@
 							</item>
 						</content>
 						<!--content target="videos" sortby="file" limit="3">$VAR[529_OnlineTrailerLookup]</content-->
-						<content target="videos" sortby="file" limit="3">plugin://plugin.video.youtube/search/?q=$VAR[529_OnlineTrailerLookup] ,Serie ,$INFO[System.Language]</content>
+						<content target="videos" sortby="file" limit="3">plugin://plugin.video.youtube/search/?q=$VAR[529_OnlineTrailerLookup] ,$LOCALIZE[20364] ,$INFO[System.Language]</content>
 					</control>
 				</control>
 				
@@ -795,6 +795,7 @@
 				<onfocus>RunScript(script.embuary.helper,action=encode,string='"$INFO[Container.ShowTitle]"',prop=EncodedTitle)</onfocus>
 				<onfocus>SetFocus(529001)</onfocus>
 				<visible>Container.Content(seasons)</visible>
+				<visible>String.IsEqual(Window(Home).Property(SkinHelper.ForcedView),529) | String.IsEmpty(Window(Home).Property(SkinHelper.ForcedView))</visible>
 				<viewtype label="31902">Netflix Info</viewtype>
 			</control>
 			

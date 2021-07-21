@@ -3080,8 +3080,8 @@
                 <description>Do not display hour representation of the duration</description>
                 <include>SkinSettings_Button</include>
                 <label>31724</label>
-                <onclick>Skin.ToggleSetting(SkinHelper.DisableHoursDuration)</onclick>
-                <selected>Skin.HasSetting(SkinHelper.DisableHoursDuration)</selected>
+                <onclick>Skin.ToggleSetting(DisableHoursDuration)</onclick>
+                <selected>Skin.HasSetting(DisableHoursDuration)</selected>
             </control>
             <control type="radiobutton" id="31762">
                 <description>Keep widget focused when starting playback from home widget</description>

@@ -786,6 +786,7 @@
 					<param name="layout" value="ThumbsViewLayout" />
 					<param name="visible" value="[System.HasNetwork + System.HasAddon(plugin.video.youtube)] + [Integer.IsGreater(Container(8605).NumItems,0) | Container(8605).IsUpdating]" />
 					<animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(8605).NumItems,0) | Container(8605).IsUpdating">Conditional</animation>
+					<onclick>PlayMedia($INFO[Container(8605).ListItem.FileNameAndPath])</onclick>
 					<content target="videos" sortby="file" limit="4">plugin://plugin.video.youtube/search/?q=$VAR[tvShowsearch]</content>
 				</include>
 				
@@ -1233,7 +1234,7 @@
 					<ondown>8000</ondown>
 					<onup>8000</onup>
 					<include>VideoInfo_CastAction</include>
-					<visible>String.IsEqual(ListItem.DBTYPE,movie)</visible>
+					<visible>String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
 					<visible>String.IsEmpty(Window.Property(AdditionalInfo))</visible>
 					<visible>!Player.HasVideo</visible>
 					<itemlayout height="178" width="120">
@@ -1308,7 +1309,7 @@
 					<ondown>8000</ondown>
 					<onup>8000</onup>
 					<include>VideoInfo_CastAction</include>
-					<visible>String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
+					<visible>String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)</visible>
 					<visible>String.IsEmpty(Window.Property(AdditionalInfo))</visible>
 					<visible>!Player.HasVideo</visible>
 					<itemlayout height="243" width="158">
@@ -1544,7 +1545,7 @@
 							<align>center</align>
 							<textoffsetx>0</textoffsetx>
 							<label>31797</label>
-							<onclick condition="System.HasAddon(plugin.video.youtube)">RunScript(script.skin.helper.service,action=searchyoutube,title=$VAR[tvShowsearch] Trailer,header=$INFO[ListItem.Title,, YouTube Trailers])</onclick>	<!-- RunScript(script.skin.helper.service,action=searchyoutube,title=$INFO[ListItem.Title,, *your language*] -->
+							<onclick condition="System.HasAddon(plugin.video.youtube)">RunScript(script.skin.helper.service,action=searchyoutube,title=$VAR[tvShowsearch],header=$INFO[ListItem.Title,, YouTube Trailers])</onclick>	<!-- RunScript(script.skin.helper.service,action=searchyoutube,title=$INFO[ListItem.Title,, *your language*] -->
 							<onclick condition="!System.HasAddon(plugin.video.youtube)">ActivateWindow(Videos,plugin://plugin.video.youtube)</onclick>
 							<visible>Skin.HasSetting(videoinfo_button_youtubevideos)</visible>
 							<visible>String.IsEqual(Window(Home).Property(contenttype),movies) | String.IsEqual(Window(Home).Property(contenttype),tvshows)| String.IsEqual(Window(Home).Property(contenttype),seasons)</visible>
@@ -1732,7 +1733,7 @@
 						<height>1</height>
 						<texture>colors/color_white.png</texture>
 						<colordiffuse>$INFO[Skin.String(ViewDetailsTextColor)]</colordiffuse>
-						<visible>String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
+						<visible>String.IsEqual(ListItem.DBTYPE,tvshow)</visible>
 						<visible>!Player.HasVideo</visible>
 						<visible>String.IsEmpty(Window.Property(AdditionalInfo))</visible>
 					</control>
@@ -1745,7 +1746,7 @@
 						<height>1</height>
 						<texture>colors/color_white.png</texture>
 						<colordiffuse>$INFO[Skin.String(ViewDetailsTextColor)]</colordiffuse>
-						<visible>String.IsEqual(ListItem.DBTYPE,movie)</visible>
+						<visible>String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
 						<visible>String.IsEmpty(Window.Property(AdditionalInfo))</visible>
 						<visible>!Player.HasVideo</visible>
 					</control>
@@ -1758,7 +1759,7 @@
 						<height>1</height>
 						<texture>colors/color_white.png</texture>
 						<colordiffuse>$INFO[Skin.String(ViewDetailsTextColor)]</colordiffuse>
-						<visible>String.IsEqual(ListItem.DBTYPE,movie)</visible>
+						<visible>String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
 						<visible>String.IsEmpty(Window.Property(AdditionalInfo))</visible>
 						<visible>!Player.HasVideo</visible>
 					</control>
@@ -1983,7 +1984,7 @@
 									<visible>!String.IsEmpty(ListItem.Genre)</visible>
 								</control>
 								<control type="label">
-									<posx>1620</posx>
+									<posx>1640</posx>
 									<posy>90</posy>
 									<width>150</width>
 									<font>Reg26</font>
@@ -1997,15 +1998,17 @@
 								</control>
 								<!-- large mpaa -->
 								<control type="image">
-									<posx>1630</posx>
+									<posx>1640</posx>
 									<posy>150</posy>
+									<height>70</height>
+									<width>70</width>
 									<include>mediaflags_large_layout</include>
-									<texture fallback="flags/flags_large/mpaa/NR.png">$VAR[mediaflags_large_path]/mpaa/$VAR[mediaflags_large_rating].png</texture> <!-- relook, $VAR[mediaflags_large_rating, maybe no fallback ?? -->
+									<texture fallback="flags/flags_large/mpaa/NR.png">$VAR[mediaflags_large_rating]</texture>
 									<visible>!String.IsEmpty(Window(Home).Property(ListItem.MPAA)) | !String.IsEmpty(ListItem.MPAA) | !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.MPAA))</visible>
 								</control>
 								<!-- TMDB -->
 								<control type="group">
-									<posx>1660</posx>
+									<posx>1640</posx>
 									<posy>260</posy>
 									<height>70</height>
 									<width>35</width>
@@ -2014,7 +2017,7 @@
 								</control>
 								<!-- TVDB -->
 								<control type="group">
-									<posx>1650</posx>
+									<posx>1640</posx>
 									<posy>260</posy>
 									<height>70</height>
 									<width>110</width>
@@ -2023,7 +2026,7 @@
 								</control>
 								<!-- imdb -->
 								<control type="group">
-									<posx>1650</posx>
+									<posx>1640</posx>
 									<posy>320</posy>
 									<height>70</height>
 									<width>35</width>
@@ -2032,7 +2035,7 @@
 								</control>
 								<!-- Top 250 -->
 								<control type="group">
-									<posx>1660</posx>
+									<posx>1640</posx>
 									<posy>385</posy>
 									<height>70</height>
 									<width>35</width>
@@ -2041,7 +2044,7 @@
 								</control>
 								<!-- rotten -->
 								<control type="group">
-									<posx>1645</posx>
+									<posx>1640</posx>
 									<posy>445</posy>
 									<height>70</height>
 									<width>35</width>
@@ -2050,7 +2053,7 @@
 								</control>
 								<!-- meta -->
 								<control type="group">
-									<posx>1648</posx>
+									<posx>1640</posx>
 									<posy>495</posy>
 									<height>70</height>
 									<width>35</width>
@@ -2064,12 +2067,12 @@
 								<height>40</height>	
 								<!-- Nomination image Movie -->
 								<control type="image">
-									<posx>638</posx>
+									<posx>640</posx>
 									<posy>5</posy>
 									<width>40</width>
 									<height>40</height>
 									<colordiffuse>$INFO[Skin.String(ViewDetailsTextColor)]</colordiffuse>
-									<texture>flags/flags_color/addratings/oscarbw.png</texture>
+									<texture>test/awards.png</texture>
 									<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.Consensus)) + String.IsEqual(ListItem.DBTYPE,movie) | !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Awards)) + String.IsEqual(ListItem.DBTYPE,movie)</visible>
 								</control>
 								<!-- RT Deatils MOVIE -->
@@ -2080,7 +2083,7 @@
 									<height>35</height>
 									<font>Light26</font>
 									<align>left</align>
-									<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Awards),[B]$LOCALIZE[31610]:     [/B]]$INFO[Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.Consensus), [B]$LOCALIZE[31611]: [/B]]</label>
+									<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Awards)]</label>
 									<textcolor>$INFO[Skin.String(ViewDetailsTextColor)]</textcolor>
 									<shadowcolor>$INFO[Skin.String(ViewDetailsTextShadowColor)]</shadowcolor>
 									<scroll>true</scroll>
@@ -2090,11 +2093,11 @@
 								<!-- NEW  Nomination image TV -->
 								<control type="image">
 									<posx>640</posx>
-									<posy>10</posy>
-									<width>36</width>
-									<height>36</height>
+									<posy>5</posy>
+									<width>40</width>
+									<height>40</height>
 									<colordiffuse>$INFO[Skin.String(ViewDetailsTextColor)]</colordiffuse>
-									<texture>flags/flags_color/addratings/oscarbw.png</texture>
+									<texture>test/awards.png</texture>
 									<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.Consensus)) + String.IsEqual(ListItem.DBTYPE,tvshow) | !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Awards)) + String.IsEqual(ListItem.DBTYPE,tvshow)</visible>
 								</control>
 								<!-- RT Deatils TV-->
@@ -2105,12 +2108,12 @@
 									<height>35</height>	
 									<font>Reg26</font>
 									<align>left</align>
-									<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Awards),$LOCALIZE[31610]: ]$INFO[Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.Consensus), [B]$LOCALIZE[31611]: [/B]]</label>
+									<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Awards)]</label>
 									<textcolor>$INFO[Skin.String(ViewDetailsTextColor)]</textcolor>
 									<shadowcolor>$INFO[Skin.String(ViewDetailsTextShadowColor)]</shadowcolor>
 									<scroll>true</scroll>
 									<orientation>horizontal</orientation>
-									<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.Consensus)) + !String.IsEqual(ListItem.DBTYPE,tvshow) | !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Awards)) + String.IsEqual(ListItem.DBTYPE,tvshow)</visible>
+									<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.Consensus)) + String.IsEqual(ListItem.DBTYPE,tvshow) | !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Awards)) + String.IsEqual(ListItem.DBTYPE,tvshow)</visible>
 								</control>
 							</control>
 						</control>
@@ -2168,19 +2171,12 @@
 								<include>mediaflags</include>
 								<animation effect="zoom" alignx="true" end="90,90" time="0" condition="Skin.String(mediaflagsstyle,large) | Skin.String(mediaflagsstyle,large_color)">Conditional</animation>
 								<animation effect="slide" alignx="true" end="0,7" time="0" condition="Skin.String(mediaflagsstyle,large) | Skin.String(mediaflagsstyle,large_color)">Conditional</animation>						
-								<visible>!String.IsEqual(ListItem.DBType,episode)</visible>
+								
 								<visible>!String.IsEmpty(Window(Home).Property(ListItem.VideoAspect)) | !String.IsEmpty(ListItem.VideoAspect)</visible>
 								<visible>!Player.HasVideo</visible>
 							</control>
 							<!-- media flags episodes , check, unhappy cause looked overloaded ,but didnt wnated to remove, need adjust episode to movie layout -->
-							<control type="group">
-								<posx>480</posx>
-								<height>50</height>
-								<top>915</top>
-								<include>mediaflags_classic</include>
-								<visible>String.IsEqual(ListItem.DBType,episode) + !Skin.String(mediaflagsstyle,disabled)</visible>
-								<animation effect="zoom" alignx="true" end="120,120" time="0" condition="true">Conditional</animation>
-							</control>
+							
 
 							<!-- audio language flags -->
 							<control type="grouplist">
@@ -2292,9 +2288,9 @@
 								<top>650</top>
 								<left>695</left>
 								<include>AltRatingMovieInfo</include>
-								<animation effect="slide" end="370,270" center="auto" time="0" condition="String.IsEqual(ListItem.DBType,tvshow) + !Skin.String(mediaflagsstyle,disabled)">Conditional</animation>
-								<animation effect="slide" end="150,265" center="auto" time="0" condition="Skin.String(mediaflagsstyle,disabled)">Conditional</animation>
-								<animation effect="slide" end="350,265" center="auto" time="0" condition="String.IsEqual(ListItem.DBType,episode) + !Skin.String(mediaflagsstyle,disabled)">Conditional</animation>
+								<animation effect="slide" end="0,270" center="auto" time="0" condition="String.IsEqual(ListItem.DBType,tvshow) + !Skin.String(mediaflagsstyle,disabled)">Conditional</animation>
+								<!--animation effect="slide" end="150,265" center="auto" time="0" condition="Skin.String(mediaflagsstyle,disabled)">Conditional</animation>
+								<!--animation effect="slide" end="350,265" center="auto" time="0" condition="String.IsEqual(ListItem.DBType,episode) + !Skin.String(mediaflagsstyle,disabled)">Conditional</animation-->
 								<visible>!Player.HasVideo</visible>
 							</control>
 							<!-- NEW dividing line -->
@@ -3916,7 +3912,7 @@
         <!-- TVdb -->
         <control type="group">
             <height>70</height>
-			<width>350</width>         
+			<width>200</width>         
             <left>10</left>
             <include>TVdbVD</include>
             <visible>[!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Rating.TVDB)) | !String.IsEmpty(ListItem.RatingAndVotes(tvdb)) | !String.IsEmpty(ListItem.Rating(tvdb))] + [!String.IsEqual(ListItem.DBTYPE,movie) + !String.IsEqual(ListItem.DBTYPE,musicvideo)]</visible> 
@@ -3924,16 +3920,16 @@
         <!-- TMdb -->
         <control type="group">
             <height>70</height>
-			<width>350</width>     
+			<width>250</width>     
             <left>10</left>
             <include>TMdbVD</include>
-            <visible>[!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Rating.TMDB)) | !String.IsEmpty(ListItem.RatingAndVotes(themoviedb)) | !String.IsEmpty(ListItem.Rating(themoviedb))] + String.IsEqual(ListItem.DBTYPE,movie)</visible> 																		  
+            <visible>[!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Rating.TMDB)) | !String.IsEmpty(ListItem.RatingAndVotes(themoviedb)) | !String.IsEmpty(ListItem.Rating(themoviedb))]</visible> 																		  
         </control>		
 		<!-- IMDB -->
         <control type="group">
             <visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Rating.IMDB)) | !String.IsEmpty(ListItem.RatingAndVotes(imdb)) | !String.IsEmpty(ListItem.Rating(imdb))</visible> 
 			<height>70</height>
-            <width>350</width>           
+            <width>250</width>           
             <left>10</left>
             <include>ImdbVD</include>            
         </control>
@@ -3966,20 +3962,21 @@
    <!-- ratings videoinfo extract from footer xml, temporally not available ?? -->
    <include name="TomatoAudienceVD">             
 		<control type="image">
-			<top>-5</top>
-			<width>84</width>
+			<top>0</top>
+			<width>50</width>
 			<height>37</height>
 			<aspectratio>keep</aspectratio>
 			<texture colordiffuse="$VAR[FooterImageColor]">$VAR[image_tomatometerallaudience]</texture>
-			<visible>Integer.IsGreater(Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.UserMeter),59)</visible>
+			<!--visible>Integer.IsGreater(Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.UserMeter),59)</visible-->
 		</control>
 		<control type="label">
-			<top>38</top>
-			<width>84</width>
+			<top>5</top>
+			<left>40</left>
+			<width>70</width>
 			<height>30</height>
 			<align>center</align>
 			<aligny>center</aligny>
-			<font>flags</font>
+			<font>reg26</font>
 			<textcolor>$VAR[AdvancedRatings_TextColor]</textcolor>
 			<label>$INFO[Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.UserMeter),,%]</label>
 		</control>  
@@ -4016,8 +4013,8 @@
 		</control>
 		<control type="label">
 			<top>5</top>
-			<left>25</left>
-			<width>100</width>
+			<left>45</left>
+			<width>50</width>
 			<height>30</height>
 			<align>center</align>
 			<aligny>center</aligny>
@@ -4055,9 +4052,9 @@
 			<texture colordiffuse="$VAR[FooterImageColor]">$VAR[image_themoviedb]</texture>
 		</control>
 		<control type="label">
-			<left>55</left>
+			<left>65</left>
 			<top>-10</top>
-			<width>300</width>
+			<width>200</width>
 			<height>60</height>
 			<align>left</align>
 			<aligny>center</aligny>
@@ -4069,16 +4066,15 @@
 	<!-- IMDB VD -->
 	<include name="ImdbVD">           
 		<control type="image">
-			<top>3</top>
-			<left>0</left>
+			<top>3</top>	
 			<width>74</width>
 			<height>35</height>
 			<texture colordiffuse="$VAR[FooterImageColor]">$VAR[image_imdb]</texture>
 		</control>
 		<control type="label">
-			<left>80</left>
 			<top>-10</top>
-			<width>auto</width>
+			<left>80</left>
+			<width>200</width>
 			<height>60</height>
 			<align>left</align>
 			<aligny>center</aligny>
@@ -4090,19 +4086,19 @@
 	<!-- IMDB Top 250 VD -->
 	<include name="ImdbTop250VD">      
 		<control type="image">
-			<top>-7</top>
+			<top>4</top>
 			<width>70</width>
 			<height>32</height>
 			<texture colordiffuse="$VAR[FooterImageColor]">$VAR[image_imdbtop250]</texture>
 		</control>
 		<control type="label">
 		<!--Rating modern-->
-			<top>20</top>
+			<top>-10</top>
+			<left>75</left>
 			<width>70</width>
-			<height>30</height>
-			<align>center</align>
+			<align>left</align>
 			<aligny>center</aligny>
-			<font>flags</font>
+			<font>Reg26</font>
 			<textcolor>$VAR[AdvancedRatings_TextColor]</textcolor>
 			<label>$VAR[rating_value_250]</label>
 		</control>
@@ -4110,27 +4106,27 @@
 	<!-- labels variables - since leia can use scraped special ratings -->
 		
 	<variable name="rating_value_imdb">
-        <value condition="!String.IsEmpty(ListItem.Rating(imdb)) + Player.HasVideo">  $INFO[ListItem.Rating(imdb)]</value>
-		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.IMDB)) + Player.HasVideo">  $INFO[Window(home).Property(SkinHelper.ListItem.Rating.IMDB)]</value>		
-		<value condition="!String.IsEmpty(ListItem.RatingAndVotes(imdb)) + !Player.HasVideo">$INFO[ListItem.RatingAndVotes(imdb)]</value>
-		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.IMDB)) + !Player.HasVideo">$INFO[Window(home).Property(SkinHelper.ListItem.Rating.IMDB), ,]$INFO[Window(home).Property(SkinHelper.ListItem.Votes.IMDB), (, $LOCALIZE[205])]</value>		
+        <value condition="!String.IsEmpty(ListItem.Rating(imdb)) + Player.HasVideo">$INFO[ListItem.Rating(imdb)]</value>
+		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.IMDB)) + Player.Video">$INFO[Window(home).Property(SkinHelper.ListItem.Rating.IMDB)]</value>		
+		<value condition="!String.IsEmpty(ListItem.Rating(imdb)) + !Player.HasVideo">$INFO[ListItem.Rating(imdb)]$INFO[ListItem.Votes(imdb), (,)]</value>
+		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.IMDB)) + !Player.HasVideo">$INFO[Window(home).Property(SkinHelper.ListItem.Rating.IMDB), ,]$INFO[Window(home).Property(SkinHelper.ListItem.Votes.IMDB), (,)]</value>		
     </variable>	
 	<variable name="rating_value_tmdb">
-		<value condition="!String.IsEmpty(ListItem.Rating(themoviedb)) + Player.HasVideo">    $INFO[ListItem.Rating(themoviedb)]</value>
-		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.TMDB)) + Player.HasVideo">    $INFO[Window(home).Property(SkinHelper.ListItem.Rating.TMDB)]</value>	
-		<value condition="!String.IsEmpty(ListItem.RatingAndVotes(themoviedb)) + !Player.HasVideo">$INFO[ListItem.RatingAndVotes(themoviedb)]</value>
-		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.TMDB)) + !Player.HasVideo">$INFO[Window(home).Property(SkinHelper.ListItem.Rating.TMDB), ,]$INFO[Window(home).Property(SkinHelper.ListItem.Votes.TMDB), (, $LOCALIZE[205])]</value>      
+		<value condition="!String.IsEmpty(ListItem.Rating(themoviedb)) + Player.HasVideo">$INFO[ListItem.Rating(themoviedb)]</value>
+		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.TMDB)) + Player.HasVideo">$INFO[Window(home).Property(SkinHelper.ListItem.Rating.TMDB)]</value>	
+		<value condition="!String.IsEmpty(ListItem.Rating(themoviedb)) + !Player.HasVideo">$INFO[ListItem.Rating(themoviedb)]$INFO[ListItem.Votes(themoviedb), (,)]</value>
+		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.TMDB)) + !Player.HasVideo">$INFO[Window(home).Property(SkinHelper.ListItem.Rating.TMDB), ,]$INFO[Window(home).Property(SkinHelper.ListItem.Votes.TMDB), (,)]</value>      
     </variable>
 	<variable name="rating_value_tvdb">
-		<value condition="!String.IsEmpty(ListItem.Rating(tvdb)) + Player.HasVideo"> $INFO[ListItem.Rating(tvdb)]</value>
-		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.TVDB)) + Player.HasVideo"> $INFO[Window(home).Property(SkinHelper.ListItem.Rating.TVDB)]</value>	
-		<value condition="!String.IsEmpty(ListItem.RatingAndVotes(tvdb)) + !Player.HasVideo">$INFO[ListItem.RatingAndVotes(tvdb)]</value>
-		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.TVDB)) + !Player.HasVideo">$INFO[Window(home).Property(SkinHelper.ListItem.Rating.TVDB), ,]$INFO[Window(home).Property(SkinHelper.ListItem.Votes.TVDB), (, $LOCALIZE[205])]</value>      
+		<value condition="!String.IsEmpty(ListItem.Rating(tvdb)) + Player.HasVideo">$INFO[ListItem.Rating(tvdb)]</value>
+		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.TVDB)) + Player.HasVideo">$INFO[Window(home).Property(SkinHelper.ListItem.Rating.TVDB)]</value>	
+		<value condition="!String.IsEmpty(ListItem.Rating(tvdb)) + !Player.HasVideo">$INFO[ListItem.Rating(tvdb)]$INFO[ListItem.Votes(tvdb), (,)]</value>
+		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.TVDB)) + !Player.HasVideo">$INFO[Window(home).Property(SkinHelper.ListItem.Rating.TVDB), ,]$INFO[Window(home).Property(SkinHelper.ListItem.Votes.TVDB), (,)]</value>      
     </variable>
 	<variable name="rating_value_meta">
        <value condition="!String.IsEmpty(ListItem.RatingAndVotes(metacritic))">$INFO[ListItem.RatingAndVotes(metacritic)]</value>
 	   <value condition="String.IsEmpty(ListItem.RatingAndVotes(metacritic)) + !String.IsEmpty(ListItem.Rating(metacritic))">$INFO[ListItem.Rating(metacritic)]</value>
-	   <value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.metacritic))">$INFO[Window(home).Property(SkinHelper.ListItem.MetaCritic.Rating), ,]$INFO[Window(home).Property(SkinHelper.ListItem.MetaCritic.Votes), (, $LOCALIZE[205])]</value>      
+	   <value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Rating.metacritic))">$INFO[Window(home).Property(SkinHelper.ListItem.MetaCritic.Rating), ,]$INFO[Window(home).Property(SkinHelper.ListItem.MetaCritic.Votes), (,)]</value>      
     </variable>
 	<variable name="rating_value_250">
        <value condition="!String.IsEmpty(ListItem.Top250)">$INFO[ListItem.Top250,[B],[/B]]</value>
@@ -4153,7 +4149,8 @@
 		<value condition="!String.IsEmpty(Window(home).Property(EncodedTitle))">$INFO[Window(home).Property(EncodedTitle)]</value>
 	</variable>
 	<variable name="tvShowsearch">
-		<value condition="String.IsEqual(Window(Home).Property(contenttype),tvshows) | String.IsEqual(Window(Home).Property(contenttype),seasons)">$VAR[EncodedTitle] ,$LOCALIZE[20364] ,$INFO[System.Language]</value>
+		<value condition="String.IsEqual(Window(Home).Property(contenttype),tvshows) | String.IsEqual(Window(Home).Property(contenttype),seasons)">$VAR[EncodedTitle] $LOCALIZE[20364] $LOCALIZE[20410] $INFO[System.Language]</value>
+		<value condition="String.IsEqual(Window(Home).Property(contenttype),movie)">$VAR[EncodedTitle] $LOCALIZE[20410] $INFO[System.Language]</value>
         <value>$VAR[EncodedTitle]</value>
 	</variable>
 	

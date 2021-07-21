@@ -96,7 +96,7 @@
                     <width>123</width>
                     <height>123</height>
                     <fadetime>200</fadetime>
-                    <texture background="true" diffuse="diffuse/music_cover_cd.png" border="5" fallback="DefaultMusicSongs.png">$VAR[AudioPlayerCoverImage]</texture>
+                    <texture background="true" diffuse="diffuse/music_cover_cd.png" border="0" fallback="DefaultMusicSongs.png">$VAR[AudioPlayerCoverImage]</texture>
                     <visible>!Skin.HasSetting(DisableNowPlayingDiscArt)</visible>
                 </control>
                 <control type="image">

@@ -88,7 +88,7 @@
             <align>right</align>
             <font>Light34</font>
             <textcolor>$INFO[Skin.String(FooterTextColor)]</textcolor>
-            <label>T i t a n - M O D - 19.1.19~alpha.1</label>
+            <label>T i t a n - M O D - 19.1.20</label>
 		</control>
     </include>
 
@@ -610,7 +610,7 @@
             <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetFixedFocus$PARAM[widgetprop]), enabled)">SetProperty(customProperty, widgetFixedFocus$PARAM[widgetprop])</onclick>
             <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetFixedFocus$PARAM[widgetprop]), enabled)">SetProperty(customValue, "")</onclick>
             <onclick>SendClick(404)</onclick>
-            <selected>String.IsEqual(Container(211).ListItem.Property(widgetFixedFocus$PARAM[widgetprop]), enabled) | String.Contains(Container(211).ListItem.Property(widgetstyle$PARAM[widgetprop]),details)</selected>
+            <selected>String.IsEqual(Container(211).ListItem.Property(widgetFixedFocus$PARAM[widgetprop]), enabled)</selected> <!--  | String.Contains(Container(211).ListItem.Property(widgetstyle$PARAM[widgetprop]), details) ??? check-->
             <visible>!String.IsEmpty(Container(211).ListItem.Property(widget$PARAM[widgetprop]))</visible>
         </control>
     </include>

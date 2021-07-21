@@ -27,9 +27,9 @@
 			<font>
 				<name>Netflix_Title</name>
 				<filename>HelveticaNeueLt.ttf</filename>
-				<size>66</size>
+				<size>60</size>
 				<style>bold</style>
-				<linespacing>1.0</linespacing>
+				<linespacing>0.9</linespacing>
 			</font>
 		</include>
 		<include name="font_Netflix_Title">

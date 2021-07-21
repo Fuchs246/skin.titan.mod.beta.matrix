@@ -197,8 +197,8 @@
 			</node>
 		</node>
         <!-- script.skin.helper.service default widgets -->
-        <shortcut label="skinhelper service widgets" type="32010" icon="special://home/addons/script.skin.helper.service/icon.png" condition="System.HasAddon(script.skin.helper.service) + Window.IsActive(script-skinshortcuts.xml)">||BROWSE||script.skin.helper.widgets</shortcut>
-        <shortcut label="skinhelper service widgets" type="32010" icon="special://home/addons/script.skin.helper.service/icon.png" condition="System.HasAddon(script.skin.helper.service) + !Window.IsActive(script-skinshortcuts.xml)">||BROWSE||script.skin.helper.widgets</shortcut>
+        <shortcut label="skinhelper service widgets" type="32010" icon="special://home/addons/script.skin.helper.service/icon.png" condition="System.HasAddon(script.skin.helper.service) + Window.IsActive(script-skinshortcuts.xml)">||BROWSE||script.skin.helper.service/?action=widgets&amp;path=scriptwidgets,smartshortcuts,smartishwidgets,favourites,static</shortcut>
+        <shortcut label="skinhelper service widgets" type="32010" icon="special://home/addons/script.skin.helper.service/icon.png" condition="System.HasAddon(script.skin.helper.service) + !Window.IsActive(script-skinshortcuts.xml)">||BROWSE||script.skin.helper.service/?action=widgets&amp;path=scriptwidgets,smartshortcuts,smartishwidgets,favourites</shortcut>
         
 		<!-- embuary helper -->
 		<shortcut label="$LOCALIZE[342]" type="32010" icon="special://home/addons/script.embuary.helper/resources/icon.png">||BROWSE||script.embuary.helper</shortcut>

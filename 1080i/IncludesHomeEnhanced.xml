@@ -529,24 +529,19 @@
         <value>$LOCALIZE[31185]</value>
 	</variable>
     <variable name="EnhancedHomeSpotLightWidgetImage">
-        <value condition="!ControlGroup(77777).HasFocus + Control.IsVisible(1508) + !String.IsEmpty(Container(1508).ListItem.ChannelName)">resource://resource.images.skinbackgrounds.titanium/hover_my tv.jpg</value>
-        <value condition="!ControlGroup(77777).HasFocus + Control.IsVisible(1508) + !String.IsEmpty(Container(1508).ListItem.Art(fanart))">$INFO[Container(1508).ListItem.Art(fanart)]</value>
-        <value condition="!ControlGroup(77777).HasFocus + Control.IsVisible(1508) + !String.IsEmpty(Container(1508).ListItem.Art(tvshow.fanart))">$INFO[Container(1508).ListItem.Art(tvshow.fanart)]</value>
-        <value condition="!ControlGroup(77777).HasFocus + Control.IsVisible(1508) + !String.IsEmpty(Container(1508).ListItem.Property(fanart))">$INFO[Container(1508).ListItem.Property(fanart)]</value>
-        <value condition="!ControlGroup(77777).HasFocus + Control.IsVisible(1508) + !String.IsEmpty(Container(1508).ListItem.Thumb)">$INFO[Container(1508).ListItem.Thumb]</value>
-        <value condition="!ControlGroup(77777).HasFocus + Control.IsVisible(1508)"></value>
         
-        <value condition="!String.IsEmpty(Window(Home).Property(ListItem.ChannelName))">resource://resource.images.skinbackgrounds.titanium/hover_my tv.jpg</value>
+        
+        <value condition="String.Contains(Container.FolderPath,pvr://recordings/active/) + !String.IsEqual(Container.FolderPath,pvr://recordings/active/) + !String.IsEmpty(ListItem.Art(thumb)) + !String.Contains(Pvr.BackendName, headend)">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Thumb)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Art.fanart))">$INFO[Window(Home).Property(ListItem.Art.fanart)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Art.tvshow.fanart))">$INFO[Window(Home).Property(ListItem.Art.tvshow.fanart)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Art.Thumb))">$INFO[Window(Home).Property(ListItem.Art.Thumb)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Icon))">$INFO[Window(Home).Property(ListItem.Icon)]</value>
         
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.ChannelName))">resource://resource.images.skinbackgrounds.titanium/hover_my tv.jpg</value>
+        
+        <!--value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.ChannelLogo))">resource://resource.images.skinbackgrounds.titanium/hover_my tv.jpg</value-->
         <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.fanart))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.fanart)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.tvshow.fanart))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.tvshow.fanart)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Thumb))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Thumb)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Icon))">$INFO[Window(Home).Property(SkinHelper.ListItem.Icon)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Icon))">resource://resource.images.skinbackgrounds.titanium/hover_my tv.jpg</value>
+        
 
     </variable>
 	

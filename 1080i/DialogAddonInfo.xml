@@ -250,6 +250,15 @@
 					<visible>Control.IsEnabled(12)</visible>
                 </control>
 				
+				<control type="button" id="8">
+                  <!--Update Addon button-->
+                    <width>300</width>
+                    <height>80</height>
+                    <align>center</align>
+                    <label>184</label>
+					<include>DialogButtonOther</include>
+					<visible>Control.IsEnabled(8)</visible>
+                </control>
 				<control type="button" id="14">
                   <!--Update Addon button-->
                     <width>300</width>

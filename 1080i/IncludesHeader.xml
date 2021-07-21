@@ -25,9 +25,10 @@
 				<texture border="5">diffuse/panel.png</texture>
 				<colordiffuse>$INFO[Skin.String(HeaderPanelColor)]</colordiffuse>
                 <include condition="!Skin.HasSetting(LowPerformanceMode)">animation_fade_visible</include>
-                <animation effect="slide" end="420" time="870" tween="cubic" easing="inout" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + Control.HasFocus(300)">Conditional</animation>
-				<animation effect="slide" end="420" time="870" tween="cubic" easing="inout" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + [String.Contains(Window(Home).Property(submenu),show) | Control.HasFocus(4444)] + !Control.HasFocus(77777)">Conditional</animation>
+                <animation effect="slide" end="420" time="450" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + Control.HasFocus(300)">Conditional</animation>
+				<animation effect="slide" end="420" time="450" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + [String.Contains(Window(Home).Property(submenu),show) | Control.HasFocus(4444)] + !Control.HasFocus(77777)">Conditional</animation>
                 <visible>![Window.IsActive(Home) + Skin.String(HomeLayout,netflix2)]</visible>
+				<visible>!Skin.String(HomeLayout,netflix)</visible>
 				<visible>!Control.IsVisible(529)</visible>
 			</control>
             
@@ -36,8 +37,8 @@
                 <include condition="[!Window.IsActive(Home) + String.Contains(Skin.String(general_header),logo)] | [Window.IsActive(Home) + String.Contains(Skin.String(home_header),logo) + !Window.IsActive(1100)]">HeaderLogo</include>
                 <include condition="!Skin.HasSetting(LowPerformanceMode)">animation_fade_visible</include>
                 <visible>![String.IsEqual(Window(Home).Property(ShowViewSubMenu),show) | Control.IsVisible(882) | !String.IsEmpty(Control.GetLabel(29476))]</visible>
-                <animation effect="slide" end="420" time="870" tween="cubic" easing="inout" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + Control.HasFocus(300)">Conditional</animation>
-				<animation effect="slide" end="420" time="870" tween="cubic" easing="inout" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + [String.Contains(Window(Home).Property(submenu),show) | Control.HasFocus(4444)] + !Control.HasFocus(77777)">Conditional</animation>
+                <animation effect="slide" end="420" time="450" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + Control.HasFocus(300)">Conditional</animation>
+				<animation effect="slide" end="420" time="450" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + [String.Contains(Window(Home).Property(submenu),show) | Control.HasFocus(4444)] + !Control.HasFocus(77777)">Conditional</animation>
             </control>
             
             <!-- Time right -->
@@ -52,17 +53,17 @@
                 <include condition="[!Window.IsActive(Home) + String.Contains(Skin.String(general_header),title)] | [Window.IsActive(Home) + String.Contains(Skin.String(home_header),title)]">HeaderTitle</include>
                 <include condition="!Skin.HasSetting(LowPerformanceMode)">animation_fade_visible</include>
                 <visible>![String.IsEqual(Window(Home).Property(ShowViewSubMenu),show) | Control.IsVisible(882) | !String.IsEmpty(Control.GetLabel(29476))]</visible>
-                <animation effect="slide" end="420" time="870" tween="cubic" easing="inout" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + Control.HasFocus(300)">Conditional</animation>
-				<animation effect="slide" end="420" time="870" tween="cubic" easing="inout" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + [String.Contains(Window(Home).Property(submenu),show) | Control.HasFocus(4444)] + !Control.HasFocus(77777)">Conditional</animation>
+                <animation effect="slide" end="420" time="450"  delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + Control.HasFocus(300)">Conditional</animation>
+				<animation effect="slide" end="420" time="450" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + [String.Contains(Window(Home).Property(submenu),show) | Control.HasFocus(4444)] + !Control.HasFocus(77777)">Conditional</animation>
             </control>
             
             <!-- Weather left -->
             <control type="group">
                 <include condition="[!Window.IsActive(Home) + String.Contains(Skin.String(general_header),weather-)] | [Window.IsActive(Home) + String.Contains(Skin.String(home_header),weather-)]">WeatherInfoLeft</include>
-                <animation effect="slide" end="420" time="0" tween="cubic" easing="inout" delay="0" condition="Window.IsActive(Home) + String.Contains(Skin.String(home_header),slideweather)">Conditional</animation>
-                <animation effect="slide" end="420" time="870" tween="cubic" easing="inout" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + Control.HasFocus(300) + !Skin.HasSetting(UseDefaultVerticalLayout)">Conditional</animation>
-				<animation effect="slide" end="420" time="870" tween="cubic" easing="inout" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + Skin.HasSetting(UseDefaultVerticalLayout)">Conditional</animation>
-				<animation effect="slide" end="420" time="870" tween="cubic" easing="inout" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + [String.Contains(Window(Home).Property(submenu),show) | Control.HasFocus(4444)] + !Control.HasFocus(77777) + !Skin.HasSetting(UseDefaultVerticalLayout)">Conditional</animation>
+                <animation effect="slide" end="420" time="0" delay="0" condition="Window.IsActive(Home) + String.Contains(Skin.String(home_header),slideweather)">Conditional</animation>
+                <animation effect="slide" end="420" time="450" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + Control.HasFocus(300) + !Skin.HasSetting(UseDefaultVerticalLayout)">Conditional</animation>
+				<animation effect="slide" end="420" time="450" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + Skin.HasSetting(UseDefaultVerticalLayout)">Conditional</animation>
+				<animation effect="slide" end="420" time="450" delay="0" condition="Window.IsActive(Home) + Skin.String(HomeLayout,verticalbig) + [String.Contains(Window(Home).Property(submenu),show) | Control.HasFocus(4444)] + !Control.HasFocus(77777) + !Skin.HasSetting(UseDefaultVerticalLayout)">Conditional</animation>
 				<include condition="!Skin.HasSetting(LowPerformanceMode)">animation_fade_visible</include>
                 <visible>![String.IsEqual(Window(Home).Property(ShowViewSubMenu),show) | Control.IsVisible(882) | !String.IsEmpty(Control.GetLabel(29476))]</visible>
             </control>
