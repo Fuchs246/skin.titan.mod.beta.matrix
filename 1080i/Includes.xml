@@ -93,27 +93,22 @@
     </include>
 
     <!--Common-->
-    <include name="HiddenButton">
-        <posx>-2000</posx>
-        <posy>-2000</posy>
-        <width>1</width>
-        <height>1</height>
-        <label></label>
-		<texturenofocus></texturenofocus>
-        <texturefocus></texturefocus>
-    </include>
-	
-	<include name="HiddenObject">
-       <left>-3000</left>
+	<include name="HiddenOffset">
+		<left>-3000</left>
 		<top>-3000</top>
 		<width>1</width>
 		<height>1</height>
-		<texturefocus />
+	</include>
+	<include name="HiddenButton">
+		<include>HiddenOffset</include>
+        <label />
 		<texturenofocus />
-		<label></label>
-		<font></font>
-		<itemlayout/>
-		<focusedlayout/>
+        <texturefocus />
+    </include>
+	<include name="HiddenContainer">
+		<include>HiddenOffset</include>
+		<itemlayout height="10" width="10" />
+		<focusedlayout height="10" width="10" />
     </include>
 	
     <include name="DimensionsFullscreen">

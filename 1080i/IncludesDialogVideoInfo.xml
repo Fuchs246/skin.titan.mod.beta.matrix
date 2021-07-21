@@ -2289,8 +2289,6 @@
 								<left>695</left>
 								<include>AltRatingMovieInfo</include>
 								<animation effect="slide" end="0,270" center="auto" time="0" condition="String.IsEqual(ListItem.DBType,tvshow) + !Skin.String(mediaflagsstyle,disabled)">Conditional</animation>
-								<!--animation effect="slide" end="150,265" center="auto" time="0" condition="Skin.String(mediaflagsstyle,disabled)">Conditional</animation>
-								<!--animation effect="slide" end="350,265" center="auto" time="0" condition="String.IsEqual(ListItem.DBType,episode) + !Skin.String(mediaflagsstyle,disabled)">Conditional</animation-->
 								<visible>!Player.HasVideo</visible>
 							</control>
 							<!-- NEW dividing line -->
@@ -2677,7 +2675,7 @@
 
                 <!-- hidden my rating button -->
                 <control type="button" id="7">
-                    <include>HiddenObject</include>
+                    <include>HiddenContainer</include>
                 </control>
 
 				<!-- spotlight previewwindow section right -->
