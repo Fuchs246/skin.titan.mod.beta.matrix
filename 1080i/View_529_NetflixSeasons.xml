@@ -5,11 +5,14 @@
 		
 		<control type="group">
 			<visible>Control.IsVisible(529)</visible>
-			<!-- String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) -->
 			<control type="list" id="529">
 				<description>need prop first load,clear bahaviour</description>
 				<include>HiddenContainer</include>
 				<onfocus>RunScript(script.embuary.helper,action=encode,string='"$INFO[Container.ShowTitle]"',prop=EncodedTitle)</onfocus>
+				<onfocus condition="!String.IsEmpty(Window.Property(refreshtrailer))">RunScript(script.embuary.helper,action=lookforfile,file='"$INFO[container.listitem.path]$INFO[container.listitem.FolderName,,-trailer.mp4]"',prop=trailer_avail)</onfocus>
+				<onfocus condition="!String.IsEmpty(Window.Property(refreshtrailer))">SetProperty(listitemtrailer,$INFO[container.listitem.path]$INFO[container.listitem.FolderName,,-trailer.mp4],home)</onfocus>
+				<onfocus condition="!String.IsEmpty(Window.Property(refreshtrailer))">ClearProperty(refreshtrailer)</onfocus>
+				
 				<onfocus>SetFocus(529001)</onfocus>
 				<visible>Container.Content(seasons) + [Integer.IsEqual(Window(Home).Property(SkinHelper.ForcedView),529) | String.IsEmpty(Window(Home).Property(SkinHelper.ForcedView))]</visible>
 				<viewtype label="31902">Netflix Info</viewtype>
@@ -17,7 +20,6 @@
 			
 			<control type="group">
 				<visible>!Skin.HasSetting(View529_DisableFanArt)</visible>
-				
 				<control type="image">
 					<description>Dimmed Fanart BG</description>
 					<visible>!Control.HasFocus(529001)</visible>
@@ -58,18 +60,14 @@
 					<onfocus condition="!String.StartsWith(ListItem.FolderPath,plugin)">RunScript(script.embuary.helper,action=lookforfile,file='"$INFO[listitem.path]$INFO[listitem.FolderName,,-trailer.mp4]"',prop=trailer_avail)</onfocus>
 					<onleft>9000</onleft>
 					<height>1</height>
-					
 					<onleft condition="Control.IsVisible(529)">menu</onleft>
 					<onright condition="Control.IsVisible(529)">menu</onright>
-																	  
 					<onfocus condition="!Control.IsVisible(529)">SetFocus(50)</onfocus>
 					<onright condition="!Control.IsVisible(529)">SetFocus(50)</onright>
 					<onleft condition="!Control.IsVisible(529)">SetFocus(50)</onleft>
 					<onup condition="!Control.IsVisible(529)">SetFocus(50)</onup>
 					<ondown condition="!Control.IsVisible(529)">SetFocus(50)</ondown>
-					
 					<onback>SetFocus(50)</onback>
-					
 				</control>
 			
 				<control type="group" id="529002">
@@ -109,8 +107,6 @@
 						<param name="align" value="left" />
 						<param name="widgetdesc" value="[B]$VAR[ResumeOrNext][/B]" />
 					</include>
-				
-									
 					<control type="label">
 						<top>505</top>
 						<left>680</left>
@@ -163,14 +159,16 @@
 					</control>
 					
 					<control type="panel" id="529004">
-						<onleft>9000</onleft>
+						
 						<top>370</top>
-						<onup>529001</onup>
-						<ondown>5290051</ondown>
+						
 						<preloaditems>2</preloaditems>
 						<orientation>horizontal</orientation>
 						<scrolltime tween="quadratic">400</scrolltime>
 						
+						<onleft>9000</onleft>
+						<onup>529001</onup>
+						<ondown>5290051</ondown>
 						<onback>SetFocus(50)</onback>
 						
 						<itemlayout height="400" width="1040">
@@ -238,19 +236,21 @@
 						<param name="widgetdesc" value="[UPPERCASE]$INFO[Container(5290051).ListItem.Label,[B],[/B]][/UPPERCASE]" />
 					</include>
 					
-				
 					<control type="panel" id="5290051">
 						<top>160</top>
 						<width>96%</width>
 						<height>370</height>
+						
+						<preloaditems>2</preloaditems>
+						<orientation>horizontal</orientation>
+						<scrolltime tween="quadratic">400</scrolltime>
+						
 						<onleft>9000</onleft>
 						<onup>529004</onup>
 						<ondown condition="Integer.IsGreater(Container(5290052).NumItems,0)">Control.SetFocus(5290052,0,absolute)</ondown>
 						<ondown condition="!Integer.IsGreater(Container(5290052).NumItems,0)">5290061</ondown>
 						<onback>SetFocus(50)</onback>
-						<preloaditems>2</preloaditems>
-						<orientation>horizontal</orientation>
-						<scrolltime tween="quadratic">400</scrolltime>
+						
 						<itemlayout height="370" width="220">
 							<control type="group">
 								<height>310</height>
@@ -305,16 +305,19 @@
 					
 					<control type="panel" id="5290052">
 						<description>folder content - episode thumb</description>
+						
 						<top>590</top>
 						<width>98%</width>
 						<height>450</height>
+						
+						<preloaditems>2</preloaditems>
+						<orientation>horizontal</orientation>
+						<scrolltime tween="quadratic" easing="in">400</scrolltime>
+						
 						<onleft>9000</onleft>
 						<onup>5290051</onup>
 						<ondown>5290061</ondown>
 						<onback>SetFocus(50)</onback>
-						<preloaditems>2</preloaditems>
-						<orientation>horizontal</orientation>
-						<scrolltime tween="quadratic" easing="in">400</scrolltime>
 						
 						<itemlayout height="430" width="460" condition="!Skin.HasSetting(View529_EpisodeInfoRight)">
 							<control type="group">
@@ -563,41 +566,39 @@
 				
 				<control type="group" id="529006">
 					<description>PAGE 4, cast and trailer</description>
-					<visible>[Integer.IsGreater(Container(5290061).NumItems,0) | Container(5290061).IsUpdating] | [Integer.IsGreater(Container(5290062).NumItems,0) | Container(5290062).IsUpdating]</visible>
+					
 					<left>130</left>
 					<height>1080</height>
 					
 					<include content="Special_Header">
-						<param name="visible" value="Integer.IsGreater(Container(5290061).NumItems,0) | Container(5290061).IsUpdating" />
 						<param name="pos_top" value="80" />
 						<param name="widgetdesc" value="[UPPERCASE][B]$LOCALIZE[206][/B][/UPPERCASE]" />
 					</include>
 					
 					<control type="panel" id="5290061">
+						<description>cast</description>
+						<top>170</top>
+						<left>40</left>
+						<width>1620</width>
+						<height>350</height>
+						
+						<preloaditems>2</preloaditems>
+						<orientation>horizontal</orientation>
+						<scrolltime tween="quadratic">400</scrolltime>
+						
 						<onleft>9000</onleft>
 						<onup>5290052</onup>
 						<ondown condition="Control.IsVisible(5290062)">5290062</ondown>
 						<ondown condition="!Control.IsVisible(5290062)">5290071</ondown>
 						<onback>SetFocus(50)</onback>
-						<top>170</top>
-						<left>40</left>
-						<width>1620</width>
-						<height>350</height>
-						<preloaditems>2</preloaditems>
-						<orientation>horizontal</orientation>
-						<scrolltime tween="quadratic">400</scrolltime>
-						
-						<description>oninfo gets ognored here - cant use hidden action sendclick or oninfo here</description>
-						<!-- <oninfo>RunScript(script.embuary.info,call=person,query='"$INFO[Container(5290061).ListItem.Label])'"</oninfo> -->
-						<!-- <oninfo>Action(back)</oninfo> -->
 						<onclick>Skin.Reset(SearchTerm)</onclick>
 						<onclick>Skin.SetString(SearchTerm,$INFO[Container(5290061).ListItem.Label])</onclick>
 						<onclick>ActivateWindow(1100),return</onclick>
 						
 						<itemlayout height="400" width="270">
 							<control type="group">
-								<height>250</height>
-								<width>200</width>
+								<height>210</height>
+								<width>210</width>
 								<include content="Circle_CastWidget">
 									<param name="colordiffuse" value="$INFO[Skin.String(NetflixViewDetailsBorderFocusColor)]" />
 									<param name="autoscroll" value="false" />
@@ -607,8 +608,8 @@
 						</itemlayout>
 						<focusedlayout height="400" width="270">
 							<control type="group">
-								<height>250</height>
-								<width>200</width>
+								<height>210</height>
+								<width>210</width>
 								<include>Focus_Zoom_Animation</include>
 								<control type="group">
 									<include content="Circle_CastWidget">
@@ -623,30 +624,31 @@
 					</control>
 				
 					<include content="Special_Header">
-						<param name="visible" value="Integer.IsGreater(Container(5290062).NumItems,0) | Container(5290062).IsUpdating" />
 						<param name="pos_top" value="575" />
 						<param name="widgetdesc" value="[UPPERCASE][B]$LOCALIZE[20410][/B][/UPPERCASE]" />
 					</include>
 				
 					<control type="panel" id="5290062">
-						<description>trailer, props currently uncleared</description>
+						<description>trailer</description>
 						<top>640</top>
 						<height>420</height>
 						<width>1920</width>
-						<onleft>9000</onleft>
-						<onup>5290061</onup>
-						<ondown>5290071</ondown>
-						<onback>SetFocus(50)</onback>
+						
 						<preloaditems>2</preloaditems>
 						<orientation>horizontal</orientation>
 						<scrolltime tween="quadratic">400</scrolltime>
 						
-						<onclick>SetProperty(TrailerPlaying,true,home)</onclick>
+						<onleft>9000</onleft>
+						<onup>5290061</onup>
+						<ondown>5290071</ondown>
+						<onback>SetFocus(50)</onback>
+						
+						<onclick>SetProperty(TrailerPlaying,windowed,home)</onclick>
 						<onclick condition="!String.IsEmpty(Container(5290062).ListItem.Property(LocalTrailer))">PlayMedia($INFO[Container(5290062).ListItem.Property(LocalTrailer)],1)</onclick>
 						<onclick condition="String.IsEmpty(Container(5290062).ListItem.Property(LocalTrailer))">PlayMedia($INFO[Container(5290062).ListItem.FilenameAndPath],1)</onclick>
-						<ondown condition="Player.HasVideo">Stop</ondown>
-						<onback condition="Player.HasVideo">Stop</onback>
-						<onup condition="Player.HasVideo">fullscreen</onup>
+						
+						<ondown condition="!String.IsEmpty(Window(Home).Property(TrailerPlaying)) + Player.HasVideo">PlayerControl(Stop)</ondown>
+						<onback condition="!String.IsEmpty(Window(Home).Property(TrailerPlaying)) + Player.HasVideo">PlayerControl(Stop)</onback>
 						
 						<itemlayout height="250" width="440">
 							<control type="group">
@@ -675,7 +677,7 @@
 						</focusedlayout>
 						<content>
 							<item>
-								<visible>!String.IsEmpty(Window(home).Property(trailer_avail))</visible>
+								<visible>!String.IsEmpty(Window(home).Property(trailer_avail)) + String.IsEqual(Container.ViewMode,$LOCALIZE[31902])</visible>
 								<label>Local Trailer</label>
 								<label2 />
 								<property name="LocalTrailer">$INFO[ListItem.Path]$INFO[ListItem.FolderName,,-trailer.mp4]</property>
@@ -693,30 +695,38 @@
 					<left>100</left>
 					<height>1080</height>
 					
-					<visible>[Integer.IsGreater(Container(5290071).NumItems,0) | Container(5290071).IsUpdating]</visible>
-					
 					<include content="Special_Header">
-						<param name="visible" value="Integer.IsGreater(Container(5290071).NumItems,0) | Container(5290071).IsUpdating" />
-						
 						<param name="pos_top" value="230" />
 						<param name="widgetdesc" value="[UPPERCASE][B]$LOCALIZE[31622][/B][/UPPERCASE]" />
 						<param name="align" value="left" />
 					</include>
 					
 					<control type="panel" id="5290071">
+						
 						<top>305</top>
 						<left>10</left>
 						<height>500</height>
 						<width>1920</width>
-						<onleft>9000</onleft>
-						<onup condition="Control.IsVisible(5290063)">5290063</onup>
-						<onup condition="Control.IsVisible(5290062)">5290062</onup>
-						<onup condition="![Control.IsVisible(5290062) + Control.IsVisible(5290063)]">529006</onup>
-						<onback>SetFocus(50)</onback>
-						<ondown>529001</ondown>
 						<preloaditems>2</preloaditems>
 						<orientation>horizontal</orientation>
 						<scrolltime tween="quadratic">400</scrolltime>
+						
+						<onleft>9000</onleft>
+						<onup condition="Control.IsVisible(5290062)">5290062</onup>
+						<onup condition="![Control.IsVisible(5290062) + Control.IsVisible(5290063)]">529006</onup>
+						
+						<onclick>SetProperty(refreshtrailer,true)</onclick>
+						<onclick condition="!string.IsEmpty(container(5290071).listitem.dbid)">SetProperty(dbid,$INFO[container(5290071).listitem.dbid],home)</onclick>
+						<onclick condition="!string.IsEmpty(container(5290071).listitem.rating)">SetProperty(rating,$INFO[container(5290071).listitem.rating],home)</onclick>
+						<onclick condition="!string.IsEmpty(container(5290071).listitem.userrating) + string.IsEmpty(container(5290071).listitem.rating)">SetProperty(rating,$INFO[container(5290071).listitem.userrating],home)</onclick>
+						<onclick condition="!string.IsEmpty(container(5290071).listitem.Property(totalseasons))">SetProperty(totalseasons,$INFO[container(5290071).listitem.Property(totalseasons)],home)</onclick>
+						<onclick condition="!string.IsEmpty(container(5290071).listitem.Property(totalepisodes))">SetProperty(totalepisodes,$INFO[container(5290071).listitem.Property(totalepisodes)],home)</onclick>
+						<onclick condition="!string.IsEmpty(container(5290071).listitem.status)">SetProperty(status,$INFO[container(5290071).listitem.status],home)</onclick>
+						<onclick>ReplaceWindow(videos,$INFO[container(5290071).listitem.path])</onclick>
+						<onclick>SetFocus(50)</onclick>
+											
+						<onback>SetFocus(50)</onback>
+						<ondown>529001</ondown>
 						
 						<itemlayout height="250" width="440">
 							<control type="group">
@@ -741,7 +751,7 @@
 								</control>
 							</control>
 						</focusedlayout>
-						<content target="videos"></content>
+						<content target="videos">$VAR[view_529_Content_Similiar]</content>
 					</control>
 				</control>
 			</control>
@@ -802,6 +812,42 @@
 				<centertop>60%</centertop>
 			</control>
 		</control>
+		
+		<control type="group">
+			<visible>false</visible>
+				<control type="image">
+					<texture background="true" colordiffuse="ff131313">colors/white80.png</texture>
+				</control>
+				<control type="textbox">
+					<left>200</left>
+					<right>200</right>
+					<height>1080</height>
+					<width>1920</width>
+					<label>listitem.filenameandpath :  $INFO[listitem.filenameandpath]
+  listitem.Path :  $INFO[listitem.path]
+  ListItem.FolderPath :  $INFO[ListItem.FolderPath]
+  ListItem.FolderName :  $INFO[ListItem.FolderName]
+  listitem.dbid :  $INFO[listitem.dbid]
+  listitem.tvshowdbid :  $INFO[listitem.tvshowdbid]
+  listitem.setid :  $INFO[listitem.setid]
+  listitem.uniquiid() • imdb :  $INFO[listitem.uniqueid(imdb)]  -  themoviedb :  $INFO[listitem.uniqueid(themoviedb)]  -  tmdb :  $INFO[listitem.uniqueid(tmdb)]  -  anidb :  $INFO[listitem.uniqueid(anidb)]  -  tvdb :  $INFO[listitem.uniqueid(tvdb)]  -  trakt :  $INFO[listitem.uniqueid(trakt)]  - tvrage :  $INFO[listitem.uniqueid(tvrage)]  -  tvmaze :  $INFO[listitem.uniqueid(tvmaze)]
+
+Container.Content  :  $INFO[Container.Content]  ; Container.ListItem.dbtype  :  $INFO[ Container.ListItem.dbtype]
+Container.PluginName :  $INFO[Container.PluginName]  -  Container.PluginCategory  :  $INFO[Container.PluginCategory]
+Container.Viewmode :  $INFO[Container.Viewmode]  -  Container.ViewCount  :  $INFO[Container.ViewCount]
+Container.FolderPath :  $INFO[Container.FolderPath]
+Container.Totaltime  :  $INFO[Container.Totaltime]
+Container().ListItemAbsolute(0).label :  $INFO[Container().ListItemAbsolute(0).label] 
+
+    $VAR[view_529_NextUp_SeasonLevel]
+	$VAR[view_529_Content_Seasons]
+	$VAR[view_529_Content_Episodes]
+	$VAR[view_529_Content_YoutubeTrailer]
+	$VAR[view_529_Content_Similiar]
+
+</label>
+</control>
+			</control>
 	</include>
 	
 	<include name="Special_Header">
@@ -982,37 +1028,26 @@
 	</include>
 	
 	
-	<variable name="view_529_NextUp_SeasonLevel">
-		<value condition="[String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + Container.Content(Seasons)] + String.EndsWith(Container.Folderpath,/)">$INFO[Container.Folderpath]-1/</value>
-		<value condition="[String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + Container.Content(Seasons)] + !String.IsEmpty(Window(home).Property(dbid))">videodb://inprogresstvshows/$INFO[Window(home).Property(dbid)]/-1/?tvshowid=$INFO[Window(home).Property(dbid)]</value>
-		<value condition="[String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + Container.Content(Seasons)] + !String.IsEmpty(Window(home).Property(EncodedTitle))">videodb://inprogresstvshows/-1/-1/?xsp=%7B%22limit%22%3A1%2C%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22method%22%3A%22playcount%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22tvshow%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(EncodedTitle)]%22%5D%7D%5D%7D%2C%22type%22%3A%22episodes%22%7D</value>
-		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902])">view_529_NextUp_SeasonLevel_should_BE_VISIBLE_IN_IF_VIEW529_VISBLE</value>
-		<value condition="Control.IsVisible(529)">view_529_NextUp_SeasonLevel_is_called_but_IT_SHOULDNT</value>
-	</variable>
 	<variable name="view_529_Content_Seasons">
-		<value condition="[String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + Container.Content(Seasons)] + !String.IsEmpty(Container.Folderpath)">$INFO[Container.Folderpath]</value>
-		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902])">view_529_Content_Seasons_should_BE_VISIBLE_IN_IF_VIEW529_VISBLE</value>
-		<value condition="Control.IsVisible(529)">view_529_Content_Seasons_is_called_but_IT_SHOULDNT</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + !String.IsEmpty(Container.Folderpath)">$INFO[Container.Folderpath]</value>
+	</variable>
+	<variable name="view_529_NextUp_SeasonLevel">
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + String.EndsWith(Container.Folderpath,/)">$INFO[Container.Folderpath]-1/</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + !String.IsEmpty(ListItem.TvShowDBID)">videodb://inprogresstvshows/$INFO[ListItem.TvShowDBID)]/-1/?tvshowid=$INFO[ListItem.TvShowDBID]</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + !String.IsEmpty(Window(home).Property(dbid))">videodb://inprogresstvshows/$INFO[Window(home).Property(dbid)]/-1/?tvshowid=$INFO[Window(home).Property(dbid)]</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + !String.IsEmpty(Window(home).Property(EncodedTitle))">videodb://inprogresstvshows/-1/-1/?xsp=%7B%22limit%22%3A1%2C%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22method%22%3A%22playcount%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22tvshow%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(EncodedTitle)]%22%5D%7D%5D%7D%2C%22type%22%3A%22episodes%22%7D</value>
 	</variable>
 	<variable name="view_529_Content_Episodes">
-		<value condition="[String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + Container.Content(Seasons)] + !String.IsEmpty(Container(5290051).ListItem.Folderpath)">$INFO[Container(5290051).ListItem.Folderpath]</value>
-		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902])">view_529_Content_Episodes_should_BE_VISIBLE_IN_IF_VIEW529_VISBLE</value>
-		<value condition="Control.IsVisible(529)">view_529_Content_Episodes_is_called_but_IT_SHOULDNT</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + !String.IsEmpty(Container(5290051).ListItem.Folderpath)">$INFO[Container(5290051).ListItem.Folderpath]</value>
 	</variable>
 	<variable name="view_529_Content_Cast">
-		<value condition="[String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + Container.Content(Seasons)] + !String.IsEmpty(Container(529).ListItem.TvShowDBID)">plugin://script.embuary.helper?info=getcast&amp;type=tvshow&amp;dbid=$INFO[Container(529)ListItem.TvShowDBID]</value>
-		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902])">view_529_Content_Cast_should_BE_VISIBLE_IN_IF_VIEW529_VISBLE</value>
-		<value condition="Control.IsVisible(529)">view_529_Content_Cast_is_called_but_IT_SHOULDNT</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + !String.IsEmpty(ListItem.TvShowDBID)">plugin://script.embuary.helper?info=getcast&amp;type=tvshow&amp;dbid=$INFO[ListItem.TvShowDBID]&amp;reload=$INFO[Window(home).Property(EmbuaryWidgetUpdate)]</value>
 	</variable>
 	<variable name="view_529_Content_YoutubeTrailer">
-		<value condition="[String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + Container.Content(Seasons)] + [!$EXP[IsOfflineMode] + System.HasAddon(plugin.video.youtube) + !Skin.HasSetting(DONTEXIST_View_529_DisableOnlineTrailers)]">plugin://plugin.video.youtube/search/?q=$INFO[Container.FolderName]$INFO[System.Language, $LOCALIZE[20410] ,]</value>
-		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902])">view_529_Content_YoutubeTrailer_should_BE_VISIBLE_IN_IF_VIEW529_VISBLE</value>
-		<value condition="Control.IsVisible(529)">view_529_Content_YoutubeTrailer_is_called_but_IT_SHOULDNT</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + [!$EXP[IsOfflineMode] + System.HasAddon(plugin.video.youtube) + !Skin.HasSetting(View_529_DisableOnlineTrailers)]">plugin://plugin.video.youtube/search/?q=$INFO[Container.FolderName]$INFO[System.Language, $LOCALIZE[20410] ,]</value>
 	</variable>
 	<variable name="view_529_Content_Similiar">
-		<value condition="[String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + Container.Content(Seasons)] + !String.IsEmpty(Container(529).ListItem.TvShowDBID)">plugin://script.embuary.helper/?info=getsimilar&amp;type=tvshow&amp;dbid=$INFO[Container(529).ListItem.TvShowDBID]&amp;reload=$INFO[Window(home).Property(EmbuaryWidgetUpdate)]</value>
-		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902])">view_529_Content_Similiar_should_BE_VISIBLE_IN_IF_VIEW529_VISBLE</value>
-		<value condition="Control.IsVisible(529)">view_529_Content_Similiar_is_called_but_IT_SHOULDNT</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31902]) + !String.IsEmpty(ListItem.TvShowDBID)">plugin://script.embuary.helper/?info=getsimilar&amp;type=tvshow&amp;dbid=$INFO[ListItem.TvShowDBID]&amp;reload=$INFO[Window(home).Property(EmbuaryWidgetUpdate)]</value>
 	</variable>
 			
 	<include name="DefArtwork">
@@ -1138,11 +1173,6 @@
 			</control>
 		</control>
 	</include>
-	<!-- avoid online lookup if offline
-	!String.IsEmpty(Network.IPAddress)
-	!String.EndsWith(Network.LinkState,$LOCALIZE[15208]] not connected
-	!String.EndsWith(Network.DHCPAddress,$LOCALIZE[15208]] not connected
-	-->
 	<variable name="TVShowArt">
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.landscape))">$INFO[ListItem.Art(tvshow.landscape)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
