@@ -992,6 +992,14 @@
 		
 		<control type="radiobutton" id="705291">
 			<include>SideBladeMenuButton</include>
+			<label>Disable YouTube Trailer Container</label>
+			<visible>Control.IsVisible(529)</visible>
+			<onclick>Skin.ToggleSetting(View_529_DisableOnlineTrailers)</onclick>
+			<selected>[Skin.HasSetting(View_529_DisableOnlineTrailers) + Control.IsVisible(529)]</selected>
+		</control>
+		
+		<control type="radiobutton" id="705291">
+			<include>SideBladeMenuButton</include>
 			<label>31268</label>
 			<visible>Control.IsVisible(529)</visible>
 			<onclick>Skin.ToggleSetting(View529_DisableFanArt)</onclick>
