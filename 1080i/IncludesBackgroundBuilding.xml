@@ -6,7 +6,7 @@
 		
 		<!-- HIDDEN ART -->
 		<control type ="group">
-			<include>HiddenObject</include>
+			<include>HiddenOffset</include>
 			<!-- COMMON FANART -->
 			<control type="image" id="99006">
 				<texture background="true">$VAR[fanartBackground]</texture>
