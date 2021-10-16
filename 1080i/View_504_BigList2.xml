@@ -143,7 +143,7 @@
                     <visible>[ListItem.IsCollection + Skin.HasSetting(EmbyCovertArtEnabled)]</visible>
 				</control>
                 <control type="image">
-					<aspectratio align="center" aligny="bottom" scalediffuse="true">keep</aspectratio>
+					<aspectratio align="center" aligny="center" scalediffuse="true">keep</aspectratio>
 					<texture background="true" diffuse="diffuse/poster.png" fallback="DefaultVideo.png">$VAR[PosterThumb]</texture>
 					<bordersize>8</bordersize>
                     <visible>![ListItem.IsCollection + Skin.HasSetting(EmbyCovertArtEnabled)]</visible>

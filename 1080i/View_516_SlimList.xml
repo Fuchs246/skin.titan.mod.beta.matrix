@@ -9,7 +9,7 @@
 			<posx>10</posx>
 			<align>left</align>
 			<width>63%</width>
-			<label>[B]$INFO[ListItem.Label][/B]</label>
+			<label>$INFO[ListItem.Label]</label>
 			<textcolor>$INFO[Skin.String(ViewDetailsListItemTextColor)]</textcolor>
             <visible>![Window.IsActive(tvchannels) | Window.IsActive(radiochannels) | Window.IsActive(tvguide) | Window.IsActive(tvtimers) | Window.IsActive(tvsearch) | Window.IsActive(tvrecordings) | Window.IsActive(addonbrowser)]</visible>
 			<font>Light30</font>
@@ -98,7 +98,7 @@
 			<posx>10</posx>
 			<align>left</align>
 			<width>63%</width>
-			<label>[B]$INFO[ListItem.Label][/B]</label>
+			<label>$INFO[ListItem.Label]</label>
 			<textcolor>$INFO[Skin.String(ViewDetailsListItemTextFocusColor)]</textcolor>
 			<font>Light30</font>
 			<scroll>true</scroll>
@@ -285,7 +285,7 @@
                     <visible>![Skin.HasSetting(View516_ShowCDart) + [Container.Content(albums) | Container.Content(songs)] + !String.IsEmpty(ListItem.Album) + !String.IsEmpty(ListItem.Thumb)]</visible>
 				</control>
                 <control type="image">
-					<aspectratio align="center" aligny="bottom" scalediffuse="true">keep</aspectratio>
+					<aspectratio align="center" aligny="center" scalediffuse="true">keep</aspectratio>
 					<texture background="true" diffuse="diffuse/poster.png" fallback="DefaultAddonMusic.png">$VAR[PosterThumb]</texture>
 					<bordersize>8</bordersize>
                     <visible>Skin.HasSetting(View516_ShowCDart) + [Container.Content(albums) | Container.Content(songs)] + !String.IsEmpty(ListItem.Album) + !String.IsEmpty(ListItem.Thumb)</visible>
