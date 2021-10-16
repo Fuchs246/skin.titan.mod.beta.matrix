@@ -60,7 +60,7 @@
                 <onleft>100</onleft>
                 <onright></onright>
                 <orientation>vertical</orientation>
-                <posx>570</posx>
+                <posx>585</posx>
                 <posy>20</posy>
                 <control type="label">
                     <posx>0</posx>
@@ -229,7 +229,7 @@
                 </control>
             </control>
             <control type="group">
-                <posx>570</posx>
+                <posx>585</posx>
                 <posy>240</posy>
                 <width>550</width>
                 <height>485</height>
@@ -277,39 +277,39 @@
             <!--Control Tags-->
             <control type="grouplist">
                 <control type="label" id="5101">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[ListDetails]</label>
                 </control>
                 <control type="label" id="5201">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground1_label]</label>
                 </control>
                 <control type="label" id="5202">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground2_label]</label>
                 </control>
                 <control type="label" id="5203">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground3_label]</label>
                 </control>
                 <control type="label" id="5204">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground4_label]</label>
                 </control>
                 <control type="label" id="5301">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground1_value]</label>
                 </control>
                 <control type="label" id="5302">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground2_value]</label>
                 </control>
                 <control type="label" id="5303">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground3_value]</label>
                 </control>
                 <control type="label" id="5304">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground4_value]</label>
                 </control>
             </control>
@@ -757,11 +757,11 @@
                 <!--Poster-->
                 <visible>!Container.Content(episodes)</visible>
                 <visible>![Window.IsActive(tvchannels) | Window.IsActive(radiochannels) | Window.IsActive(tvguide) | Window.IsActive(tvtimers) | Window.IsActive(tvsearch) | Window.IsActive(tvrecordings)]</visible>
-                <posx>45</posx>
-				<width>510</width>
+                <posx>55</posx>
+				<width>520</width>
                 <bordersize>8</bordersize>
 				<texture diffuse="diffuse/poster.png" border="5" fallback="DefaultVideo.png" background="true">$VAR[PosterThumb]</texture>
-				<aspectratio align="center" aligny="top" scalediffuse="false">keep</aspectratio>
+				<aspectratio align="center" aligny="center" scalediffuse="true">keep</aspectratio>
             </control>
             <control type="image">
                 <!--Episodes Thumb-->
