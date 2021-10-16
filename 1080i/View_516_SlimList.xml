@@ -9,7 +9,7 @@
 			<posx>10</posx>
 			<align>left</align>
 			<width>63%</width>
-			<label>$INFO[ListItem.Label]</label>
+			<label>[B]$INFO[ListItem.Label][/B]</label>
 			<textcolor>$INFO[Skin.String(ViewDetailsListItemTextColor)]</textcolor>
             <visible>![Window.IsActive(tvchannels) | Window.IsActive(radiochannels) | Window.IsActive(tvguide) | Window.IsActive(tvtimers) | Window.IsActive(tvsearch) | Window.IsActive(tvrecordings) | Window.IsActive(addonbrowser)]</visible>
 			<font>Light30</font>
@@ -98,7 +98,7 @@
 			<posx>10</posx>
 			<align>left</align>
 			<width>63%</width>
-			<label>$INFO[ListItem.Label]</label>
+			<label>[B]$INFO[ListItem.Label][/B]</label>
 			<textcolor>$INFO[Skin.String(ViewDetailsListItemTextFocusColor)]</textcolor>
 			<font>Light30</font>
 			<scroll>true</scroll>
