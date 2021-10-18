@@ -3113,5 +3113,5 @@ msgid "Thriller"
 msgstr ""
 
 msgctxt "#31943"
-msgid "Text Widget Details(Fokus)"
+msgid "Text Widget Details (Focus)"
 msgstr ""
