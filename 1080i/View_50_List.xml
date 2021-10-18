@@ -755,14 +755,24 @@
             <!-- poster images -->
             <control type="image">
                 <!--Poster-->
-                <visible>!Container.Content(episodes)</visible>
+                <visible>![Container.Content(episodes) | Container.Content(seasons)]</visible>
                 <visible>![Window.IsActive(tvchannels) | Window.IsActive(radiochannels) | Window.IsActive(tvguide) | Window.IsActive(tvtimers) | Window.IsActive(tvsearch) | Window.IsActive(tvrecordings)]</visible>
                 <posx>55</posx>
-				<width>520</width>
-                <bordersize>8</bordersize>
+                <posy>5</posy>
+				<width>495</width>
+                <!-- <bordersize>5</bordersize> -->
 				<texture diffuse="diffuse/poster.png" border="5" fallback="DefaultVideo.png" background="true">$VAR[PosterThumb]</texture>
-				<aspectratio align="center" aligny="center" scalediffuse="true">keep</aspectratio>
+				<aspectratio align="center" aligny="top" scalediffuse="false">keep</aspectratio>
             </control>
+            <control type="image">
+                <!--Seasons Thumb-->
+                <visible>Container.Content(seasons)</visible>
+                <posx>60</posx>
+                <!-- <posy>20</posy> -->
+                <width>510</width>
+                <texture diffuse="diffuse/poster.png" border="5" fallback="DefaultVideo.png" background="true">$VAR[PosterThumb]</texture>
+                <aspectratio align="left" aligny="center" scalediffuse="true" background="true">keep</aspectratio>
+            </control>            
             <control type="image">
                 <!--Episodes Thumb-->
                 <visible>Container.Content(episodes)</visible>
