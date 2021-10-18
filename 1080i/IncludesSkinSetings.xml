@@ -3418,6 +3418,10 @@
                 <param name="addon" value="script.artwork.beef" />
             </include>
             <include content="SkinSettings_AddonButton">
+                <param name="id" value="31052" />
+                <param name="addon" value="script.artwork.downloader" />
+            </include>		
+            <include content="SkinSettings_AddonButton">
                 <param name="id" value="31007" />
                 <param name="addon" value="service.upnext" />
             </include>
