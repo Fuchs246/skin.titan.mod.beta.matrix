@@ -3265,12 +3265,18 @@
             <param name="skinsetting" value="MainMenuSecondaryFocusButtonColor" />
             <param name="visible" value="Skin.String(HomeLayout,netflix2)" />
         </include>
-		<!-- Widgets Detail Panels and Tiles - Background Color -->
+		<!-- Widgets Detail Panels and Tiles - Background Color Focus -->
         <include content="SkinSettings_ColorButton">
             <param name="id" value="31174" />
-            <param name="label" value="Widgets Detail Panels and Tiles - Background Color" />
+            <param name="label" value="Widgets Detail Panels and Tiles - Background Color (Focus)" />
             <param name="skinsetting" value="HomeViewDetailsFocusColor" />
         </include>
+		<!-- Widgets Detail Panels and Tiles - Background Color No Focus -->
+        <include content="SkinSettings_ColorButton">
+            <param name="id" value="31944" />
+            <param name="label" value="Widgets Detail Panels and Tiles - Background Color (No Focus)" />
+            <param name="skinsetting" value="HomeViewDetailsNoFocusColor" />
+        </include>        
 		<!-- Widgets and Tiles - focused Border Color -->
         <include content="SkinSettings_ColorButton"><!-- check the use of var -->
             <param name="id" value="31829" />

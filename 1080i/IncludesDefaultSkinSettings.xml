@@ -180,6 +180,8 @@
 		
 		<onload condition="!Skin.String(HomeViewDetailsFocusColor)">Skin.SetString(HomeViewDetailsFocusColor, 99000000)</onload>
 		<onload condition="!Skin.String(HomeViewDetailsFocusColor.name)">Skin.SetString(HomeViewDetailsFocusColor.name, default)</onload>
+		<onload condition="!Skin.String(HomeViewDetailsNoFocusColor)">Skin.SetString(HomeViewDetailsNoFocusColor, 43000000)</onload>
+		<onload condition="!Skin.String(HomeViewDetailsNoFocusColor.name)">Skin.SetString(HomeViewDetailsNoFocusColor.name, default)</onload>        
 		<!-- end false used for  -->
 		<onload condition="!Skin.String(HomeViewDetailsBorderFocusColor)">Skin.SetString(HomeViewDetailsBorderFocusColor, ff00b8ff)</onload>
         <onload condition="!Skin.String(HomeViewDetailsBorderFocusColor.name)">Skin.SetString(HomeViewDetailsBorderFocusColor.name, mainblue)</onload>
