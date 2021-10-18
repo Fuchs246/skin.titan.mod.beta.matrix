@@ -1820,7 +1820,7 @@
             <control type="image">
                 <bordersize>4</bordersize>
                 <texture border="15">diffuse/bgpanel.png</texture>
-                <colordiffuse>43000000</colordiffuse><!-- let it hardcoded ?!-->
+                <colordiffuse>$INFO[Skin.String(HomeViewDetailsNoFocusColor)]</colordiffuse>
             </control>
             <control type="image">
                 <texture border="5">diffuse/thinborder.png</texture>
