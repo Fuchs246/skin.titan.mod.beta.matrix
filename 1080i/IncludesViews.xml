@@ -29,7 +29,7 @@
 
         <!-- Thumb shape to be used -->
         <control type="label" id="5595">
-            <include>HiddenOffset</include>
+            <include>HiddenObject</include>
             <label>$VAR[ThumbShapeBasedOnSystem]</label>
         </control>
 
