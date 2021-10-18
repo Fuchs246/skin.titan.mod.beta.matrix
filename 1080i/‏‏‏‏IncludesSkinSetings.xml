@@ -1089,15 +1089,9 @@
 			<!-- Local Trailer -->
             <control type="radiobutton" id="55146">
 				<include>SkinSettings_Button</include>
-				<label>Local Trailer Search("Title"-trailer.mp4) disable</label>
+				<label>Just Play Locally Stored Trailers WIP (Never do Online Trailer Lookup)</label>
 				<onclick>Skin.ToggleSetting(Library_NoOnlineLookupTrailer)</onclick>
 				<selected>Skin.HasSetting(Library_NoOnlineLookupTrailer)</selected>
-			</control>
-			<control type="radiobutton" id="55147">
-				<include>SkinSettings_Button</include>
-				<label>Auto search Youtube Trailer (Videoinfo) disable</label>
-				<onclick>Skin.ToggleSetting(YoutubeNoOnlineLookup)</onclick>
-				<selected>Skin.HasSetting(YoutubeNoOnlineLookup)</selected>
 			</control>
 			<!-- media library views -->
             <control type="label" id="13020">
