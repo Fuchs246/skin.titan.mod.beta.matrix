@@ -20,20 +20,18 @@
             <bottom>118</bottom>
             <height>75%</height>
             
-			<!--Panel-->
-			<control type="image">
+            <!--Panel-->
+            <control type="image">
                 <width>100%</width>
-				
                 <texture border="15">diffuse/bgpanel.png</texture>
-				<colordiffuse>$INFO[Skin.String(GeneralPanelsColor)]</colordiffuse>
+                <colordiffuse>$INFO[Skin.String(GeneralPanelsColor)]</colordiffuse>
             </control>
             
-			<control type="image">
+            <control type="image">
                 <width>30%</width>
-				
                 <texture border="15">diffuse/bgpanel.png</texture>
-				<colordiffuse>$INFO[Skin.String(GeneralPanelsColor)]</colordiffuse>
-            </control>            
+                <colordiffuse>$INFO[Skin.String(GeneralPanelsColor)]</colordiffuse>
+            </control>
            
             <!--Picture	(Fanart)-->
             <control type="image">
