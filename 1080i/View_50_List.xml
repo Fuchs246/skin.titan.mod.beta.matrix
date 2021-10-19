@@ -277,39 +277,39 @@
             <!--Control Tags-->
             <control type="grouplist">
                 <control type="label" id="5101">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[ListDetails]</label>
                 </control>
                 <control type="label" id="5201">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground1_label]</label>
                 </control>
                 <control type="label" id="5202">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground2_label]</label>
                 </control>
                 <control type="label" id="5203">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground3_label]</label>
                 </control>
                 <control type="label" id="5204">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground4_label]</label>
                 </control>
                 <control type="label" id="5301">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground1_value]</label>
                 </control>
                 <control type="label" id="5302">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground2_value]</label>
                 </control>
                 <control type="label" id="5303">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground3_value]</label>
                 </control>
                 <control type="label" id="5304">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground4_value]</label>
                 </control>
             </control>
