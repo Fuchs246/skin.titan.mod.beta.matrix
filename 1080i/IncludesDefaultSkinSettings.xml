@@ -295,6 +295,17 @@
         <onload condition="!Skin.String(PVRGuideItemTextColorUnfocus.name)">Skin.SetString(PVRGuideItemTextColorUnfocus.name,$INFO[Skin.String(ButtonTextColor.name)])</onload>
         <onload condition="!Skin.String(PVRGuideItemTextColorFocus)">Skin.SetString(PVRGuideItemTextColorFocus,$INFO[Skin.String(ButtonFocusTextColor)])</onload>
         <onload condition="!Skin.String(PVRGuideItemTextColorFocus.name)">Skin.SetString(PVRGuideItemTextColorFocus.name,$INFO[Skin.String(ButtonFocusTextColor.name)])</onload>
+		<!-- Main Settings colors -->
+		<onload condition="!Skin.String(MainSettingsListItemColorFocus)">Skin.SetString(MainSettingsListItemColorFocus,ffffffe3)</onload>
+        <onload condition="!Skin.String(MainSettingsListItemColorFocus.name)">Skin.SetString(MainSettingsListItemColorFocus.name,default)</onload>
+		<onload condition="!Skin.String(MainSettingsListItemColorNoFocus)">Skin.SetString(MainSettingsListItemColorNoFocus,ffffffff)</onload>
+        <onload condition="!Skin.String(MainSettingsListItemColorNoFocus.name)">Skin.SetString(MainSettingsListItemColorNoFocus.name,white)</onload>
+		<onload condition="!Skin.String(MainSettingsListItemBorderColorFocus)">Skin.SetString(MainSettingsListItemBorderColorFocus,ff00b8ff)</onload>
+        <onload condition="!Skin.String(MainSettingsListItemBorderColorFocus.name)">Skin.SetString(MainSettingsListItemBorderColorFocus.name,mainblue)</onload>
+        <onload condition="!Skin.String(MainSettingsListItemBorderColorNoFocus)">Skin.SetString(MainSettingsListItemBorderColorNoFocus,ff242424)</onload>
+        <onload condition="!Skin.String(MainSettingsListItemBorderColorNoFocus.name)">Skin.SetString(MainSettingsListItemBorderColorNoFocus.name,default)</onload>
+        <onload condition="!Skin.String(MainSettingsInfoPanelColorText)">Skin.SetString(MainSettingsInfoPanelColorText,ffffffe3)</onload>
+        <onload condition="!Skin.String(MainSettingsInfoPanelColorText.name)">Skin.SetString(MainSettingsInfoPanelColorText.name,default)</onload>
 		<!-- UpNext -->
 		<onload condition="!Skin.String(upnext_panel)">Skin.SetString(upnext_panel, cc000000)</onload>
         <onload condition="!Skin.String(upnext_panel.name)">Skin.SetString(upnext_panel.name, default)</onload>

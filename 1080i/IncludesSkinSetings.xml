@@ -2446,6 +2446,41 @@
 
     </include>
     
+    <include name="SkinSettings_MainSettings_Colors">    
+        <!-- Main Settings colors -->       
+        <control type="label" id="69569">
+            <include>SkinSettings_Header</include>
+            <label>Main Settings</label> 
+            <textcolor>$INFO[Skin.String(GeneralTextColor)]</textcolor>
+        </control>
+        
+        <include content="SkinSettings_ColorButton">
+            <param name="id" value="31781" />
+            <param name="label" value="Listitem Color (Focus)" />
+            <param name="skinsetting" value="MainSettingsListItemColorFocus" />
+        </include>
+        <include content="SkinSettings_ColorButton">
+            <param name="id" value="31782" />
+            <param name="label" value="Listitem Color (No Focus)" />
+            <param name="skinsetting" value="MainSettingsListItemColorNoFocus" />
+        </include>
+        <include content="SkinSettings_ColorButton">
+            <param name="id" value="31783" />
+            <param name="label" value="Listitem Border Color (Focus)" />
+            <param name="skinsetting" value="MainSettingsListItemBorderColorFocus" />
+        </include>
+        <include content="SkinSettings_ColorButton">
+            <param name="id" value="31784" />
+            <param name="label" value="Listitem Border Color (No Focus)" />
+            <param name="skinsetting" value="MainSettingsListItemBorderColorNoFocus" />
+        </include>
+        <include content="SkinSettings_ColorButton">
+            <param name="id" value="31785" />
+            <param name="label" value="Info Panel Text Color" />
+            <param name="skinsetting" value="MainSettingsInfoPanelColorText" />
+        </include>
+    </include>    
+    
     <include name="SkinSettings_Shortcuts">
         <!-- configure menu -->
         <control type="grouplist" id="6000">
@@ -2655,6 +2690,7 @@
             <include>SkinSettings_General_Colors</include>
             <include>SkinSettings_OSD_Colors</include>
             <include>SkinSettings_Library_Colors</include>
+            <include>SkinSettings_MainSettings_Colors</include>           
             <include condition="PVR.HasTVChannels">SkinSettings_PVR_Colors</include>
      
         </control>
