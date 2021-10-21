@@ -29,7 +29,7 @@
 
         <!-- Thumb shape to be used -->
         <control type="label" id="5595">
-            <include>HiddenOffset</include>
+            <include>HiddenObject</include>
             <label>$VAR[ThumbShapeBasedOnSystem]</label>
         </control>
 
@@ -889,7 +889,8 @@
         [Control.IsVisible(53) + Skin.HasSetting(View53_DetailsShowFanart)]]
         </visible>
         <visible>![!String.IsEmpty(Window(Home).Property(TrailerPlaying)) + $EXP[HasAutoTrailer]]</visible>
-        <animation effect="slide" end="0,-8" time="0" condition="[Skin.HasSetting(DetailsLeftHidepanel) + !Control.IsVisible(516) + !Control.IsVisible(51) + !Control.IsVisible(504)] | [Skin.HasSetting(View516_HidePanel) + Control.IsVisible(516)] | [Skin.HasSetting(View51_HidePanel) + Control.IsVisible(51)] | [Skin.HasSetting(View504_HidePanel) + Control.IsVisible(504)]">Conditional</animation><posx>50</posx>
+        <animation effect="slide" end="0,-8" time="0" condition="[Skin.HasSetting(DetailsLeftHidepanel) + !Control.IsVisible(516) + !Control.IsVisible(51) + !Control.IsVisible(504)] | [Skin.HasSetting(View516_HidePanel) + Control.IsVisible(516)] | [Skin.HasSetting(View51_HidePanel) + Control.IsVisible(51)] | [Skin.HasSetting(View504_HidePanel) + Control.IsVisible(504)]">Conditional</animation>
+        <posx>50</posx>
         <bottom>13%</bottom>
         <height>736</height>
         <control type="image">
@@ -901,24 +902,26 @@
     
         <control type="grouplist">
             <left>8</left>
-            <top>0</top>
-            <width>98%</width>
-            <height>330</height>
+            <right>8</right>
+            <top>8</top>
+            <!-- <width>98%</width> -->
+            <height>730</height>
+            <aspectratio align="center" aligny="top">keep</aspectratio>            
             <orientation>vertical</orientation>
+            <!-- channel logo -->            
             <control type="image">
-                <!-- channel logo -->
-                <width>200</width>
-                <height>150</height>
+                <!-- <width>609</width> -->
+                <height>344</height>
                 <texture background="true">$VAR[channellogo]</texture>
-                <aspectratio align="left" aligny="top">keep</aspectratio>
+                <aspectratio align="center" aligny="top" scalediffuse="true">keep</aspectratio>
                 <visible>Window.IsActive(tvchannels) | Window.IsActive(radiochannels) | Window.IsActive(tvtimers) | Window.IsActive(tvsearch)</visible>
             </control>
             <!-- title -->
             <control type="group">
                 <height>40</height>
                 <control type="label">
-                    <posx>7</posx>
-                    <posy>0</posy>
+                    <posx>0</posx>
+                    <posy>-1</posy>
                     <align>left</align>
                     <label>[UPPERCASE]$VAR[mediatitle][/UPPERCASE]</label>
                     <textcolor>$INFO[Skin.String(ViewDetailsHighlightTextColor)]</textcolor>
@@ -1171,22 +1174,22 @@
         </control>
         <!-- horizontal line -->
         <control type="image">
-            <top>350</top>
+            <top>460</top>
             <height>1</height>
             <texture>diffuse/panel.png</texture>
             <colordiffuse>grey</colordiffuse>
         </control>
         <!-- plot -->
         <control type="textbox">
-            <top>360</top>
-            <left>7</left>
-            <right>7</right>
-            <bottom>10</bottom>
+            <top>470</top>
+            <left>8</left>
+            <right>8</right>
             <label>$VAR[Plots]</label>
             <font>Light28</font>
             <textcolor>$INFO[Skin.String(ViewDetailsTextColor)]</textcolor>
             <shadowcolor>$INFO[Skin.String(ViewDetailsTextShadowColor)]</shadowcolor>
             <align>justify</align>
+            <scroll>true</scroll>
         </control>
 
     </control>
@@ -1207,6 +1210,7 @@
         <posx>50</posx>
         <bottom>13%</bottom>
         <height>736</height>
+        
         <control type="image">
             <texture border="15">diffuse/bgpanel.png</texture>
             <colordiffuse>$VAR[ViewDetailsFocusColor]</colordiffuse>
@@ -1221,6 +1225,7 @@
             <texture background="true" diffuse="diffuse/bgpanel.png" border="0" fallback="DefaultVideo.png">$VAR[DetailsFanArtImage]</texture>
             <visible>!Window.IsActive(Music)</visible>
             <visible>!skin.hastheme(skindefault)</visible>
+            <visible>![Window.IsActive(tvchannels) | Window.IsActive(radiochannels) | Window.IsActive(tvtimers) | Window.IsActive(tvsearch)]</visible>
         </control>
         <control type="image">
             <height>360</height>
@@ -1229,8 +1234,9 @@
             <texture background="true" diffuse="diffuse/landscape.png" fallback="DefaultVideo.png">$VAR[DetailsFanArtImage]</texture>
             <visible>!Window.IsActive(Music)</visible>
             <visible>skin.hastheme(skindefault)</visible>
+            <visible>![Window.IsActive(tvchannels) | Window.IsActive(radiochannels) | Window.IsActive(tvtimers) | Window.IsActive(tvsearch)]</visible>
         </control>
-         <control type="image">
+        <control type="image">
             <!--cdart image music-->
             <width>360</width>
             <height>360</height>
@@ -1266,17 +1272,39 @@
             <texture background="true" diffuse="diffuse/landscape.png" fallback="DefaultAddonArtistInfo.png" border="0">$VAR[MusicCoverImage]</texture>
             <visible>Window.IsActive(Music)</visible>
         </control>
+        
+        <!-- channel logo -->
+        <control type="group">        
+            <!-- <width>609</width> -->
+            <top>8</top>
+            <left>8</left>
+            <right>8</right>
+            <height>344</height>
+            <!-- <aspectratio align="center" aligny="top" scalediffuse="true">keep</aspectratio> --><!-- will stretch the logo image -->            
+            <visible>Window.IsActive(tvchannels) | Window.IsActive(radiochannels) | Window.IsActive(tvtimers) | Window.IsActive(tvsearch)</visible>
+            <control type="image">
+                <aspectratio align="center" aligny="top" scalediffuse="true">keep</aspectratio>            
+                <texture background="true">$VAR[channellogo]</texture>
+            </control>
+        </control>
+        
         <!--Video Window -->
         <control type="group">
-            <posx>8</posx>
-            <posy>8</posy>
-            <width>609</width>
+            <!-- <posx>8</posx> -->
+            <!-- <posy>8</posy> -->
+            <!-- <width>609</width> -->
+            <top>8</top>
+            <left>8</left>
+            <right>8</right>            
             <height>344</height>
-            <visible>Player.HasVideo + !VideoPlayer.Content(livetv) + String.IsEmpty(VideoPlayer.DBID)</visible> <!-- check, WIP condition ,need PVR verify -->
+            <aspectratio align="center" aligny="top" scalediffuse="true">keep</aspectratio>
+            <visible>
+                    [Window.IsActive(tvchannels) + VideoPlayer.Content(livetv) + Skin.HasSetting(PVRShowPreview)] | 
+                    [Player.HasVideo + !String.IsEmpty(Window(Home).Property(TrailerPlaying)) + Skin.HasSetting(DetailsAutoTrailer)]
+            </visible>
             <control type="image">
 				<aligny>bottom</aligny>
-				<texture border="15">diffuse/bgpanel.png</texture>
-				<colordiffuse>ff000000</colordiffuse>
+                <texture>colors/color_black.png</texture>
 			</control>
             <control type="videowindow">
 				<!-- <visible>Player.HasVideo</visible> -->
@@ -1288,7 +1316,7 @@
             <posx>8</posx>
             <height>33</height>
             <width>98%</width>
-            <font>Bold28</font>
+            <font>Bold30</font>
             <textcolor>$INFO[Skin.String(ViewDetailsHighlightTextColor)]</textcolor>
             <shadowcolor>$INFO[Skin.String(ViewDetailsHighlightTextShadowColor)]</shadowcolor>
             <label>[UPPERCASE]$VAR[mediatitle][/UPPERCASE]</label>
@@ -1299,14 +1327,14 @@
             <posx>8</posx>
             <height>33</height>
             <width>98%</width>
-            <font>Bold28</font>
+            <font>Bold30</font>
             <textcolor>$INFO[Skin.String(ViewDetailsTextColor)]</textcolor>
             <shadowcolor>$INFO[Skin.String(ViewDetailsTextShadowColor)]</shadowcolor>
             <label>[UPPERCASE]$INFO[ListItem.Artist][/UPPERCASE]</label>
             <visible>container.content(songs)</visible>
         </control>
         <control type="label">
-              <posy>410</posy>
+              <posy>415</posy>
               <posx>8</posx>
               <height>33</height>
               <width>98%</width>
@@ -1316,17 +1344,25 @@
               <label>$VAR[Details]</label>
               <animation effect="slide" end="0,45" time="0" condition="container.content(songs)">Conditional</animation>
         </control>
+        <!-- horizontal line -->
+        <control type="image">
+            <posy>460</posy>
+            <height>1</height>
+            <texture>diffuse/panel.png</texture>
+            <colordiffuse>grey</colordiffuse>
+        </control>
+        <!-- plot -->        
         <control type="textbox">
           <left>8</left>
           <right>8</right>
-          <posy>460</posy>
-          <height>230</height>
+          <posy>470</posy>
           <align>justify</align>
           <font>Reg24</font>
           <textcolor>$INFO[Skin.String(ViewDetailsTextColor)]</textcolor>
           <shadowcolor>$INFO[Skin.String(ViewDetailsTextShadowColor)]</shadowcolor>
           <label>$VAR[Plots]</label>
           <animation effect="slide" end="0,45" time="0" condition="container.content(songs)">Conditional</animation>
+          <scroll>true</scroll>          
         </control>
      </control>
   </include>

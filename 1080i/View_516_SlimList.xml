@@ -285,7 +285,7 @@
                     <visible>![Skin.HasSetting(View516_ShowCDart) + [Container.Content(albums) | Container.Content(songs)] + !String.IsEmpty(ListItem.Album) + !String.IsEmpty(ListItem.Thumb)]</visible>
 				</control>
                 <control type="image">
-					<aspectratio align="center" aligny="bottom" scalediffuse="true">keep</aspectratio>
+					<aspectratio align="center" aligny="center" scalediffuse="true">keep</aspectratio>
 					<texture background="true" diffuse="diffuse/poster.png" fallback="DefaultAddonMusic.png">$VAR[PosterThumb]</texture>
 					<bordersize>8</bordersize>
                     <visible>Skin.HasSetting(View516_ShowCDart) + [Container.Content(albums) | Container.Content(songs)] + !String.IsEmpty(ListItem.Album) + !String.IsEmpty(ListItem.Thumb)</visible>
