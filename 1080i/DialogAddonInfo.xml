@@ -204,15 +204,19 @@
 				<onup>50</onup>
 				<width>1200</width>
 				
-				<control type="button" id="10">
-                  <!--watch dependencies button-->
+                <control type="togglebutton" id="22112">
+                    <!--news-->
                     <width>300</width>
                     <height>80</height>
                     <align>center</align>
-                    <label>$LOCALIZE[39024]</label>
+                    <label>29916</label>
+                    <altlabel>29915</altlabel>
+					<usealttexture>String.IsEqual(Window.Property(showinfo),news)</usealttexture>
+                    <onclick condition="!String.IsEqual(Window.Property(showinfo),news)">SetProperty(showinfo,news)</onclick>
+                    <onclick condition="String.IsEqual(Window.Property(showinfo),news)">ClearProperty(showinfo)</onclick>
 					<include>DialogButtonOther</include>
-                </control>
-				
+                </control>                
+                
 				<control type="togglebutton" id="22111">
                     <!--screenshots-->
                     <width>300</width>
@@ -227,21 +231,8 @@
                     <visible>Integer.IsGreater(Container(50).NumItems,0)</visible>
                 </control>
                 
-                <control type="togglebutton" id="22112">
-                    <!--news-->
-                    <width>300</width>
-                    <height>80</height>
-                    <align>center</align>
-                    <label>29916</label>
-                    <altlabel>29915</altlabel>
-					<usealttexture>String.IsEqual(Window.Property(showinfo),news)</usealttexture>
-                    <onclick condition="!String.IsEqual(Window.Property(showinfo),news)">SetProperty(showinfo,news)</onclick>
-                    <onclick condition="String.IsEqual(Window.Property(showinfo),news)">ClearProperty(showinfo)</onclick>
-					<include>DialogButtonOther</include>
-                </control>
-                
                 <control type="button" id="12">
-                  <!--Launch Addon button-->
+                    <!--Launch Addon button-->
                     <width>300</width>
                     <height>80</height>
                     <align>center</align>
@@ -249,46 +240,9 @@
 					<include>DialogButtonOther</include>
 					<visible>Control.IsEnabled(12)</visible>
                 </control>
-				
-				<control type="button" id="8">
-                  <!--Update Addon button-->
-                    <width>300</width>
-                    <height>80</height>
-                    <align>center</align>
-                    <label>184</label>
-					<include>DialogButtonOther</include>
-					<visible>Control.IsEnabled(8)</visible>
-                </control>
-				<control type="button" id="14">
-                  <!--Update Addon button-->
-                    <width>300</width>
-                    <height>80</height>
-                    <align>center</align>
-                    <label>184</label>
-					<include>DialogButtonOther</include>
-					<visible>Control.IsEnabled(14)</visible>
-                </control>
-				<control type="button" id="6">
-                    <!--Install/Uninstall Addon button-->
-                    <width>300</width>
-                    <height>80</height>
-                    <align>center</align>
-                    <label>24022</label>
-					<include>DialogButtonOther</include>
-					<visible>Control.IsEnabled(6)</visible>
-                </control>
-                <control type="button" id="7">
-                    <!--Enable/Disable Addon button-->
-                    <width>300</width>
-                    <height>80</height>
-                    <align>center</align>
-                    <label>24021</label>
-					<include>DialogButtonOther</include>
-					<visible>Control.IsEnabled(7)</visible>
-                </control>
-
+                
                 <control type="button" id="9">
-                   <!--Addon Settings-->
+                    <!--Addon Settings,Configuration-->
                     <width>300</width>
                     <height>80</height>
                     <align>center</align>
@@ -296,7 +250,57 @@
 					<include>DialogButtonOther</include>
 					<visible>Control.IsEnabled(9)</visible>
                 </control>
-                
+
+				<control type="button" id="6">
+                    <!--Install/Uninstall Addon button-->
+                    <width>300</width>
+                    <height>80</height>
+                    <align>center</align>
+                    <label></label>
+					<include>DialogButtonOther</include>
+					<visible>Control.IsEnabled(6)</visible>
+                </control>
+
+                <control type="button" id="7">
+                    <!--Enable/Disable Addon button-->
+                    <width>300</width>
+                    <height>80</height>
+                    <align>center</align>
+                    <label></label>
+					<include>DialogButtonOther</include>
+					<visible>Control.IsEnabled(7)</visible>
+                </control>
+				
+				<control type="button" id="8">
+                    <!--Update Addon button-->
+                    <width>300</width>
+                    <height>80</height>
+                    <align>center</align>
+                    <label>24138</label>
+					<include>DialogButtonOther</include>
+					<visible>Control.IsEnabled(8)</visible>
+                </control>
+
+				<control type="button" id="14">
+                    <!--Versions Addon button-->
+                    <width>300</width>
+                    <height>80</height>
+                    <align>center</align>
+                    <label>24069</label>
+					<include>DialogButtonOther</include>
+					<visible>Control.IsEnabled(14)</visible>
+                </control>
+				
+				<control type="button" id="10">
+                    <!--watch dependencies button-->
+                    <width>300</width>
+                    <height>80</height>
+                    <align>center</align>
+                    <label>$LOCALIZE[39024]</label>
+					<include>DialogButtonOther</include>
+                    <visible>Control.IsEnabled(10)</visible>                    
+                </control> 
+
                 <control type="radiobutton" id="13">
                     <!--enable auto update-->
                     <width>400</width>
@@ -306,8 +310,8 @@
                     <label>21340</label>
 					<include>DialogButtonOther</include>
                     <visible>Control.IsEnabled(13)</visible>
-                </control>
-				
+                </control>                
+                
 				<control type="button" id="11111">
                     <!--Close-->
                     <width>290</width>
