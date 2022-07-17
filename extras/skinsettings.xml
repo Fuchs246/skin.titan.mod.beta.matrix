@@ -281,16 +281,6 @@
     <setting id="extrafanartdelay" value="30" label="30 $LOCALIZE[31231]" condition="" icon="" description=""/>
     <setting id="extrafanartdelay" value="60" label="60 $LOCALIZE[31231]" condition="" icon="" description=""/>
 	
-	<!-- Extra fanart delay NoSHS -->
-    <setting id="NoSHS_extrafanartdelay" value="5000" label="5 $LOCALIZE[31231]" condition="" icon="" description=""/>
-    <setting id="NoSHS_extrafanartdelay" value="6000" label="6 $LOCALIZE[31231]" condition="" icon="" description="" default="true"/>
-    <setting id="NoSHS_extrafanartdelay" value="8000" label="8 $LOCALIZE[31231]" condition="" icon="" description=""/>
-    <setting id="NoSHS_extrafanartdelay" value="10000" label="10 $LOCALIZE[31231]" condition="" icon="" description=""/>
-    <setting id="NoSHS_extrafanartdelay" value="15000" label="15 $LOCALIZE[31231]" condition="" icon="" description=""/>
-    <setting id="NoSHS_extrafanartdelay" value="20000" label="20 $LOCALIZE[31231]" condition="" icon="" description=""/>
-    <setting id="NoSHS_extrafanartdelay" value="30000" label="30 $LOCALIZE[31231]" condition="" icon="" description=""/>
-    <setting id="NoSHS_extrafanartdelay" value="60000" label="60 $LOCALIZE[31231]" condition="" icon="" description=""/>
-    
     <!-- win10 home show infopanel -->
     <setting id="widgetInfoPanel" value="top" label="Top" condition="" icon="special://skin/extras/viewthumbs/widgetinfo_top.jpg" description=""/>
     <setting id="widgetInfoPanel" value="bottom" label="Bottom" condition="" icon="special://skin/extras/viewthumbs/widgetinfo_bottom.jpg" description=""/>

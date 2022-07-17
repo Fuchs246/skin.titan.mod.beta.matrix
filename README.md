@@ -1,4 +1,4 @@
-# Skin Titan M O D - for L E I A
+# Skin Titan M O D - for M A T R I X
 Latest Version of the mod
 
 ## Installation instructions:
