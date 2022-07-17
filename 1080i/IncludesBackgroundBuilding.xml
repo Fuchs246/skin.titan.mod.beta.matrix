@@ -6,7 +6,7 @@
 		
 		<!-- HIDDEN ART -->
 		<control type ="group">
-			<include>HiddenOffset</include>
+			<include>HiddenObject</include>
 			<!-- COMMON FANART -->
 			<control type="image" id="99006">
 				<texture background="true">$VAR[fanartBackground]</texture>
@@ -174,7 +174,7 @@
 			<imagepath background="true">$VAR[extraFanartBackground]</imagepath>
             <aspectratio>scale</aspectratio>
             
-			<include content="fanartSpeed_multiimage" condition="skin.string(extrafanartdelay, 5) | !String.IsEmpty(skin.string(extrafanartdelay)">
+			<include content="fanartSpeed_multiimage" condition="skin.string(extrafanartdelay, 5) | !String.IsEmpty(skin.string(extrafanartdelay))">
 				<param name="timeperimage" value="5000" />
 			</include>
 			<include content="fanartSpeed_multiimage" condition="skin.string(extrafanartdelay, 6)">
@@ -218,6 +218,28 @@
 			<!-- additional visibility conditions -->
 			<include condition="Window.IsMedia">disabledExtraFanart</include>
 			<!-- common movie,show,artists -->
+			<info>ListItem.Art(fanart)</info>
+			<info>ListItem.Art(fanart1)</info>
+			<info>ListItem.Art(fanart2)</info>
+			<info>ListItem.Art(fanart3)</info>
+			<info>ListItem.Art(fanart4)</info>
+			<info>ListItem.Art(fanart5)</info>
+			<info>ListItem.Art(fanart6)</info>
+			<info>ListItem.Art(fanart7)</info>
+			<info>ListItem.Art(fanart8)</info>
+			<info>ListItem.Art(fanart9)</info>
+			<info>ListItem.Art(fanart10)</info>
+			<info>ListItem.Art(fanart11)</info>
+			<info>ListItem.Art(fanart12)</info>
+			<info>ListItem.Art(fanart13)</info>
+			<info>ListItem.Art(fanart14)</info>
+			<info>ListItem.Art(fanart15)</info>
+			<info>ListItem.Art(fanart16)</info>
+			<info>ListItem.Art(fanart17)</info>
+			<info>ListItem.Art(fanart18)</info>
+			<info>ListItem.Art(fanart19)</info>
+			<info>ListItem.Art(fanart20)</info>
+			
 			<info>Container.ListItem.Art(fanart)</info>
 			<info>Container.ListItem.Art(fanart1)</info>
 			<info>Container.ListItem.Art(fanart2)</info>
@@ -305,8 +327,8 @@
 			<info>Container.ListItem.Art(artist.fanart18)</info>
 			<info>Container.ListItem.Art(artist.fanart19)</info>
 			<info>Container.ListItem.Art(artist.fanart20)</info>
-			<randomize>true</randomize>
-			<pauseatend>5000</pauseatend>
+			<randomize>false</randomize>
+			<pauseatend>7000</pauseatend>
 			<scroll>false</scroll>
 			<scrollout>false</scrollout>
 		</control>
@@ -526,7 +548,7 @@
         <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.fanart))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.fanart)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.tvshow.fanart))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.tvshow.fanart)]</value>
         
-        <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Icon))">resource://resource.images.skinbackgrounds.titanium/hover_my tv.jpg</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Icon))">resource://resource.images.skinbackgrounds.titanium/hover_my videos.jpg</value>
 
     </variable>
    

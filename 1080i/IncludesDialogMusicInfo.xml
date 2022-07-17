@@ -910,9 +910,9 @@
 				<width>300</width>
 				<label>AB:Select Artwork</label> 
 				<textoffsetx>15</textoffsetx>
-				<onclick condition="String.IsEqual(ListItem.DBType,artist) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=artist, dbid=$INFO[ListItem.DBID])</onclick>
-				<onclick condition="String.IsEqual(ListItem.DBType,album) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=album, dbid=$INFO[ListItem.DBID])</onclick>
-				<onclick condition="String.IsEqual(ListItem.DBType,song) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=song, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,artist) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=artist, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,album) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=album, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,song) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=song, dbid=$INFO[ListItem.DBID])</onclick>
 				<description>Get Artwork</description>
 				<visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,artist)] + system.hasaddon(script.artwork.beef)</visible>
 			</control>
@@ -922,9 +922,9 @@
 				<width>300</width>
 				<label>AB:DL All Artwork</label>
 				<textoffsetx>15</textoffsetx>
-				<onclick condition="String.IsEqual(ListItem.DBType,artist) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=auto, mediatype=artist, dbid=$INFO[ListItem.DBID])</onclick>
-				<onclick condition="String.IsEqual(ListItem.DBType,album) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=auto, mediatype=album, dbid=$INFO[ListItem.DBID])</onclick>
-				<onclick condition="String.IsEqual(ListItem.DBType,song) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=auto, mediatype=song, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,artist) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=auto, mediatype=artist, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,album) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=auto, mediatype=album, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,song) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=auto, mediatype=song, dbid=$INFO[ListItem.DBID])</onclick>
 				<description>Get Artwork</description>
 				<visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,artist)] + system.hasaddon(script.artwork.beef)</visible>
 			</control>
@@ -1277,18 +1277,18 @@
 			<!-- artwork beef -->
 			 <control type="button" id="8">
 				<label>AB:Select Artwork</label>           
-				<onclick condition="String.IsEqual(ListItem.DBType,artist) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=artist, dbid=$INFO[ListItem.DBID])</onclick>
-				<onclick condition="String.IsEqual(ListItem.DBType,album) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=album, dbid=$INFO[ListItem.DBID])</onclick>
-				<onclick condition="String.IsEqual(ListItem.DBType,song) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=song, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,artist) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=artist, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,album) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=album, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,song) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=song, dbid=$INFO[ListItem.DBID])</onclick>
 				<description>Get Artwork</description>
 				<include>DialogButtonOther</include>
 				<visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,artist)] + system.hasaddon(script.artwork.beef)</visible>
 			</control>
 			<control type="button" id="9">
 				<label>AB:DL All Artwork</label>
-				<onclick condition="String.IsEqual(ListItem.DBType,artist) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=auto, mediatype=artist, dbid=$INFO[ListItem.DBID])</onclick>
-				<onclick condition="String.IsEqual(ListItem.DBType,album) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=auto, mediatype=album, dbid=$INFO[ListItem.DBID])</onclick>
-				<onclick condition="String.IsEqual(ListItem.DBType,song) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=auto, mediatype=song, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,artist) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=auto, mediatype=artist, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,album) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=auto, mediatype=album, dbid=$INFO[ListItem.DBID])</onclick>
+				<onclick condition="String.IsEqual(ListItem.DBType,song) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=auto, mediatype=song, dbid=$INFO[ListItem.DBID])</onclick>
 				<description>Get Artwork</description>
 				<include>DialogButtonOther</include>
 				<visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,artist)] + system.hasaddon(script.artwork.beef)</visible>

@@ -8,6 +8,7 @@
 	<!--onload condition="[ContainerContent(episodes) | String.IsEqual(ListItem.DBTYPE,episode)] + [Skin.HasSetting(UseEnhancedDialog) + !Skin.HasSetting(UseExtendedInfoDialog)]">RunScript(script.embuary.helper,action=encode,string='"$INFO[ListItem.TVShowTitle]"',prop=EncodedTitle)</onload>
 	<onload condition="![ContainerContent(episodes) | String.IsEqual(ListItem.DBTYPE,episode)] + [Skin.HasSetting(UseEnhancedDialog) + !Skin.HasSetting(UseExtendedInfoDialog)]">RunScript(script.embuary.helper,action=encode,string='"$INFO[ListItem.Label]"',prop=EncodedTitle)</onload-->
 	<onload>RunScript(script.embuary.helper,action=encode,string='"$INFO[ListItem.Title]"',prop=EncodedTitle)</onload>
+	<!-- <onload condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.name.1.soundtrack))">PlayMedia($INFO[Window(Home).Property(SkinHelper.ListItem.track.0.soundtrack)],1)</onload> -->
 	<onload>ClearProperty(AdditionalInfo)</onload>
 	
 	<onunload>ClearProperty(EncodedTitle,home)</onunload>	

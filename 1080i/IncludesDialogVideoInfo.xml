@@ -7,7 +7,6 @@
 			<include>GlobalBackground</include>
             <include condition="!Skin.HasSetting(DisableNowPlayingBackground)">NowPlayingBackground</include>
 			<include>animation_window_open_close</include>
-			
 			<!-- fixed pos FANART OVERLAY -->
 			<!-- <control type="image">
 				<posx>0</posx>
@@ -262,7 +261,7 @@
 						<width max="200">auto</width>
 						<height>90</height>
 						<font>Reg20</font>
-						<label>$INFO[ListItem.Studio]</label>
+						<label>$INFO[Window(home).Property(SkinHelper.ListItem.Studio)]</label>
 						<aligny>center</aligny>
 						<align>center</align>
 						<wrapmultiline>true</wrapmultiline>
@@ -469,7 +468,7 @@
 					<usealttexture>Player.HasVideo</usealttexture>
 					<onclick condition="!String.IsEmpty(Window(home).Property(trailer_avail))">PlayMedia($INFO[Window(Home).Property(filename_formatted)]$INFO[ListItem.Title,,-trailer.mp4],1)</onclick>
 					<onclick condition="String.IsEmpty(Window(home).Property(trailer_avail)) + !Player.HasVideo + String.IsEqual(ListItem.DBTYPE,movie)">Playmedia($INFO[Window(Home).Property(SkinHelper.ListItem.Trailer)],1)</onclick> <!--sometimes huge delay Playmedia($INFO[Window(Home).Property(SkinHelper.ListItem.Trailer)],1) ,faster but dont get all  PlayMedia($INFO[ListItem.Trailer],1) -->    
-					<onclick condition="String.IsEmpty(Window(home).Property(trailer_avail)) + !Player.HasVideo + !String.IsEqual(ListItem.DBTYPE,movie)">RunScript(script.skin.helper.service,action=playtraileryoutube,title=$INFO[ListItem.Title],local=true)</onclick> <!--sometimes huge delay Playmedia($INFO[Window(Home).Property(SkinHelper.ListItem.Trailer)],1) ,faster but dont get all  PlayMedia($INFO[ListItem.Trailer],1) -->
+					<onclick condition="String.IsEmpty(Window(home).Property(trailer_avail)) + !Player.HasVideo + !String.IsEqual(ListItem.DBTYPE,movie)">RunScript(script.skin.helper.service,action=playtrailer,title=$INFO[ListItem.Title],local=true)</onclick> <!--sometimes huge delay Playmedia($INFO[Window(Home).Property(SkinHelper.ListItem.Trailer)],1) ,faster but dont get all  PlayMedia($INFO[ListItem.Trailer],1) -->
 					<onup condition="Player.HasVideo">Stop</onup>
 					<ondown condition="Player.HasVideo">Stop</ondown>    												
 					<onclick condition="Player.HasVideo">FullScreen</onclick>
@@ -494,11 +493,14 @@
 					<align>center</align>
 					<textoffsetx>0</textoffsetx>
 					<visible>Skin.HasSetting(videoinfo_button_extendedinfo)</visible>
-					<onclick condition="!System.HasAddon(script.extendedinfo)">RunPlugin(plugin://script.extendedinfo)</onclick>
-					<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),movies)">RunScript(script.extendedinfo,info=extendedinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.Title])</onclick>
-					<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),tvshows)">RunScript(script.extendedinfo,info=extendedtvinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.TvShowTitle])</onclick>
-					<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),seasons)">RunScript(script.extendedinfo,info=seasoninfo,tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],silent=True)</onclick>
-					<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),episodes)">RunScript(script.extendedinfo,info=extendedepisodeinfo,dbid=$INFO[ListItem.DBID],tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],episode=$INFO[ListItem.Episode],silent=True)</onclick>
+					<onclick condition="!System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo)">RunPlugin(plugin://script.extendedinfo)</onclick>
+					<onclick condition="!System.HasAddon(script.embuary.info) + String.IsEqual(Skin.String(videoinfo_castaction),embuaryinfo)">RunPlugin(plugin://script.embuary.info)</onclick>
+					<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),movies)">RunScript(script.extendedinfo,info=extendedinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.Title])</onclick>
+					<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),tvshows)">RunScript(script.extendedinfo,info=extendedtvinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.TvShowTitle])</onclick>
+					<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),seasons)">RunScript(script.extendedinfo,info=seasoninfo,tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],silent=True)</onclick>
+					<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),episodes)">RunScript(script.extendedinfo,info=extendedepisodeinfo,dbid=$INFO[ListItem.DBID],tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],episode=$INFO[ListItem.Episode],silent=True)</onclick>
+					<onclick condition="String.IsEmpty(ListItem.TvShowTitle) + [String.IsEqual(Skin.String(videoinfo_castaction),embuaryinfo) | String.IsEqual(Skin.String(videoinfo_castaction),library_search)]">RunScript(script.embuary.info,call=movie,query='"$INFO[ListItem.Label]"',year=$INFO[ListItem.Year])</onclick>
+					<onclick condition="!String.IsEmpty(ListItem.TvShowTitle) + [String.IsEqual(Skin.String(videoinfo_castaction),embuaryinfo) | String.IsEqual(Skin.String(videoinfo_castaction),library_search)]">RunScript(script.embuary.info,call=tv,query='"$INFO[ListItem.TvShowTitle]"')</onclick>
 				</control>
 				
 				<control type="button" id="7">
@@ -530,12 +532,24 @@
 					<height>40</height>
 					<align>center</align>
 					<textoffsetx>0</textoffsetx>
-					<onclick condition="String.IsEqual(ListItem.DBType,episode) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=episode, dbid=$INFO[ListItem.DBID])</onclick>
-					<onclick condition="String.IsEqual(ListItem.DBType,tvshow) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=tvshow, dbid=$INFO[ListItem.DBID])</onclick>
-					<onclick condition="String.IsEqual(ListItem.DBType,movie) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=movie, dbid=$INFO[ListItem.DBID])</onclick>
+					<onclick condition="String.IsEqual(ListItem.DBType,episode) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=episode, dbid=$INFO[ListItem.DBID])</onclick>
+					<onclick condition="String.IsEqual(ListItem.DBType,tvshow) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=tvshow, dbid=$INFO[ListItem.DBID])</onclick>
+					<onclick condition="String.IsEqual(ListItem.DBType,movie) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=movie, dbid=$INFO[ListItem.DBID])</onclick>
 					<description>Get Artwork</description>
 					<visible>[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,episode)] + system.hasaddon(script.artwork.beef)</visible>
 					<visible>Skin.HasSetting(videoinfo_button_artworkbeef)</visible>
+				</control>
+				<control type="button" id="112"> 
+					<label>CinemaVision</label>
+					<width>285</width>
+					<height>40</height>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onclick>Dialog.Close(DialogVideoInfo.xml)</onclick>
+					<onclick>RunScript(script.cinemavision,experience)</onclick>
+					<description>CinemaVision</description>
+					<visible>Skin.HasSetting(videoinfo_button_cinemavision)</visible>
+					<visible>System.HasAddon(script.cinemavision)</visible>
 				</control>
 				<control type="button" id="6">
 					<!--Refresh-->
@@ -706,6 +720,7 @@
 					<param name="visible" value="Integer.IsGreater(Container(8601).NumItems,0) | Container(8601).IsUpdating" />
 					<animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(8601).NumItems,0) | Container(8601).IsUpdating">Conditional</animation>
 					<content>$VAR[EmbuaryCast]</content>
+					<include>VideoInfo_CastAction</include>
 				</include>
 				
 				<!-- ITEMS BY CAST ,including current video
@@ -784,10 +799,11 @@
 					<param name="width" value="578" />
 					<param name="height" value="340" />
 					<param name="layout" value="ThumbsViewLayout" />
-					<param name="visible" value="[System.HasNetwork + System.HasAddon(plugin.video.youtube)] + [Integer.IsGreater(Container(8605).NumItems,0) | Container(8605).IsUpdating]" />
+					<param name="visible" value="[!Skin.HasSetting(YoutubeNoOnlineLookup) + System.HasNetwork + System.HasAddon(plugin.video.youtube)] + [Integer.IsGreater(Container(8605).NumItems,0) | Container(8605).IsUpdating]" />
 					<animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(8605).NumItems,0) | Container(8605).IsUpdating">Conditional</animation>
-					<onclick>PlayMedia($INFO[Container(8605).ListItem.FileNameAndPath])</onclick>
-					<content target="videos" sortby="file" limit="4">plugin://plugin.video.youtube/search/?q=$VAR[tvShowsearch]</content>
+					<onclick>Close</onclick>
+					<onclick>PlayMedia($INFO[Container(8605).ListItem.FileNameAndPath])</onclick>					
+					<content target="videos" sortby="file" limit="4">$VAR[No_Youtube_search]</content>
 				</include>
 				
 				<!-- stored extra fanart $LOCALIZE[20438]-->
@@ -904,7 +920,7 @@
 				
 				<!-- sh next aired -->
 				<include content="VideoInfo_InfoList">
-					<param name="Info" value="$LOCALIZE[31212] $LOCALIZE[31213]" />
+					<param name="Info" value="$LOCALIZE[31213]" />
                     <param name="InfoLabel" value="$INFO[Window(Home).Property(SkinHelper.ListItem.airdaytime.label)]" />
 					<param name="icon" value="dialogs/videoinfo/premiered-icon.png" />
 					<param name="visible" value="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.airdaytime.label))" />
@@ -1491,7 +1507,7 @@
 							<usealttexture>Player.HasVideo</usealttexture>
 							<onclick condition="!String.IsEmpty(Window(home).Property(trailer_avail))">PlayMedia($INFO[Window(Home).Property(filename_formatted)]$INFO[ListItem.Title,,-trailer.mp4],1)</onclick>
 							<onclick condition="String.IsEmpty(Window(home).Property(trailer_avail)) + !Player.HasVideo + String.IsEqual(ListItem.DBTYPE,movie)">Playmedia($INFO[Window(Home).Property(SkinHelper.ListItem.Trailer)],1)</onclick> <!--sometimes huge delay Playmedia($INFO[Window(Home).Property(SkinHelper.ListItem.Trailer)],1) ,faster but dont get all  PlayMedia($INFO[ListItem.Trailer],1) -->    
-							<onclick condition="String.IsEmpty(Window(home).Property(trailer_avail)) + !Player.HasVideo + !String.IsEqual(ListItem.DBTYPE,movie)">RunScript(script.skin.helper.service,action=playtraileryoutube,title=$INFO[ListItem.Title],local=true)</onclick> <!--sometimes huge delay Playmedia($INFO[Window(Home).Property(SkinHelper.ListItem.Trailer)],1) ,faster but dont get all  PlayMedia($INFO[ListItem.Trailer],1) --> 
+							<onclick condition="String.IsEmpty(Window(home).Property(trailer_avail)) + !Player.HasVideo + !String.IsEqual(ListItem.DBTYPE,movie)">RunScript(script.skin.helper.service,action=playtrailer,title=$INFO[ListItem.Title],local=true)</onclick> <!--sometimes huge delay Playmedia($INFO[Window(Home).Property(SkinHelper.ListItem.Trailer)],1) ,faster but dont get all  PlayMedia($INFO[ListItem.Trailer],1) --> 
 							<onup condition="Player.HasVideo">Stop</onup>
 							<ondown condition="Player.HasVideo">Stop</ondown>   												
 							<onclick condition="Player.HasVideo">FullScreen</onclick>
@@ -1582,12 +1598,15 @@
 							<height>40</height>
 							<align>center</align>
 							<textoffsetx>0</textoffsetx>
-							<visible>Skin.HasSetting(videoinfo_button_extendedinfo)</visible>
-							<onclick condition="!System.HasAddon(script.extendedinfo)">RunPlugin(plugin://script.extendedinfo)</onclick>
-							<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),movies)">RunScript(script.extendedinfo,info=extendedinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.Title])</onclick>
-							<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),tvshows)">RunScript(script.extendedinfo,info=extendedtvinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.TvShowTitle])</onclick>
-							<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),seasons)">RunScript(script.extendedinfo,info=seasoninfo,tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],silent=True)</onclick>
-							<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),episodes)">RunScript(script.extendedinfo,info=extendedepisodeinfo,dbid=$INFO[ListItem.DBID],tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],episode=$INFO[ListItem.Episode],silent=True)</onclick>
+							<visible>true</visible>
+							<onclick condition="!System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo)">RunPlugin(plugin://script.extendedinfo)</onclick>
+							<onclick condition="!System.HasAddon(script.embuary.info) + String.IsEqual(Skin.String(videoinfo_castaction),embuaryinfo)">RunPlugin(plugin://script.embuary.info)</onclick>
+							<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),movies)">RunScript(script.extendedinfo,info=extendedinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.Title])</onclick>
+							<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),tvshows)">RunScript(script.extendedinfo,info=extendedtvinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.TvShowTitle])</onclick>
+							<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),seasons)">RunScript(script.extendedinfo,info=seasoninfo,tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],silent=True)</onclick>
+							<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),episodes)">RunScript(script.extendedinfo,info=extendedepisodeinfo,dbid=$INFO[ListItem.DBID],tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],episode=$INFO[ListItem.Episode],silent=True)</onclick>
+							<onclick condition="String.IsEmpty(ListItem.TvShowTitle) + [String.IsEqual(Skin.String(videoinfo_castaction),embuaryinfo) | String.IsEqual(Skin.String(videoinfo_castaction),library_search)]">RunScript(script.embuary.info,call=movie,query='"$INFO[ListItem.Label]"',year=$INFO[ListItem.Year])</onclick>
+							<onclick condition="!String.IsEmpty(ListItem.TvShowTitle) + [String.IsEqual(Skin.String(videoinfo_castaction),embuaryinfo) | String.IsEqual(Skin.String(videoinfo_castaction),library_search)]">RunScript(script.embuary.info,call=tv,query='"$INFO[ListItem.TvShowTitle]"')</onclick>
 						</control>
 						<control type="button" id="112">
 							 <width>285</width>
@@ -1630,9 +1649,9 @@
 							<height>40</height>
 							<align>center</align>
 							<textoffsetx>0</textoffsetx>
-							<onclick condition="String.IsEqual(ListItem.DBType,episode) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=episode, dbid=$INFO[ListItem.DBID])</onclick>
-							<onclick condition="String.IsEqual(ListItem.DBType,tvshow) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=tvshow, dbid=$INFO[ListItem.DBID])</onclick>
-							<onclick condition="String.IsEqual(ListItem.DBType,movie) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=movie, dbid=$INFO[ListItem.DBID])</onclick>
+							<onclick condition="String.IsEqual(ListItem.DBType,episode) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=episode, dbid=$INFO[ListItem.DBID])</onclick>
+							<onclick condition="String.IsEqual(ListItem.DBType,tvshow) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=tvshow, dbid=$INFO[ListItem.DBID])</onclick>
+							<onclick condition="String.IsEqual(ListItem.DBType,movie) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=movie, dbid=$INFO[ListItem.DBID])</onclick>
 							<description>Get Artwork</description>
 							<visible>[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,episode)] + system.hasaddon(script.artwork.beef)</visible>
 							<visible>!Skin.HasSetting(KioskMode.Enabled)</visible>
@@ -2289,6 +2308,8 @@
 								<left>695</left>
 								<include>AltRatingMovieInfo</include>
 								<animation effect="slide" end="0,270" center="auto" time="0" condition="String.IsEqual(ListItem.DBType,tvshow) + !Skin.String(mediaflagsstyle,disabled)">Conditional</animation>
+								<!--animation effect="slide" end="150,265" center="auto" time="0" condition="Skin.String(mediaflagsstyle,disabled)">Conditional</animation>
+								<!--animation effect="slide" end="350,265" center="auto" time="0" condition="String.IsEqual(ListItem.DBType,episode) + !Skin.String(mediaflagsstyle,disabled)">Conditional</animation> -->
 								<visible>!Player.HasVideo</visible>
 							</control>
 							<!-- NEW dividing line -->
@@ -2505,7 +2526,7 @@
 								<onfocus>SetProperty(actordbid,$INFO[ListItem.Property(DBID)],home)</onfocus>
 							</control>
 						</focusedlayout>
-						<content>$VAR[castInfo]</content>
+						<content>$VAR[EmbuaryCast]</content>
 					</control>
 					
 					<!-- cast info details -->
@@ -2675,7 +2696,7 @@
 
                 <!-- hidden my rating button -->
                 <control type="button" id="7">
-                    <include>HiddenButton</include>
+                    <include>HiddenObject</include>
                 </control>
 
 				<!-- spotlight previewwindow section right -->
@@ -3329,8 +3350,8 @@
 								<usealttexture>Player.HasVideo</usealttexture>
 								<onclick condition="!String.IsEmpty(Window(home).Property(trailer_avail))">PlayMedia($INFO[Window(Home).Property(filename_formatted)]$INFO[ListItem.Title,,-trailer.mp4],1)</onclick>
 								<onclick condition="!Player.HasVideo + String.IsEqual(ListItem.DBTYPE,movie)">Playmedia($INFO[Window(Home).Property(SkinHelper.ListItem.Trailer)],1)</onclick>	
-								<onclick condition="!Player.HasVideo + !String.IsEqual(ListItem.DBTYPE,movie)">RunScript(script.skin.helper.service,action=playtraileryoutube,title=$INFO[ListItem.Title],local=true)</onclick>  							
-								<onclick condition="!Player.HasVideo + [String.IsEmpty(ListItem.Trailer) + String.IsEqual(ListItem.DBTYPE,movie)]">RunScript(script.skin.helper.service,action=playtraileryoutube,title=$INFO[ListItem.Title],local=true)</onclick>								
+								<onclick condition="!Player.HasVideo + !String.IsEqual(ListItem.DBTYPE,movie)">RunScript(script.skin.helper.service,action=playtrailer,title=$INFO[ListItem.Title],local=true)</onclick>  							
+								<onclick condition="!Player.HasVideo + [String.IsEmpty(ListItem.Trailer) + String.IsEqual(ListItem.DBTYPE,movie)]">RunScript(script.skin.helper.service,action=playtrailer,title=$INFO[ListItem.Title],local=true)</onclick>								
 								<onclick condition="Player.HasVideo">FullScreen</onclick>
 								<onclick condition="Player.HasVideo">SetProperty(BaseWindow,InfoDialog,Home)</onclick>
                                 <onclick condition="Player.HasVideo">SetProperty(TrailerPlaying,fullscreen,home)</onclick>
@@ -3383,7 +3404,7 @@
                                 <font>Reg30</font>
                                 <textcolor>$INFO[Skin.String(NetflixPrimaryTextColor)]</textcolor>
                                 <focusedcolor>$INFO[Skin.String(NetflixPrimaryTextColor)]</focusedcolor>
-                                <label>Rate this title</label><!--check, transl -->
+                                <label>38018</label><!--check, transl -->
                                 <texturefocus colordiffuse="$INFO[Skin.String(NetflixPrimaryTextColor)]">netflix/border_netflix.png</texturefocus>
                                 <texturenofocus></texturenofocus>
                                 <textureradioonfocus colordiffuse="$INFO[Skin.String(NetflixPrimaryTextColor)]">netflix/button/thumb_up_nf.png</textureradioonfocus>
@@ -3394,9 +3415,7 @@
                                 <radioheight>26</radioheight>
                                 <radioposx>15</radioposx>
                                 <radioposy>0</radioposy>
-                                <onclick condition="!String.IsEqual(Window(Home).Property(contenttype),musicvideos)">RunScript(script.user.rating)</onclick>
-								<onclick condition="String.IsEqual(Window(Home).Property(contenttype),musicvideos)">SendClick(7)</onclick>																												  
-                                <animation effect="fade" start="100" end="10" time="250" condition="Window.IsActive(script-user-rating-rateDialog.xml)">Conditional</animation>
+								<onclick>SendClick(7)</onclick>
                             </control>
 
                             <!-- Change rating -->
@@ -3413,7 +3432,7 @@
                                 <font>Reg30</font>
                                 <textcolor>$INFO[Skin.String(NetflixPrimaryTextColor)]</textcolor>
                                 <focusedcolor>$INFO[Skin.String(NetflixPrimaryTextColor)]</focusedcolor>
-                                <label>Change rating</label>
+                                <label>$LOCALIZE[38018]: $INFO[ListItem.UserRating]</label>
                                 <texturefocus colordiffuse="$INFO[Skin.String(NetflixPrimaryTextColor)]">netflix/border_netflix.png</texturefocus>
                                 <texturenofocus></texturenofocus>
 								<include condition="Integer.IsLessOrEqual(ListItem.UserRating,5)">ChangeRatingThumbsDown</include>
@@ -3421,9 +3440,7 @@
                                 <radiowidth>24</radiowidth>
                                 <radioheight>26</radioheight>
                                 <radioposx>15</radioposx>
-                                <onclick condition="!String.IsEqual(Window(Home).Property(contenttype),musicvideos)">RunScript(script.user.rating)</onclick>
-								<onclick condition="String.IsEqual(Window(Home).Property(contenttype),musicvideos)">SendClick(7)</onclick>                               																				  
-                                <animation effect="fade" start="100" end="10" time="250" condition="Window.IsActive(script-user-rating-rateDialog.xml)">Conditional</animation>
+								<onclick>SendClick(7)</onclick>                               																				  
                             </control>
 
                             <!--Plot & Critics-->
@@ -3459,7 +3476,6 @@
                             <control type="radiobutton" id="114">
                                 <visible>Integer.IsGreater(Container(351).NumItems,0)</visible>
                                 <visible>!String.IsEqual(Window.Property(AdditionalInfo),cast)</visible>
-                                <visible>Skin.HasSetting(videoinfo_button_cast)</visible>
                                 <width>550</width>
                                 <height>65</height>
                                 <aligny>center</aligny>
@@ -3526,7 +3542,7 @@
                                 <font>Reg30</font>
                                 <textcolor>$INFO[Skin.String(NetflixPrimaryTextColor)]</textcolor>
                                 <focusedcolor>$INFO[Skin.String(NetflixPrimaryTextColor)]</focusedcolor>
-                                <label>More Info</label>
+                                <label>31269</label>
                                 <texturefocus colordiffuse="$INFO[Skin.String(NetflixPrimaryTextColor)]">netflix/border_netflix.png</texturefocus>
                                 <texturenofocus></texturenofocus>
                                 <textureradioonfocus colordiffuse="$INFO[Skin.String(NetflixPrimaryTextColor)]">netflix/info.png</textureradioonfocus>
@@ -3537,11 +3553,14 @@
                                 <radioposx>13</radioposx>
                                 <radiowidth>25</radiowidth>
                                 <radioheight>28</radioheight>
-                                <onclick condition="!System.HasAddon(script.extendedinfo)">RunPlugin(plugin://script.extendedinfo)</onclick>
-                                <onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),movies)">RunScript(script.extendedinfo,info=extendedinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.Title])</onclick>
-                                <onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),tvshows)">RunScript(script.extendedinfo,info=extendedtvinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.TvShowTitle])</onclick>
-                                <onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),seasons)">RunScript(script.extendedinfo,info=seasoninfo,tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],silent=True)</onclick>
-                                <onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),episodes)">RunScript(script.extendedinfo,info=extendedepisodeinfo,dbid=$INFO[ListItem.DBID],tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],episode=$INFO[ListItem.Episode],silent=True)</onclick>
+                                <onclick condition="!System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo)">RunPlugin(plugin://script.extendedinfo)</onclick>
+								<onclick condition="!System.HasAddon(script.embuary.info) + String.IsEqual(Skin.String(videoinfo_castaction),embuaryinfo)">RunPlugin(plugin://script.embuary.info)</onclick>
+								<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),movies)">RunScript(script.extendedinfo,info=extendedinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.Title])</onclick>
+								<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),tvshows)">RunScript(script.extendedinfo,info=extendedtvinfo,dbid=$INFO[ListItem.DBID],name=$INFO[ListItem.TvShowTitle])</onclick>
+								<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),seasons)">RunScript(script.extendedinfo,info=seasoninfo,tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],silent=True)</onclick>
+								<onclick condition="System.HasAddon(script.extendedinfo) + String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo) + String.IsEqual(Window(Home).Property(contenttype),episodes)">RunScript(script.extendedinfo,info=extendedepisodeinfo,dbid=$INFO[ListItem.DBID],tvshow=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],episode=$INFO[ListItem.Episode],silent=True)</onclick>
+								<onclick condition="[String.IsEqual(Skin.String(videoinfo_castaction),embuaryinfo) | String.IsEqual(Skin.String(videoinfo_castaction),library_search)] + String.IsEmpty(ListItem.TvShowTitle)">RunScript(script.embuary.info,call=movie,query='"$INFO[ListItem.Label]"',year=$INFO[ListItem.Year])</onclick>
+								<onclick condition="[String.IsEqual(Skin.String(videoinfo_castaction),embuaryinfo) | String.IsEqual(Skin.String(videoinfo_castaction),library_search)] + !String.IsEmpty(ListItem.TvShowTitle)">RunScript(script.embuary.info,call=tv,query='"$INFO[ListItem.TvShowTitle]"')</onclick>
                             </control>
 
                             <!-- Cinemavision button -->
@@ -3568,8 +3587,8 @@
                                 <onclick>RunScript(script.cinemavision,experience)</onclick>
                             </control>
 
-                            <!-- Artwork Beef -->
-                            <control type="radiobutton" id="104">
+                            <!-- Artwork -->
+                            <control type="radiobutton" id="10">
                                 <visible>[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,episode)] + system.hasaddon(script.artwork.beef)</visible>
                                 <visible>!Skin.HasSetting(KioskMode.Enabled)</visible>
                                 <visible>String.IsEmpty(Window.Property(AdditionalInfo))</visible>
@@ -3594,9 +3613,37 @@
                                 <radiowidth>20</radiowidth>
                                 <radioheight>25</radioheight>
                                 <visible>Skin.HasSetting(videoinfo_button_artwork)</visible>
-                                <onclick condition="String.IsEqual(ListItem.DBType,episode) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=episode, dbid=$INFO[ListItem.DBID])</onclick>
-                                <onclick condition="String.IsEqual(ListItem.DBType,tvshow) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=tvshow, dbid=$INFO[ListItem.DBID])</onclick>
-                                <onclick condition="String.IsEqual(ListItem.DBType,movie) + System.HasAddon(script.artwork.beef)">XBMC.RunScript(script.artwork.beef, mode=gui, mediatype=movie, dbid=$INFO[ListItem.DBID])</onclick>
+                            </control>
+
+                            <!-- Artwork Beef -->
+                            <control type="radiobutton" id="104">
+                                <visible>[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,episode)] + system.hasaddon(script.artwork.beef)</visible>
+                                <visible>!Skin.HasSetting(KioskMode.Enabled)</visible>
+                                <visible>String.IsEmpty(Window.Property(AdditionalInfo))</visible>
+                                <description>Get Artwork</description>
+                                <width>550</width>
+                                <height>65</height>
+                                <aligny>center</aligny>
+                                <align>left</align>
+                                <textoffsetx>50</textoffsetx>
+                                <textoffsety>8</textoffsety>
+                                <font>Reg30</font>
+                                <textcolor>$INFO[Skin.String(NetflixPrimaryTextColor)]</textcolor>
+                                <focusedcolor>$INFO[Skin.String(NetflixPrimaryTextColor)]</focusedcolor>
+                                <label>Artwork Beef</label>
+                                <texturefocus colordiffuse="$INFO[Skin.String(NetflixPrimaryTextColor)]">netflix/border_netflix.png</texturefocus>
+                                <texturenofocus></texturenofocus>
+                                <textureradioonfocus colordiffuse="$INFO[Skin.String(NetflixPrimaryTextColor)]">netflix/text-bg-color.png</textureradioonfocus>
+                                <textureradioofffocus colordiffuse="$INFO[Skin.String(NetflixPrimaryTextColor)]">netflix/text-bg-color.png</textureradioofffocus>
+                                <textureradioonnofocus colordiffuse="$INFO[Skin.String(NetflixPrimaryTextColor)]">netflix/text-bg-color.png</textureradioonnofocus>
+                                <textureradiooffnofocus colordiffuse="$INFO[Skin.String(NetflixPrimaryTextColor)]">netflix/text-bg-color.png</textureradiooffnofocus>
+                                <radioposx>15</radioposx>
+                                <radiowidth>20</radiowidth>
+                                <radioheight>25</radioheight>
+                                <visible>Skin.HasSetting(videoinfo_button_artwork)</visible>
+                                <onclick condition="String.IsEqual(ListItem.DBType,episode) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=episode, dbid=$INFO[ListItem.DBID])</onclick>
+                                <onclick condition="String.IsEqual(ListItem.DBType,tvshow) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=tvshow, dbid=$INFO[ListItem.DBID])</onclick>
+                                <onclick condition="String.IsEqual(ListItem.DBType,movie) + System.HasAddon(script.artwork.beef)">RunScript(script.artwork.beef, mode=gui, mediatype=movie, dbid=$INFO[ListItem.DBID])</onclick>
                             </control>
 
                             <!--Refresh-->
@@ -3684,7 +3731,7 @@
 					<visible allowhiddenfocus="true">false</visible>
 				</control> -->
 				<!-- extendedinfo cast list ,check back behaviour -->
-				<control type="panel" id="50">
+				<control type="panel" id="351">
 					<posx>550</posx>
 					<posy>250</posy>
 					<width>800</width>
@@ -3741,6 +3788,7 @@
 						</control>
 					</focusedlayout>
 					<content>$VAR[EmbuaryCast]</content>
+					<include>VideoInfo_CastAction</include>
 				</control>
 
 				<!-- cast info details -->
@@ -4138,6 +4186,7 @@
 		<onclick condition="String.IsEqual(Skin.String(videoinfo_castaction),library_search)">ActivateWindow(1100),return</onclick>
 		<!-- <onclick condition="String.IsEqual(Skin.String(videoinfo_castaction),global_search)">Dialog.Close(movieinformation,true)</onclick> -->
 		<onclick condition="String.IsEqual(Skin.String(videoinfo_castaction),extendedinfo)">RunScript(script.extendedinfo,info=extendedactorinfo,name=$INFO[ListItem.Label])</onclick>
+		<onclick condition="String.IsEqual(Skin.String(videoinfo_castaction),embuaryinfo)">RunScript(script.embuary.info,call=person,query='"$INFO[ListItem.Label]"')</onclick>
 	</include>
 	<variable name="Similiar_Content">
 		<value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.DBID)">plugin://script.embuary.helper/?info=getsimilar&amp;dbid=$INFO[ListItem.DBID]&amp;type=movie</value>
@@ -4150,6 +4199,9 @@
 		<value condition="String.IsEqual(Window(Home).Property(contenttype),tvshows) | String.IsEqual(Window(Home).Property(contenttype),seasons)">$VAR[EncodedTitle] $LOCALIZE[20364] $LOCALIZE[20410] $INFO[System.Language]</value>
 		<value condition="String.IsEqual(Window(Home).Property(contenttype),movie)">$VAR[EncodedTitle] $LOCALIZE[20410] $INFO[System.Language]</value>
         <value>$VAR[EncodedTitle]</value>
+	</variable>
+	<variable name="No_Youtube_search">
+		<value condition="!$EXP[IsOfflineMode] + System.HasAddon(plugin.video.youtube) + !Skin.HasSetting(YoutubeNoOnlineLookup)">plugin://plugin.video.youtube/search/?q=$VAR[tvShowsearch]</value>
 	</variable>
 	
 </includes>

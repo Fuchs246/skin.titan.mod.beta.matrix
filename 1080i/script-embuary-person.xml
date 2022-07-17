@@ -1,6 +1,13 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol>100</defaultcontrol>
+		<animation type="WindowClose" reversible="false" condition="!Skin.HasSetting(LowPerformanceMode)">
+			<effect type="zoom" start="100" end="80" center="960,540" easing="in" tween="back" time="200"/>
+			<effect type="fade" start="100" end="0" time="200"/>
+		</animation>
+		<animation type="WindowClose" reversible="false" condition="Skin.HasSetting(LowPerformanceMode)">
+			<effect type="fade" start="100" end="0" time="150"/>
+		</animation>
 	<controls>
 		<!-- Storage container for the item details -->
 		<control type="list" id="10051">
@@ -15,7 +22,19 @@
 		<control type="image">
 			<width>1920</width>
 			<height>1080</height>
-			<texture>bg.jpg</texture>
+			<aspectratio>scale</aspectratio>
+			<texture>colors/black.png</texture>
+		</control>
+		<control type="image">
+			<width>1920</width>
+			<height>1080</height>
+			<texture fallback="fanart.jpg">$INFO[ListItem.Art(fanart)]</texture>
+		</control>
+		<control type="image">
+			<width>1920</width>
+			<height>1080</height>
+			<texture fallback="diffuse/background.png">$INFO[Skin.String(BackgroundOverlayTexture)]</texture>
+			<colordiffuse>$VAR[BackgroundOverlayTexture_Colordiffuse]</colordiffuse>
 			<aspectratio scalediffuse="false">stretch</aspectratio>
 		</control>
 		<!-- infos -->
@@ -36,17 +55,17 @@
 					<control type="image">
 						<width>276</width>
 						<height>414</height>
-						<texture colordiffuse="ff45d374">white.jpg</texture>
+						<texture colordiffuse="$INFO[Skin.String(ViewDetailsBGColor)]">diffuse/poster.png</texture>
 						<aspectratio scalediffuse="false">stretch</aspectratio>
 						<visible>String.IsEmpty(Container(10051).ListItem.Art(thumb))</visible>
 					</control>
-					<control type="image">
+					<!-- <control type="image">
 						<width>276</width>
 						<height>414</height>
 						<texture colordiffuse="thumb_background">white.jpg</texture>
 						<aspectratio scalediffuse="false">stretch</aspectratio>
 						<visible>!String.IsEmpty(Container(10051).ListItem.Art(thumb))</visible>
-					</control>
+					</control> -->
 					<control type="textbox">
 						<top>10</top>
 						<left>10</left>
@@ -62,37 +81,37 @@
 					<control type="image">
 						<width>276</width>
 						<height>414</height>
-						<texture background="true">$INFO[Container(10051).ListItem.Art(thumb)]</texture>
+						<texture background="true" diffuse="diffuse/poster.png">$INFO[Container(10051).ListItem.Art(thumb)]</texture>
 						<aspectratio scalediffuse="false">scale</aspectratio>
 					</control>
 				</control>
 				<!-- meta -->
 				<control type="group">
-					<top>-5</top>
+					<top>-10</top>
 					<left>370</left>
 					<right>70</right>
 					<control type="label">
 						<right>440</right>
 						<height>60</height>
-						<label>$INFO[Container(10051).ListItem.Label]</label>
-						<font>font45</font>
-						<textcolor>ffffffff</textcolor>
+						<label>[B]$INFO[Container(10051).ListItem.Label][/B]</label>
+						<font>font14</font>
+						<textcolor>$VAR[VDHighlightTextColor]</textcolor>
 						<shadowcolor>50000000</shadowcolor>
 						<aligny>top</aligny>
 					</control>
 					<control type="group">
-						<top>60</top>
+						<top>50</top>
 						<right>440</right>
-						<height>40</height>
+						<height>50</height>
 						<control type="grouplist">
-							<height>40</height>
-							<itemgap>20</itemgap>
+							<height>50</height>
+							<itemgap>10</itemgap>
 							<orientation>horizontal</orientation>
 							<control type="label">
 								<label>$INFO[Container(10051).ListItem.Property(gender)]</label>
 								<width>auto</width>
 								<font>font12</font>
-								<textcolor>ffffffff</textcolor>
+								<textcolor>$VAR[VDTextColor]</textcolor>
 								<shadowcolor>50000000</shadowcolor>
 								<visible>!String.IsEmpty(Container(10051).ListItem.Property(gender))</visible>
 							</control>
@@ -100,7 +119,7 @@
 								<label>$INFO[Container(10051).ListItem.Property(known_for_department),$ADDON[script.embuary.info 32017]: ]</label>
 								<width>auto</width>
 								<font>font12</font>
-								<textcolor>ffffffff</textcolor>
+								<textcolor>$VAR[VDTextColor]</textcolor>
 								<shadowcolor>50000000</shadowcolor>
 								<visible>!String.IsEmpty(Container(10051).ListItem.Property(known_for_department))</visible>
 							</control>
@@ -108,7 +127,7 @@
 								<label>$INFO[Container(10052).NumItems,, $LOCALIZE[342]]</label>
 								<width>auto</width>
 								<font>font12</font>
-								<textcolor>ffffffff</textcolor>
+								<textcolor>$VAR[VDTextColor]</textcolor>
 								<shadowcolor>50000000</shadowcolor>
 								<visible>Integer.IsGreater(Container(10052).NumItems,0)</visible>
 							</control>
@@ -116,7 +135,7 @@
 								<label>$INFO[Container(10053).NumItems,, $LOCALIZE[20343]]</label>
 								<width>auto</width>
 								<font>font12</font>
-								<textcolor>ffffffff</textcolor>
+								<textcolor>$VAR[VDTextColor]</textcolor>
 								<shadowcolor>50000000</shadowcolor>
 								<visible>Integer.IsGreater(Container(10053).NumItems,0)</visible>
 							</control>
@@ -132,45 +151,45 @@
 						<onright>noop</onright>
 						<onleft>noop</onleft>
 						<ondown>10052</ondown>
-						<itemlayout height="130" width="146">
+						<itemlayout height="130" width="200">
 							<control type="group">
 								<top>30</top>
-								<width>140</width>
+								<width>200</width>
 								<height>105</height>
 								<control type="group">
 									<height>62</height>
 									<control type="image">
-										<texture colordiffuse="ff113a3b">white.jpg</texture>
+										<texture colordiffuse="$INFO[Skin.String(ButtonColor)]">colors/color_white.png</texture>
 										<bordersize>1</bordersize>
-										<bordertexture colordiffuse="50ffffff">white.jpg</bordertexture>
+										<bordertexture colordiffuse="50ffffff">colors/color_white.png</bordertexture>
 									</control>
 									<control type="label">
 										<height>62</height>
 										<align>center</align>
 										<aligny>center</aligny>
 										<font>font12</font>
-										<textcolor>ffffffff</textcolor>
+										<textcolor>$INFO[Skin.String(ButtonTextColor)]</textcolor>
 										<shadowcolor>50000000</shadowcolor>
 										<label>$INFO[ListItem.Label]</label>
 									</control>
 								</control>
 							</control>
 						</itemlayout>
-						<focusedlayout height="130" width="146">
+						<focusedlayout height="130" width="200">
 							<control type="group">
 								<top>30</top>
-								<width>140</width>
+								<width>200</width>
 								<height>105</height>
 								<control type="group">
 									<height>62</height>
 									<control type="image">
-										<texture colordiffuse="ff45d374">white.jpg</texture>
+										<texture colordiffuse="$INFO[Skin.String(ButtonFocusColor)]">colors/color_white.png</texture>
 										<visible>Control.HasFocus(100)</visible>
 									</control>
 									<control type="image">
-										<texture colordiffuse="ff113a3b">white.jpg</texture>
+										<texture colordiffuse="$INFO[Skin.String(ButtonColor)]">colors/color_white.png</texture>
 										<bordersize>1</bordersize>
-										<bordertexture colordiffuse="50ffffff">white.jpg</bordertexture>
+										<bordertexture colordiffuse="50ffffff">colors/color_white.png</bordertexture>
 										<visible>!Control.HasFocus(100)</visible>
 									</control>
 									<control type="label">
@@ -178,10 +197,21 @@
 										<align>center</align>
 										<aligny>center</aligny>
 										<font>font12</font>
-										<textcolor>ffffffff</textcolor>
+										<textcolor>$INFO[Skin.String(ButtonTextColor)]</textcolor>
 										<shadowcolor>50000000</shadowcolor>
 										<label>$INFO[ListItem.Label]</label>
-									</control>
+										<visible>!Control.HasFocus(100)</visible>
+									</control>	
+									<control type="label">
+										<height>62</height>
+										<align>center</align>
+										<aligny>center</aligny>
+										<font>font12</font>
+										<textcolor>$INFO[Skin.String(ButtonFocusTextColor)]</textcolor>
+										<shadowcolor>50000000</shadowcolor>
+										<label>$INFO[ListItem.Label]</label>
+										<visible>Control.HasFocus(100)</visible>
+									</control>	
 								</control>
 							</control>
 						</focusedlayout>
@@ -208,7 +238,7 @@
 						<aligny>top</aligny>
 						<label fallback="19055">$INFO[Container(10051).ListItem.Property(Biography)]</label>
 						<font>font12</font>
-						<textcolor>ffffffff</textcolor>
+						<textcolor>$VAR[VDTextColor]</textcolor>
 						<shadowcolor>50000000</shadowcolor>
 						<autoscroll delay="6000" time="3000" repeat="10000">true</autoscroll>
 					</control>
@@ -222,10 +252,10 @@
 							<animation effect="slide" end="0,2" time="0" condition="true">Conditional</animation>
 							<width>auto</width>
 							<height>40</height>
-							<label>$ADDON[script.embuary.info 32008]</label>
+							<label>[B]$ADDON[script.embuary.info 32008][/B]</label>
 							<font>font12</font>
 							<aligny>top</aligny>
-							<textcolor>ff45d374</textcolor>
+							<textcolor>$VAR[VDHighlightTextColor]</textcolor>
 							<shadowcolor>50000000</shadowcolor>
 						</control>
 						<control type="textbox">
@@ -236,7 +266,7 @@
 							<aligny>top</aligny>
 							<label>$INFO[Container(10051).ListItem.Property(Age),[CR]$ADDON[script.embuary.info 32006]:   ]$INFO[Container(10051).ListItem.Property(Birthday),[CR]$LOCALIZE[21893]:   ]$INFO[Container(10051).ListItem.Property(Deathday),[CR]$LOCALIZE[21897]:   ]$INFO[Container(10051).ListItem.Property(place_of_birth),[CR]$ADDON[script.embuary.info 32007]:   ]</label>
 							<font>font12</font>
-							<textcolor>ffffffff</textcolor>
+							<textcolor>$VAR[VDTextColor]</textcolor>
 							<shadowcolor>50000000</shadowcolor>
 							<autoscroll>false</autoscroll>
 						</control>
@@ -286,7 +316,7 @@
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture colordiffuse="ff45d374">white.jpg</texture>
+									<texture colordiffuse="$INFO[Skin.String(ViewDetailsBGColor)]">diffuse/poster.png</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 									<visible>String.IsEmpty(ListItem.Art(thumb))</visible>
 								</control>
@@ -306,14 +336,15 @@
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+									<texture background="true" diffuse="diffuse/poster.png">$INFO[ListItem.Art(thumb)]</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 								</control>
 								<control type="image">
-									<width>237</width>
+									<top>2</top>
+									<width>235</width>
 									<height>26</height>
-									<texture>circle.png</texture>
-									<colordiffuse>ff45d374</colordiffuse>
+									<texture>play.png</texture>
+									<colordiffuse>$INFO[Skin.String(WatchedIndicator.Watched.Color)]</colordiffuse>
 									<aspectratio scalediffuse="false" align="right">keep</aspectratio>
 									<visible>!String.IsEmpty(ListItem.DBID)</visible>
 								</control>
@@ -344,18 +375,18 @@
 								<left>70</left>
 								<top>64</top>
 								<control type="image">
-									<left>-12</left>
-									<top>-7</top>
-									<width>261</width>
-									<height>379</height>
-									<texture border="20,20,20,20" colordiffuse="ff45d374">focus.png</texture>
+									<top>-3</top>
+									<left>-3</left>
+									<width>243</width>
+									<height>361</height>
+									<texture  colordiffuse="$VAR[HomeVDBorderFocusColor]">diffuse/poster.png</texture>
 									<aspectratio>stretch</aspectratio>
 									<visible>Control.HasFocus(10052)</visible>
 								</control>
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture colordiffuse="ff45d374">white.jpg</texture>
+									<texture colordiffuse="$INFO[Skin.String(ViewDetailsBGColor)]">diffuse/poster.png</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 									<visible>String.IsEmpty(ListItem.Art(thumb))</visible>
 								</control>
@@ -375,14 +406,15 @@
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+									<texture background="true" diffuse="diffuse/poster.png">$INFO[ListItem.Art(thumb)]</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 								</control>
 								<control type="image">
-									<width>237</width>
+									<top>2</top>
+									<width>235</width>
 									<height>26</height>
-									<texture>circle.png</texture>
-									<colordiffuse>ff45d374</colordiffuse>
+									<texture>play.png</texture>
+									<colordiffuse>$INFO[Skin.String(WatchedIndicator.Watched.Color)]</colordiffuse>
 									<aspectratio scalediffuse="false" align="right">keep</aspectratio>
 									<visible>!String.IsEmpty(ListItem.DBID)</visible>
 								</control>
@@ -402,7 +434,7 @@
 									<height>50</height>
 									<width>237</width>
 									<font>font12</font>
-									<textcolor>ff45d374</textcolor>
+									<textcolor>$VAR[VDHighlightTextColor]</textcolor>
 									<shadowcolor>50000000</shadowcolor>
 									<label>$INFO[ListItem.Label]</label>
 									<scroll>true</scroll>
@@ -458,7 +490,7 @@
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture colordiffuse="ff45d374">white.jpg</texture>
+									<texture colordiffuse="$INFO[Skin.String(ViewDetailsBGColor)]">diffuse/poster.png</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 									<visible>String.IsEmpty(ListItem.Art(thumb))</visible>
 								</control>
@@ -478,14 +510,15 @@
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+									<texture background="true" diffuse="diffuse/poster.png">$INFO[ListItem.Art(thumb)]</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 								</control>
 								<control type="image">
-									<width>237</width>
+									<top>2</top>
+									<width>235</width>
 									<height>26</height>
-									<texture>circle.png</texture>
-									<colordiffuse>ff45d374</colordiffuse>
+									<texture>play.png</texture>
+									<colordiffuse>$INFO[Skin.String(WatchedIndicator.Watched.Color)]</colordiffuse>
 									<aspectratio scalediffuse="false" align="right">keep</aspectratio>
 									<visible>!String.IsEmpty(ListItem.DBID)</visible>
 								</control>
@@ -516,18 +549,18 @@
 								<left>70</left>
 								<top>64</top>
 								<control type="image">
-									<left>-12</left>
-									<top>-7</top>
-									<width>261</width>1
-									<height>379</height>
-									<texture border="20,20,20,20" colordiffuse="ff45d374">focus.png</texture>
+									<top>-3</top>
+									<left>-3</left>
+									<width>243</width>
+									<height>361</height>
+									<texture  colordiffuse="$VAR[HomeVDBorderFocusColor]">diffuse/poster.png</texture>
 									<aspectratio>stretch</aspectratio>
 									<visible>Control.HasFocus(10053)</visible>
 								</control>
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture colordiffuse="ff45d374">white.jpg</texture>
+									<texture colordiffuse="$INFO[Skin.String(ViewDetailsBGColor)]">diffuse/poster.png</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 									<visible>String.IsEmpty(ListItem.Art(thumb))</visible>
 								</control>
@@ -547,14 +580,15 @@
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+									<texture background="true" diffuse="diffuse/poster.png">$INFO[ListItem.Art(thumb)]</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 								</control>
 								<control type="image">
-									<width>237</width>
+									<top>2</top>
+									<width>235</width>
 									<height>26</height>
-									<texture>circle.png</texture>
-									<colordiffuse>ff45d374</colordiffuse>
+									<texture>play.png</texture>
+									<colordiffuse>$INFO[Skin.String(WatchedIndicator.Watched.Color)]</colordiffuse>
 									<aspectratio scalediffuse="false" align="right">keep</aspectratio>
 									<visible>!String.IsEmpty(ListItem.DBID)</visible>
 								</control>
@@ -574,7 +608,7 @@
 									<height>50</height>
 									<width>237</width>
 									<font>font12</font>
-									<textcolor>ff45d374</textcolor>
+									<textcolor>$VAR[VDHighlightTextColor]</textcolor>
 									<shadowcolor>50000000</shadowcolor>
 									<label>$INFO[ListItem.Label]</label>
 									<scroll>true</scroll>
@@ -630,7 +664,7 @@
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture colordiffuse="ff45d374">white.jpg</texture>
+									<texture colordiffuse="$INFO[Skin.String(ViewDetailsBGColor)]">diffuse/poster.png</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 									<visible>String.IsEmpty(ListItem.Art(thumb))</visible>
 								</control>
@@ -650,7 +684,7 @@
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+									<texture background="true" diffuse="diffuse/poster.png">$INFO[ListItem.Art(thumb)]</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 								</control>
 								<control type="label">
@@ -670,18 +704,18 @@
 								<left>70</left>
 								<top>64</top>
 								<control type="image">
-									<left>-12</left>
-									<top>-7</top>
-									<width>261</width>
-									<height>379</height>
-									<texture border="20,20,20,20" colordiffuse="ff45d374">focus.png</texture>
+									<top>-3</top>
+									<left>-3</left>
+									<width>243</width>
+									<height>361</height>
+									<texture  colordiffuse="$VAR[HomeVDBorderFocusColor]">diffuse/poster.png</texture>
 									<aspectratio>stretch</aspectratio>
 									<visible>Control.HasFocus(10054)</visible>
 								</control>
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture colordiffuse="ff45d374">white.jpg</texture>
+									<texture colordiffuse="$INFO[Skin.String(ViewDetailsBGColor)]">diffuse/poster.png</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 									<visible>String.IsEmpty(ListItem.Art(thumb))</visible>
 								</control>
@@ -701,7 +735,7 @@
 								<control type="image">
 									<width>237</width>
 									<height>355</height>
-									<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+									<texture background="true" diffuse="diffuse/poster.png">$INFO[ListItem.Art(thumb)]</texture>
 									<aspectratio scalediffuse="false">stretch</aspectratio>
 								</control>
 								<control type="label">
@@ -720,7 +754,7 @@
 									<height>50</height>
 									<width>237</width>
 									<font>font12</font>
-									<textcolor>ff45d374</textcolor>
+									<textcolor>$VAR[VDHighlightTextColor]</textcolor>
 									<shadowcolor>50000000</shadowcolor>
 									<label>$INFO[ListItem.Label]</label>
 									<scroll>true</scroll>

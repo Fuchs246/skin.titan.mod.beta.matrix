@@ -103,8 +103,8 @@
             <control type="image">
 				<height>75</height>
                 <include>mediaflags_large_layout</include>
-                <texture fallback="flags/flags_large/mpaa/NR.png">$VAR[mediaflags_large_rating]</texture>
-                <visible>!String.IsEmpty(Window(Home).Property(ListItem.MPAA)) | !String.IsEmpty(ListItem.MPAA) | !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.MPAA))</visible>
+                <texture>$VAR[mediaflags_large_rating]</texture>
+                <visible>!String.IsEqual(ListItem.Label,..) | !String.IsEmpty(Window(Home).Property(ListItem.MPAA)) | !String.IsEmpty(ListItem.MPAA) | !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.MPAA))</visible>
             </control>
             <include>mediaflags_sets</include>
             <!-- next aired info-->
@@ -451,7 +451,7 @@
 		<value condition="String.Contains(VideoPlayer.mpaa,Brazil:18) | String.Contains(VideoPlayer.mpaa,18 anos)">$VAR[mediaflags_large_path]/mpaa/MPAA_Brazil_18.png</value>
 		
         <value condition="!String.IsEmpty(VideoPlayer.MPAA)">$VAR[mediaflags_large_path]/mpaa/$INFO[VideoPlayer.MPAA].png</value>
-        
+		
 		<value condition="[String.Contains(Window(Home).Property(SkinHelper.Player.mpaa),US:G) | String.Contains(Window(Home).Property(SkinHelper.Player.mpaa),USA:G) | String.Contains(Window(Home).Property(SkinHelper.Player.mpaa),Rated G)]">$VAR[mediaflags_large_path]/mpaa/G.png</value>
 		<value condition="String.Contains(Window(Home).Property(SkinHelper.Player.mpaa),PG-13)">$VAR[mediaflags_large_path]/mpaa/PG-13.png</value>
 		<value condition="[String.Contains(Window(Home).Property(SkinHelper.Player.mpaa),Rated PG) | String.IsEqual(Window(Home).Property(SkinHelper.Player.Mpaa),PG)]">$VAR[mediaflags_large_path]/mpaa/PG.png</value>
@@ -495,6 +495,7 @@
 		
 		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.MPAA)) | String.IsEmpty(ListItem.MPAA) | String.IsEmpty(Window(Home).Property(ListItem.MPAA))">$VAR[mediaflags_large_path]/mpaa/$INFO[Window(Home).Property(SkinHelper.ListItem.MPAA)].png</value>
 		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.MPAA))">$VAR[mediaflags_large_path]/mpaa/$INFO[Window(Home).Property(SkinHelper.Player.MPAA)].png</value>
+		<value condition="!String.IsEqual(ListItem.IsCollection)">flags/flags_large/mpaa/NR.png</value>
 	</variable>
     
 	<include name="mediaflags_classic">

@@ -56,7 +56,7 @@
             <width>270</width>
 			<animation effect="slide" start="0" end="0,210" time="0" condition="Window.IsActive(visualisation)">Conditional</animation>
 			<animation type="WindowOpen">
-				<effect type="slide" start="-660" end="0" time="250" tween="cubic" easing="inout" />
+				<effect type="slide" start="-660" end="0" time="410" delay="160" tween="cubic" easing="inout" />
 			</animation>
 			<animation type="WindowClose">
 				<effect type="slide" start="0" end="-660" time="250" tween="cubic" easing="inout" />
@@ -66,7 +66,7 @@
 			<posy>-250</posy>
 			<posx>-20</posx>
 			<width>520</width>
-			<height>1750</height>
+			<height>125%</height>
 			<texture border="5">diffuse/panel.png</texture>
 			<colordiffuse>$INFO[Skin.String(SideBladePanelColor)]</colordiffuse>
 			<aspectratio>stretch</aspectratio>
@@ -988,14 +988,6 @@
             Control.IsVisible(512) | Control.IsVisible(513) | Control.IsVisible(514) | 
             Control.IsVisible(515) | Control.IsVisible(523) | Control.IsVisible(525)
             </visible>
-		</control>
-		
-		<control type="radiobutton" id="705291">
-			<include>SideBladeMenuButton</include>
-			<label>Disable YouTube Trailer Container</label>
-			<visible>Control.IsVisible(529)</visible>
-			<onclick>Skin.ToggleSetting(View_529_DisableOnlineTrailers)</onclick>
-			<selected>[Skin.HasSetting(View_529_DisableOnlineTrailers) + Control.IsVisible(529)]</selected>
 		</control>
 		
 		<control type="radiobutton" id="705291">

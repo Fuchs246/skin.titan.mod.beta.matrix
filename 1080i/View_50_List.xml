@@ -277,39 +277,39 @@
             <!--Control Tags-->
             <control type="grouplist">
                 <control type="label" id="5101">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[ListDetails]</label>
                 </control>
                 <control type="label" id="5201">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground1_label]</label>
                 </control>
                 <control type="label" id="5202">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground2_label]</label>
                 </control>
                 <control type="label" id="5203">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground3_label]</label>
                 </control>
                 <control type="label" id="5204">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground4_label]</label>
                 </control>
                 <control type="label" id="5301">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground1_value]</label>
                 </control>
                 <control type="label" id="5302">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground2_value]</label>
                 </control>
                 <control type="label" id="5303">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground3_value]</label>
                 </control>
                 <control type="label" id="5304">
-                    <include>HiddenOffset</include>
+                    <include>HiddenButton</include>
                     <label>$VAR[value_ground4_value]</label>
                 </control>
             </control>
@@ -761,17 +761,27 @@
 				<width>510</width>
                 <bordersize>8</bordersize>
 				<texture diffuse="diffuse/poster.png" border="5" fallback="DefaultVideo.png" background="true">$VAR[PosterThumb]</texture>
-				<aspectratio align="center" aligny="top" scalediffuse="false">keep</aspectratio>
+				<aspectratio align="center" aligny="top">keep</aspectratio>
             </control>
             <control type="image">
                 <!--Episodes Thumb-->
-                <visible>Container.Content(episodes)</visible>
+                <visible>Container.Content(episodes) + !String.IsEqual(ListItem.Label,..)</visible>
                 <posx>70</posx>
                 <posy>20</posy>
                 <width>370</width>
                 <height>220</height>
                 <aspectratio align="left" aligny="top" scalediffuse="false" background="true">keep</aspectratio>
                 <texture fallback="resource://resource.images.skinicons.wide/video.png">$INFO[ListItem.Thumb]</texture>
+            </control>
+			<control type="image">
+                <!--Episodes Thumb-->
+                <visible>Container.Content(episodes) + String.IsEqual(ListItem.Label,..)</visible>
+                <posx>70</posx>
+                <posy>20</posy>
+                <width>370</width>
+                <height>220</height>
+                <aspectratio align="left" aligny="top" scalediffuse="false" background="true">keep</aspectratio>
+                <texture>dialogs/filebrowser/DefaultFolderBack2.png</texture>
             </control>
             <control type="group">
                 <!--PVR Thumb-->
@@ -781,7 +791,7 @@
                     <right>960</right>
                     <width>300</width>
                     <height>420</height>
-                    <texture diffuse="home/home_matte.png" background="true">$VAR[PVRThumb]</texture>
+                    <texture diffuse="diffuse/poster.png" border="0" background="true">$VAR[PVRThumb]</texture>
                     <aspectratio align="right" aligny="top">keep</aspectratio>
                     <visible>![VideoPlayer.Content(livetv) + Skin.HasSetting(PVRShowPreview)]</visible>
                     <animation effect="slide" end="-5,-10" time="0" condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Art.Poster))">Conditional</animation>

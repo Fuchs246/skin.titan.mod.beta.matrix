@@ -79,7 +79,7 @@
 						</control>
 					</control>
 					<control type="textbox">
-						<width>200</width>
+						<width>235</width>
 						<height>55</height>
 						<top>200</top>
 						<align>center</align>
@@ -107,7 +107,7 @@
 							<bordersize>15</bordersize>
 						</control>
 						<control type="textbox">
-							<width>200</width>
+							<width>235</width>
 							<height>60</height>
 							<top>200</top>
 							<align>center</align>

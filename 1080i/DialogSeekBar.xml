@@ -34,7 +34,7 @@
                 <textcolor>$INFO[Skin.String(GeneralTextColor)]</textcolor>
                 <label>$VAR[PlayerActionLabelLarge]</label>
                 <visible>Skin.HasSetting(OSDLargeSeekingLabel) + ![VideoPlayer.Content(livetv) + Player.Caching]</visible>
-				<animation end="0,340" time="0" effect="slide" condition="Skin.HasSetting(UseNetflixOSDPanel)">Conditional</animation>
+				<animation end="0,310" time="100 " effect="slide" condition="Skin.HasSetting(UseNetflixOSDPanel)">Conditional</animation>
                 <include>HideOsdConditions</include>
             </control>
            

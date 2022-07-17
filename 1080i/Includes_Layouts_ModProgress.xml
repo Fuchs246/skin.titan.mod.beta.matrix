@@ -80,11 +80,7 @@ Container(id).ListItem(offset).Thumb
 				<height>35</height>
 				<top>-7</top>
 				<visible>
-					[!String.IsEmpty(ListItem.UserRating) | 
-					!String.IsEmpty(Window(Home).Property(ListItem.UserRating)) | 
-					!String.IsEmpty(ListItem.Rating) | 
-					!String.IsEmpty(Window(Home).Property(ListItem.Rating)) | 
-					 !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Rating))]
+					[!String.IsEmpty(ListItem.UserRating) | !String.IsEmpty(Window(Home).Property(ListItem.UserRating)) | !String.IsEmpty(ListItem.Rating) | !String.IsEmpty(Window(Home).Property(ListItem.Rating)) | !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Rating))] + !String.IsEqual(ListItem.Label,..)
 				</visible>
 				<include>StarRatingNetflix</include>
             </control>

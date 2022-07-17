@@ -525,7 +525,7 @@
                 <label>31755</label>
                 <onclick>Skin.ToggleSetting(ColorizeHomeVerticalTiles)</onclick>
                 <selected>Skin.HasSetting(ColorizeHomeVerticalTiles)</selected>
-                <visible>Skin.String(HomeLayout,simplever_tiles)</visible>
+                <visible>Skin.String(HomeLayout,simplever_tiles) | Skin.String(HomeLayout,Netflix2)</visible>
             </control>
             <!-- do not uppercase font in modern big home menu layout -->
             <control type="radiobutton" id="31810">
@@ -940,10 +940,10 @@
             </control>
 			<control type="radiobutton" id="31701">
                 <include>SkinSettings_Button</include>
-                <label>Show Thumbs instead of Stars Rating in Home Menu and Video Info</label>
+                <label>Show Thumbs instead of Stars Rating (Netflix View)</label>
                 <onclick>Skin.ToggleSetting(NetflixThumbRating)</onclick>
                 <selected>Skin.HasSetting(NetflixThumbRating)</selected>
-				<visible>Skin.String(HomeLayout,netflix2)</visible>
+				<!-- <visible>Skin.String(HomeLayout,netflix2)</visible> -->
 			</control>
 			<!-- thumb down color-->
 			<include content="SkinSettings_ColorButton">
@@ -1089,9 +1089,15 @@
 			<!-- Local Trailer -->
             <control type="radiobutton" id="55146">
 				<include>SkinSettings_Button</include>
-				<label>Just Play Locally Stored Trailers WIP (Never do Online Trailer Lookup)</label>
+				<label>Local Trailer Search("Title"-trailer.mp4) disable</label>
 				<onclick>Skin.ToggleSetting(Library_NoOnlineLookupTrailer)</onclick>
 				<selected>Skin.HasSetting(Library_NoOnlineLookupTrailer)</selected>
+			</control>
+			<control type="radiobutton" id="55147">
+				<include>SkinSettings_Button</include>
+				<label>Auto search Youtube Trailer (Videoinfo) disable</label>
+				<onclick>Skin.ToggleSetting(YoutubeNoOnlineLookup)</onclick>
+				<selected>Skin.HasSetting(YoutubeNoOnlineLookup)</selected>
 			</control>
 			<!-- media library views -->
             <control type="label" id="13020">
@@ -2042,6 +2048,19 @@
                 <label2>$INFO[Skin.String(MusicArtistLogo.label)]</label2>
                 <onclick>RunScript(script.skin.helper.service,action=setskinsetting,setting=MusicArtistLogo,header=$LOCALIZE[31665])</onclick>
             </control>
+			<!--clearart or clearlogo on osd -->
+            <control type="radiobutton" id="31950">
+                <include>SkinSettings_Button</include>
+                <label>ClearArt prefer (if available)</label>
+                <onclick>Skin.ToggleSetting(OSDShowClearArt_Logo)</onclick>
+                <selected>Skin.HasSetting(OSDShowClearArt_Logo)</selected>
+            </control>
+			<control type="radiobutton" id="31951">
+					<label>OSD Online Album Cover for Title prefer</label>
+					<include>SkinSettings_Button</include>
+					<onclick>Skin.ToggleSetting(OnlineAlbum_lookup)</onclick>
+					<selected>Skin.HasSetting(OnlineAlbum_lookup)</selected>
+			</control>
             <control type="radiobutton" id="31640">
                 <description>Artist Bio in musicplayer</description>
                 <include>SkinSettings_Button</include>

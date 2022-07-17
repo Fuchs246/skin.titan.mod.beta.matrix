@@ -17,6 +17,14 @@
 		<action>ActivateWindow(radiochannels,return)</action>
 	</shortcut>
 	<shortcut>
+		<defaultID>589</defaultID>
+		<label>589</label>
+		<label2/>
+		<icon/>
+		<thumb/>
+		<action>PlayerControl(PartyMode(music))</action>
+	</shortcut>
+	<shortcut>
 		<label>517</label>
 		<label2>10502</label2>
 		<defaultID>517</defaultID>

@@ -28,7 +28,7 @@
 				</include>
 				<!-- spotlight overlay section right -->
 				<control type="image">
-					<texture flipx="true" colordiffuse="$INFO[Skin.String(NetflixBGColor)]">overlay/gradient_overlay_info.png</texture>
+					<texture flipx="true" colordiffuse="$VAR[BackgroundOverlayTexture_Colordiffuse]">overlay/gradient_overlay_info.png</texture>
 				</control>
 			</control>
 			

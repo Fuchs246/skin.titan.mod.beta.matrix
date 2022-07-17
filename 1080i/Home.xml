@@ -31,6 +31,7 @@
         <!--Global Background-->
         <include>GlobalBackground</include>
 		
+		
 		<control type="button" id="1000">
 			<description>hidden button for onload actions as placing them in onload causes strange behaviour</description>
             <!--focus 77777 more consistently on first load-up, but nav issue if no widget available/dont show all widget option -->
@@ -74,7 +75,7 @@
 		<include condition="!String.EndsWith(Skin.String(HomeLayout), netflix2)">NowPlayingInfoBar</include>
         
         <!-- PVR recording icon -->
-        <include condition="Skin.HasSetting(Home_RecordingIndicator)">NowRecordingIcon</include>
+        
 		
 		<!-- Home Screen -->
         <include condition="Skin.String(HomeLayout, 1) | Skin.String(HomeLayout, 2) | Skin.String(HomeLayout, 3) | Skin.String(HomeLayout, 1small) | Skin.String(HomeLayout, 2small) | Skin.String(HomeLayout, 3small)">HomeTitanTiles</include>
@@ -85,8 +86,8 @@
         <include condition="Skin.String(HomeLayout, netflix)">HomeNetflix</include>
         <include condition="Skin.String(HomeLayout, netflix2)">HomeNetflix2</include>
         <include condition="Skin.String(HomeLayout, win10)">HomeWin10</include>
+		<include condition="Skin.HasSetting(Home_RecordingIndicator)">NowRecordingIcon</include>
         <include condition="Skin.HasSetting(DebugGrid) | Skin.HasSetting(DebugInfo)">DebugInfo</include>
-		
 		<!-- check, WIP,  vertical custom shutdown, avoid autoclose setting after choosing it trough activate stutdown via on back -->
 		<control type="group" >
 			<include>DialogOverlayExtra</include>

@@ -14,6 +14,7 @@
     </include>
     
 	<include name="DefaultSkinSettingsValues">
+		<onload condition="!Skin.HasSetting(HomeMenuDefaults46)">Skin.SetBool(skinhelper.view.disabled.529)</onload>
 		<!-- various default settings  -->
 		<onload condition="!Skin.HasSetting(HomeMenuDefaults46)">Skin.SetBool(UseSectionBackground)</onload>
 		<onload condition="!Skin.HasSetting(HomeMenuDefaults46)">Skin.SetBool(ShowFanartBackground)</onload>

@@ -8,13 +8,16 @@
 
 		<!-- common items -->
 		<node label="32029" condition="String.IsEmpty(Window(home).Property(netflixmenu))">
-			<shortcut label="137" grouping="32029" icon="resource://resource.images.skinicons.wide/search.png">ActivateWindow(1100,return)</shortcut>
-            <shortcut label="32022" grouping="32029" icon="resource://resource.images.skinicons.wide/livetv.png" condition="PVR.HasTVChannels">ActivateWindow(TVGuide)</shortcut>
+			<shortcut label="137" grouping="32029" icon="resource://resource.images.skinbackgrounds.titanium/settings.jpg">ActivateWindow(1100,return)</shortcut>
+            <shortcut label="32022" grouping="32029" icon="resource://resource.images.skinicons.wide/livetv.png" condition="PVR.HasTVChannels">ActivateWindow(TVChannels)</shortcut>
 			<shortcut label="342" grouping="32029" icon="$INFO[Window(Home).Property(SkinHelper.AllMoviesBackground)]">ActivateWindow(10025,videodb://movies/titles/,return)</shortcut>
 			<shortcut label="20343" grouping="32029" icon="$INFO[Window(Home).Property(SkinHelper.AllTvShowsBackground)]">ActivateWindow(10025,videodb://tvshows/titles/,return)</shortcut>
             <shortcut label="TV-Shows HUB" grouping="32029" icon="$INFO[Window(Home).Property(SkinHelper.AllTvShowsBackground)]">ActivateWindow(3017,return)</shortcut>
 			<shortcut label="Movies HUB" grouping="32029" icon="$INFO[Window(Home).Property(SkinHelper.AllMoviesBackground)]">ActivateWindow(3018,return)</shortcut>
             <shortcut label="NEW HUB" grouping="32029" icon="resource://resource.images.skinicons.wide/videos.png">ActivateWindow(3019,return)</shortcut>
+			
+			<shortcut label="TheMovieDb Movies" grouping="32029" icon="$INFO[Window(Home).Property(SkinHelper.PopularMovies)]">ActivateWindow(Videos,"plugin://plugin.video.themoviedb.helper/?info=popular&amp;tmdb_type=movie&amp;widget=true",return)</shortcut>
+			<shortcut label="TheMovieDb TV-Shows" grouping="32029" icon="$INFO[Window(Home).Property(SkinHelper.PopularShows)]">ActivateWindow(Videos,"plugin://plugin.video.themoviedb.helper/?info=popular&amp;tmdb_type=tv&amp;widget=true",return)</shortcut>
 			
 			<shortcut label="10502" grouping="32029" icon="$INFO[Window(Home).Property(SkinHelper.AllMusicBackground)]">ActivateWindow(10502,musicdb://,return)</shortcut>
 			<shortcut label="20389" grouping="32029" icon="$INFO[Window(Home).Property(SkinHelper.AllMusicVideosBackground)]">ActivateWindow(10025,videodb://musicvideos/titles/,return)</shortcut>
@@ -83,7 +86,7 @@
 		
 		<!-- Live TV -->
 		<node label="32017" condition="PVR.HasTVChannels">
-			<shortcut label="32022" grouping="32029" icon="resource://resource.images.skinicons.wide/livetv.png" condition="PVR.HasTVChannels">ActivateWindow(TVGuide)</shortcut>
+			<shortcut label="32022" grouping="32029" icon="resource://resource.images.skinicons.wide/livetv.png" condition="PVR.HasTVChannels">ActivateWindow(TVChannels)</shortcut>
 			<shortcut label="19163" grouping="32029" icon="resource://resource.images.skinicons.wide/tvrecordings.png" condition="PVR.HasTVChannels">ActivateWindow(TVRecordings,return)</shortcut>
 			<shortcut label="19021" grouping="32029" icon="resource://resource.images.skinicons.wide/radio.png" condition="PVR.HasTVChannels">ActivateWindow(radiochannels,return)</shortcut>
 			<node label="32017" condition="PVR.HasTVChannels">
@@ -162,12 +165,12 @@
 			<shortcut label="10004" icon="common/settings1.png">ActivateWindow(Settings)</shortcut>
 			<shortcut label="20126" icon="common/lock.png">System.LogOff</shortcut>
             <shortcut label="31714" icon="common/reload-skin.png">ReloadSkin</shortcut>
-			<shortcut label="13012" icon="common/exit1.png">Quit</shortcut>
-			<shortcut label="13015" icon="common/shutdown1.png">Shutdown</shortcut>
-			<shortcut label="13013" icon="common/reboot1.png">Reset</shortcut>
+			<shortcut label="13012" icon="common/exit1.png">Quit()</shortcut>
+			<shortcut label="13015" icon="common/shutdown1.png">ShutDown()</shortcut>
+			<shortcut label="13013" icon="common/reboot1.png">Reboot</shortcut>
 			<shortcut label="13010" icon="common/hybernate.png">Hibernate</shortcut>
 			<shortcut label="20045" icon="common/mastermode.png">Mastermode</shortcut>
-			<shortcut label="13016" icon="common/shutdown1.png">Powerdown</shortcut>
+			<shortcut label="13016" icon="common/shutdown1.png">Powerdown()</shortcut>
 			<shortcut label="13011" icon="common/sleep.png">Suspend</shortcut>
 			<shortcut label="600" icon="common/rip-cd.png">RipCD</shortcut>
 			<shortcut label="360" icon="common/screensaver.png">ActivateScreensaver</shortcut>
@@ -176,8 +179,8 @@
 			<shortcut label="32047" icon="common/update-audio.png">UpdateLibrary(music)</shortcut>
 			<shortcut label="32055" icon="common/clean-video.png">CleanLibrary(video)</shortcut>
 			<shortcut label="32056" icon="common/clean-audio.png">CleanLibrary(music)</shortcut>
-			<shortcut label="20150" icon="common/shutdown-timer.png">AlarmClock(shutdowntimer,Shutdown)</shortcut>
-			<shortcut label="20151" icon="common/cancel-timer.png">CancelAlarm(shutdowntimer,Shutdown)</shortcut>
+			<shortcut label="20150" icon="common/shutdown-timer.png">AlarmClock(shutdowntimer,Powerdown())</shortcut>
+			<shortcut label="20151" icon="common/cancel-timer.png">CancelAlarm(shutdowntimer,Powerdown())</shortcut>
 			<shortcut label="14092" icon="common/toggle-debug.png">ToggleDebug</shortcut>
             <shortcut label="24034" icon="common/check-updates.png">UpdateAddonRepos</shortcut>
             <shortcut label="14111" icon="common/toggle-debug.png">ActivateWindow(eventlog)</shortcut>
@@ -197,15 +200,17 @@
 			</node>
 		</node>
         <!-- script.skin.helper.service default widgets -->
-        <shortcut label="skinhelper service widgets" type="32010" icon="special://home/addons/script.skin.helper.service/icon.png" condition="System.HasAddon(script.skin.helper.service) + Window.IsActive(script-skinshortcuts.xml)">||BROWSE||script.skin.helper.service/?action=widgets&amp;path=scriptwidgets,smartshortcuts,smartishwidgets,favourites,static</shortcut>
-        <shortcut label="skinhelper service widgets" type="32010" icon="special://home/addons/script.skin.helper.service/icon.png" condition="System.HasAddon(script.skin.helper.service) + !Window.IsActive(script-skinshortcuts.xml)">||BROWSE||script.skin.helper.service/?action=widgets&amp;path=scriptwidgets,smartshortcuts,smartishwidgets,favourites</shortcut>
+        <shortcut label="Skinhelper Service Widgets" type="32010" icon="special://home/addons/script.skin.helper.service/icon.png" condition="System.HasAddon(script.skin.helper.service) + Window.IsActive(script-skinshortcuts.xml)">||BROWSE||script.skin.helper.service/?action=widgets&amp;path=scriptwidgets,smartshortcuts,smartishwidgets,favourites,static</shortcut>
+        <shortcut label="Skinhelper Service Widgets" type="32010" icon="special://home/addons/script.skin.helper.service/icon.png" condition="System.HasAddon(script.skin.helper.service) + !Window.IsActive(script-skinshortcuts.xml)">||BROWSE||script.skin.helper.service/?action=widgets&amp;path=scriptwidgets,smartshortcuts,smartishwidgets,favourites</shortcut>
         
 		<!-- embuary helper -->
-		<shortcut label="$LOCALIZE[342]" type="32010" icon="special://home/addons/script.embuary.helper/resources/icon.png">||BROWSE||script.embuary.helper</shortcut>
+		<shortcut label="Embuary Helper" type="32010" icon="special://home/addons/script.embuary.helper/resources/icon.png">||BROWSE||script.embuary.helper</shortcut>
+		<!-- TheMovieDb Helper -->
+		<shortcut label="TheMovieDb Helper" type="32010" icon="special://home/addons/plugin.video.themoviedb.helper/icon.png">||BROWSE||plugin.video.themoviedb.helper</shortcut>
 		
 		<!-- games -->
         <node label="10821">
-			<shortcut label="Games (Retroplayer)" type="32009" icon="DefaultGames.png" widget="addon" widgetType="program" widgetTarget="programs">addons://sources/games</shortcut>
+			<shortcut label="Games (Retroplayer)" type="32009" icon="resource://resource.images.skinicons.wide/games.png" widget="addon" widgetType="program" widgetTarget="programs">addons://sources/game/</shortcut>
 			
 			<shortcut label="$LOCALIZE[10821] AEL Categories" type="32009" icon="DefaultGames.png" condition="System.HasAddon(plugin.program.advanced.emulator.launcher)">||BROWSE||plugin.program.advanced.emulator.launcher/?com=SHOW_ALL_CATEGORIES</shortcut>
 			<shortcut label="$LOCALIZE[10821] AEL All Launchers" type="32009" icon="DefaultGames.png" condition="System.HasAddon(plugin.program.advanced.emulator.launcher)">||BROWSE||plugin.program.advanced.emulator.launcher/?com=SHOW_ALL_LAUNCHERS</shortcut>
@@ -233,6 +238,20 @@
 				<content>videosources</content>
 			</node>
 		</node>
+		<node label="32017">
+			<shortcut widget="LastPlayedChannels" label="$LOCALIZE[568]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/tv/*?view=lastplayed</shortcut>
+            <shortcut widget="AllChannels" label="$LOCALIZE[19287]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/tv/*</shortcut>
+            <shortcut widget="ActiveRecordings" label="$LOCALIZE[10701]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/active?view=flat</shortcut>
+            <shortcut widget="DeletedRecordings" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/deleted?view=flat</shortcut>
+            <shortcut widget="Timers" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://timers/tv/timers</shortcut>
+		</node>
+		<node label="32087">
+			<shortcut widget="RadioLastPlayedChannels" label="$LOCALIZE[568]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/radio/*?view=lastplayed</shortcut>
+            <shortcut widget="RadioAllChannels" label="$LOCALIZE[19287]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/radio/*</shortcut>
+            <shortcut widget="RadioActiveRecordings" label="$LOCALIZE[10706]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/active?view=flat</shortcut>
+            <shortcut widget="RadioDeletedRecordings" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/deleted?view=flat</shortcut>
+            <shortcut widget="RadioTimers" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://timers/radio/timers</shortcut>
+         </node>
 		<node label="32031">
 			<content>music</content>
 			<node label="32040">
@@ -276,18 +295,18 @@
     
 	<!-- default backgrounds -->
 	<backgrounddefault defaultID="movies">$INFO[Window(Home).Property(SkinHelper.AllMoviesBackground)]</backgrounddefault>
-	<propertydefault defaultID="movies" property="backgroundName">$ADDON[script.skin.helper.service 32039]</propertydefault>
+	<propertydefault defaultID="movies" property="backgroundName">Random movies background</propertydefault>
 	<backgrounddefault defaultID="tvshows">$INFO[Window(Home).Property(SkinHelper.AllTvShowsBackground)]</backgrounddefault>
-	<propertydefault defaultID="tvshows" property="backgroundName">$ADDON[script.skin.helper.service 32043]</propertydefault>
+	<propertydefault defaultID="tvshows" property="backgroundName">Random Tv Shows background</propertydefault>
 	
-	<backgrounddefault defaultID="music">$INFO[Window(Home).Property(SkinHelper.AllMusicBackground)]</backgrounddefault>
-	<propertydefault defaultID="music" property="backgroundName">$ADDON[script.skin.helper.service 32048]</propertydefault>
+	<backgrounddefault defaultID="10502">$INFO[Window(Home).Property(SkinHelper.AllMusicBackground)]</backgrounddefault>
+	<propertydefault defaultID="10502" property="backgroundName">Random music artists background</propertydefault>
 	<backgrounddefault defaultID="musicvideos">$INFO[Window(Home).Property(SkinHelper.AllMusicVideosBackground)]</backgrounddefault>
-	<propertydefault defaultID="musicvideos" property="backgroundName">$ADDON[script.skin.helper.service 32047]</propertydefault>
+	<propertydefault defaultID="musicvideos" property="backgroundName">Random music videos background</propertydefault>
 	<backgrounddefault defaultID="pictures">$INFO[Window(Home).Property(SkinHelper.PicturesBackground)]</backgrounddefault>
-	<propertydefault defaultID="pictures" property="backgroundName">$ADDON[script.skin.helper.service 32046]</propertydefault>
+	<propertydefault defaultID="pictures" property="backgroundName">Random pictures background</propertydefault>
 	<backgrounddefault defaultID="videos">$INFO[Window(Home).Property(SkinHelper.GlobalFanartBackground)]</backgrounddefault>
-	<propertydefault defaultID="videos" property="backgroundName">$ADDON[script.skin.helper.service 32038]</propertydefault>
+	<propertydefault defaultID="videos" property="backgroundName">Global media fanart background</propertydefault>
 	<backgrounddefault defaultID="weather">$INFO[Skin.String(WeatherFanArtPack.path)]$INFO[Window(Weather).Property(Current.FanartCode)]$VAR[WeatherFanArtExtension]</backgrounddefault>
 	<backgrounddefault defaultID="livetv">$INFO[Window(Home).Property(SkinHelper.PvrBackground)]</backgrounddefault>
 	<propertydefault defaultID="livetv" property="backgroundName">571</propertydefault>
@@ -301,7 +320,7 @@
 	
 	<!-- widgets -->
 	<widget label="31531" type="32010" condition="Window.IsActive(script-skinshortcuts.xml)">||BROWSE||script.skin.helper.service/?action=smartshortcuts</widget>
-    <widget label="$INFO[System.AddonTitle(plugin.service.gto)]" condition="System.HasAddon(plugin.service.gto)" type="pvr" target="pvr" path="plugin://plugin.service.gto?action=getcontent&amp;ts=$INFO[Window(Home).Property(GTO.timestamp)]">gto</widget>
+    <widget label="$INFO[System.AddonTitle(script.service.gto)]" condition="System.HasAddon(script.service.gto)" type="pvr" target="pvr" path="plugin://script.service.gto?action=getcontent&amp;ts=$INFO[Window(Home).Property(GTO.timestamp)]">gto</widget>
 
 	<!-- default widgets -->
 	<widgetdefaultnode defaultID="movies" group="mainmenu" label="In progress movies" type="movies" path="special://skin/playlists/video/InProgressMovies.xsp" target="video">inprogressmovies</widgetdefaultnode>
@@ -384,7 +403,7 @@
 </override>
 
 
-<groupoverride group="powermenu" condition="Window.IsActive(DialogButtonMenu.xml)">Close</groupoverride>
+<groupoverride group="powermenu" condition="Window.IsActive(DialogButtonMenu.xml)">Dialog.Close(all,true)</groupoverride>
 
 			
 </overrides>

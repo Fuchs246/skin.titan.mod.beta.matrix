@@ -29,7 +29,7 @@
 
         <!-- Thumb shape to be used -->
         <control type="label" id="5595">
-            <include>HiddenOffset</include>
+            <include>HiddenObject</include>
             <label>$VAR[ThumbShapeBasedOnSystem]</label>
         </control>
 
@@ -64,7 +64,7 @@
             <include condition="!Skin.HasSetting(SkinHelper.View.Disabled.521)">View_521_Panel_Low</include>
 			<include condition="!Skin.HasSetting(SkinHelper.View.Disabled.528)">View_528_Circle</include>
             
-            <include condition="!Skin.HasSetting(SkinHelper.View.Disabled.506)">ViewExtendedList</include>
+            <include condition="!Skin.HasSetting(SkinHelper.View.Disabled.506)">View_506_ExtendedList</include>
 
             <include condition="!Skin.HasSetting(SkinHelper.View.Disabled.501)">View_501_Landscape</include>
             <include condition="!Skin.HasSetting(SkinHelper.View.Disabled.505)">View_505_LandscapeDetails</include>
@@ -90,7 +90,7 @@
             <include condition="!Skin.HasSetting(SkinHelper.View.Disabled.55) + Window.IsActive(MyVideoNav.xml)">View_55_BannerList</include>
             <include condition="!Skin.HasSetting(SkinHelper.View.Disabled.503) + [Window.IsActive(MyVideoNav.xml) | Window.IsActive(programs) | Window.IsActive(games)]">View_503_Logos</include>
             <include condition="!Skin.HasSetting(SkinHelper.View.Disabled.523)">View_523_Netflix</include>
-			<include condition="!Skin.HasSetting(SkinHelper.View.Disabled.525) + [Window.IsActive(MyVideoNav.xml) | Window.IsActive(programs)]">View_525_Netflix_Landscape</include>
+			<include condition="!Skin.HasSetting(SkinHelper.View.Disabled.525)">View_525_Netflix_Landscape</include>     <!--  + [Window.IsActive(MyVideoNav.xml) | Window.IsActive(programs)] -->
 			<include condition="!Skin.HasSetting(SkinHelper.View.Disabled.526) + [Window.IsActive(MyVideoNav.xml) | Window.IsActive(programs)]">View_526_Wide_Netflix</include>
 			<include condition="!Skin.HasSetting(SkinHelper.View.Disabled.527) + [Window.IsActive(MyVideoNav.xml) | Window.IsActive(programs)]">View_527_TSE</include>
 			<include condition="!Skin.HasSetting(SkinHelper.View.Disabled.529) + Window.IsActive(MyVideoNav.xml)">View_529_NetflixSeasons</include>
@@ -101,8 +101,8 @@
             <visible>Control.IsVisible(507) | Control.IsVisible(513) | Control.IsVisible(514) | Control.IsVisible(526)</visible>
             <include condition="!skin.hassetting(nofooterbar)">Footer</include>
         </control>
-            
-        <!-- clearlogo -->
+		
+		 <!-- clearlogo -->
         <control type="group">
             <visible>![Control.IsVisible(519) | Control.IsVisible(520) | Control.IsVisible(523) | Control.IsVisible(525) | Control.IsVisible(527) | Control.IsVisible(529)]</visible>
             <include condition="Skin.String(ClearLogoLocation) + ![skin.hassetting(nofooterbar) + Skin.String(ClearLogoLocation,footer)]">ClearLogo</include>
@@ -230,8 +230,8 @@
                     </control>
                     
                 </focusedlayout>
-				<!--  <content>plugin://script.skin.helper.service/?action=alphabet&amp;reload=$INFO[Container.NumItems]</content> -->
-                <content>plugin://script.embuary.helper/?info=jumptoletter&amp;showall=false&amp;reload=$INFO[Container.NumItems]</content>
+				<content>plugin://script.skin.helper.service/?action=alphabet&amp;reload=$INFO[Container.NumItems]</content>
+                <!-- content>plugin://script.embuary.helper/?info=jumptoletter&amp;showall=false&amp;reload=$INFO[Container.NumItems]</content -->
 				<visible>Skin.HasSetting(EnableQuickJump) + Integer.IsGreater(Container.NumPages,1) + !Control.HasFocus(60)</visible>
                 <visible>String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556])</visible>
                 <animation effect="fade" start="0" end="100" time="400" condition="[Control.HasFocus(6002) | Skin.HasSetting(EnableTouchSupport) | Container.Scrolling | Skin.HasSetting(alwaysShowScrollbars)]">Conditional</animation>

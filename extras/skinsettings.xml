@@ -280,6 +280,16 @@
     <setting id="extrafanartdelay" value="20" label="20 $LOCALIZE[31231]" condition="" icon="" description=""/>
     <setting id="extrafanartdelay" value="30" label="30 $LOCALIZE[31231]" condition="" icon="" description=""/>
     <setting id="extrafanartdelay" value="60" label="60 $LOCALIZE[31231]" condition="" icon="" description=""/>
+	
+	<!-- Extra fanart delay NoSHS -->
+    <setting id="NoSHS_extrafanartdelay" value="5000" label="5 $LOCALIZE[31231]" condition="" icon="" description=""/>
+    <setting id="NoSHS_extrafanartdelay" value="6000" label="6 $LOCALIZE[31231]" condition="" icon="" description="" default="true"/>
+    <setting id="NoSHS_extrafanartdelay" value="8000" label="8 $LOCALIZE[31231]" condition="" icon="" description=""/>
+    <setting id="NoSHS_extrafanartdelay" value="10000" label="10 $LOCALIZE[31231]" condition="" icon="" description=""/>
+    <setting id="NoSHS_extrafanartdelay" value="15000" label="15 $LOCALIZE[31231]" condition="" icon="" description=""/>
+    <setting id="NoSHS_extrafanartdelay" value="20000" label="20 $LOCALIZE[31231]" condition="" icon="" description=""/>
+    <setting id="NoSHS_extrafanartdelay" value="30000" label="30 $LOCALIZE[31231]" condition="" icon="" description=""/>
+    <setting id="NoSHS_extrafanartdelay" value="60000" label="60 $LOCALIZE[31231]" condition="" icon="" description=""/>
     
     <!-- win10 home show infopanel -->
     <setting id="widgetInfoPanel" value="top" label="Top" condition="" icon="special://skin/extras/viewthumbs/widgetinfo_top.jpg" description=""/>
@@ -290,6 +300,7 @@
     <!-- artist fanart -->
     <setting id="MusicArtistFanart" value="single" label="Single fanart image" condition="" icon="" description=""/>
     <setting id="MusicArtistFanart" value="slideshow" label="Extrafanart (slideshow)" condition="" icon="" description="" default="true"/>
+    <setting id="MusicArtistFanart" value="slideshow1" label="ArtistSlideshow" condition="System.HasAddon(script.artistslideshow)" icon="" description=""/>
     <setting id="MusicArtistFanart" value="disabled" label="$LOCALIZE[1223]" condition="" icon="" description=""/>
     
     <!-- artist logo -->
@@ -459,9 +470,10 @@
      <!-- <setting id="videoinfo_castaction" value="global_search" label="Global Search Addon" condition="" icon="" description="Search via Global Search (Addon)"/> 
 	cant set searchstring-->
 	
-	<setting id="videoinfo_castaction" value="library_search" label="Library Search" condition="" icon="" description="Search via Titan MOD Search" default="true"/>
-	<setting id="videoinfo_castaction" value="extendedinfo" label="$LOCALIZE[31691]" condition="" icon="" description="Lookup in Extended Video Info (Addon)"/>
-    
+	<setting id="videoinfo_castaction" value="library_search" label="Library Search" condition="" icon="" description="Search via Titan MOD Search (recommended)" default="true"/>
+    <setting id="videoinfo_castaction" value="embuaryinfo" label="Embuary Info" condition="" icon="" description="Lookup in Embuary Info Addon (recommended)"/>
+	<setting id="videoinfo_castaction" value="extendedinfo" label="$LOCALIZE[31691]" condition="" icon="" description="Lookup in Extended Video Info Addon"/>
+	
 	<!-- options to show in videoinfo - multiselect -->
     <setting id="videoinfo_buttons" value="||MULTISELECT||" label="" condition="" icon="" description="">
         <option id="videoinfo_button_play" label="$LOCALIZE[208]" condition="" default="true"/>

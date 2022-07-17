@@ -12,7 +12,7 @@
         </control>
         
         <!--autocompletion -->
-        <control type="list" id="8000">
+        <control type="panel" id="8000">
 			<posx>60</posx>
 			<bottom>540</bottom>
 			<width>1790</width>

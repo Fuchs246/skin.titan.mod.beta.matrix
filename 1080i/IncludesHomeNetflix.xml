@@ -646,7 +646,7 @@
 					<onclick>SetProperty(SpotlightTrailerPlaying,home)</onclick>
 					<onclick condition="!String.IsEmpty(Window(home).Property(trailer_avail))">PlayMedia($INFO[listitem.path]$INFO[ListItem.FolderName,,-trailer.mp4],1)</onclick>
 					<onclick condition="String.IsEmpty(Window(home).Property(trailer_avail))">PlayMedia($INFO[ListItem.Trailer],1)</onclick>
-					<onclick condition="!String.IsEmpty(Window(home).Property(ForceOnlineTrailer))">RunScript(script.skin.helper.service,action=playtraileryoutube,mode=windowed,title=$INFO[ListItem.Title],local=true)</onclick>
+					<onclick condition="!String.IsEmpty(Window(home).Property(ForceOnlineTrailer))">RunScript(script.skin.helper.service,action=playtrailer,mode=windowed,title=$INFO[ListItem.Title],local=true)</onclick>
 				
 				</control>
 			
@@ -693,7 +693,7 @@
 					
 					<onfocus condition="!String.IsEmpty(Window(home).Property(trailer_avail))">PlayMedia($INFO[listitem.path]$INFO[ListItem.FolderName,,-trailer.mp4],1)</onfocus>
 					<onfocus condition="[!String.IsEmpty(ListItem.Trailer) + String.IsEmpty(Window(home).Property(trailer_avail))]">PlayMedia($INFO[ListItem.Trailer],1)</onfocus>
-					<onfocus condition="[[String.IsEmpty(Window(home).Property(trailer_avail)) + String.IsEmpty(ListItem.Trailer)] | ListItem.IsCollection | String.Contains(ListItem.Path,http)]">RunScript(script.skin.helper.service,action=playtraileryoutube,mode=windowed,title=$INFO[ListItem.Title],local=true)</onfocus>
+					<onfocus condition="[[String.IsEmpty(Window(home).Property(trailer_avail)) + String.IsEmpty(ListItem.Trailer)] | ListItem.IsCollection | String.Contains(ListItem.Path,http)]">RunScript(script.skin.helper.service,action=playtrailer,mode=windowed,title=$INFO[ListItem.Title],local=true)</onfocus>
 				</control> -->
 			</control>
 			
@@ -896,7 +896,7 @@
                             <width>35</width>
                             <height>35</height>
                             <texture background="true">$INFO[ListItem.Icon]</texture>
-                            <colordiffuse>$INFO[Skin.String(MainMenuFocusTextColor)]</colordiffuse>
+                            <colordiffuse>$VAR[Netflix_Icon_col]</colordiffuse>
                             <animation end="70" effect="fade" time="0" delay="0" condition="true">Conditional</animation>
                         </control>
 					</control>
@@ -913,6 +913,7 @@
 						<textcolor>$INFO[Skin.String(MainMenuTextColor)]</textcolor>
 						<label>$INFO[ListItem.Label]</label>
 						<animation effect="slide" end="-50" time="0" delay="0" condition="Skin.HasSetting(DisableIconsMainMenu)">Conditional</animation>
+						<visible>Control.HasFocus(300) | Control.HasFocus(4444) | Control.HasFocus(40003)</visible>
 					</control>
 				</itemlayout>
                 
@@ -942,6 +943,7 @@
                         <label>[B]$INFO[ListItem.Label][/B]</label>
 						<autoscroll>true</autoscroll>
                         <animation effect="slide" end="-50" time="0" delay="0" condition="Skin.HasSetting(DisableIconsMainMenu)">Conditional</animation>
+						<visible>Control.HasFocus(300) | Control.HasFocus(4444) | Control.HasFocus(40003)</visible>
                     </control>
                     <!-- menu item icon -->
                     <control type="group">
@@ -955,7 +957,7 @@
                             <width>35</width>
                             <height>35</height>
                             <texture background="true">$INFO[ListItem.Icon]</texture>
-                            <colordiffuse>$INFO[Skin.String(MainMenuFocusTextColor)]</colordiffuse>
+                            <colordiffuse>$VAR[Netflix_Icon_col]</colordiffuse>
                         </control>
                     </control>
                     

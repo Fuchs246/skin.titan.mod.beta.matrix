@@ -2,7 +2,7 @@
 
 <includes>
 
-	<include name="ViewExtendedList">	
+	<include name="View_506_ExtendedList">	
 		<control type="group">		
 			<posx>30</posx>
 			<bottom>110</bottom>

@@ -31,7 +31,7 @@
 		<label2>Kodi Command</label2>
 		<icon>common/shutdown1.png</icon>
 		<thumb />
-		<action>ShutDown</action>
+		<action>Powerdown()</action>
 	</shortcut>
 	<shortcut>
 		<defaultID>13013</defaultID>

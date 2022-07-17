@@ -12,7 +12,7 @@
 	<shortcut>
 		<label>$LOCALIZE[342]</label>
 		<label2>$LOCALIZE[342]</label2>
-		<icon>resource://resource.images.skinicons.wide/titan.png</icon>
+		<icon>resource://resource.images.skinicons.wide/movies.png</icon>
 		<thumb>$INFO[Window(Home).Property(SkinHelper.AllMoviesBackground)]</thumb>
 		<action>ActivateWindow(Videos,videodb://movies/titles/,return)</action>
 	</shortcut>
@@ -20,7 +20,7 @@
 	<shortcut>
 		<label>$LOCALIZE[20343]</label>
 		<label2>$LOCALIZE[20343]</label2>
-		<icon>resource://resource.images.skinicons.wide/titan.png</icon>
+		<icon>resource://resource.images.skinbackgrounds.titanium/hover_my tv series.jpg</icon>
 		<thumb>$INFO[Window(Home).Property(SkinHelper.AllTvShowsBackground)]</thumb>
 		<action>ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
 	</shortcut>
@@ -30,7 +30,6 @@
 		<label2>$LOCALIZE[10502]</label2>
 		<icon>resource://resource.images.skinicons.wide/music.png</icon>
 		<thumb>$INFO[Window(Home).Property(SkinHelper.AllMusicBackground)]</thumb>
-		<thumb />
 		<action>ActivateWindow(Music,musicdb://,return)</action>
 	</shortcut>
 	<!-- musicvideos tile -->
@@ -69,8 +68,8 @@
 	</shortcut>
 	<!-- games tile -->
 	<shortcut>
-		<label>Games</label>
-		<label2>Games</label2>
+		<label>$LOCALIZE[10821]</label>
+		<label2>$LOCALIZE[10821]</label2>
 		<icon>resource://resource.images.skinicons.wide/games.png</icon>
 		<thumb />
 		<action>ActivateWindow(Games,return)</action>

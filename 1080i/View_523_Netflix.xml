@@ -27,7 +27,7 @@
 				</include>
 				<!-- spotlight overlay section right -->
 				<control type="image">
-					<texture flipx="true" colordiffuse="$INFO[Skin.String(NetflixBGColor)]">overlay/gradient_overlay_info.png</texture>
+					<texture flipx="true" colordiffuse="$VAR[BackgroundOverlayTexture_Colordiffuse]">overlay/gradient_overlay_info.png</texture>
 				</control>
 			</control>
 			
@@ -226,6 +226,7 @@
 				<include condition="$EXP[InVideoMode] + !Skin.HasSetting(View523_SameHeight)">focused4</include>
 				<include condition="$EXP[UseTitanShape] | Skin.HasSetting(View523_SameHeight)">focused3</include>
 				<include condition="$EXP[InGameMode]">focused1</include>
+				<focusposition>3</focusposition>
 				<viewtype label="31018">icons</viewtype>
 				<left>60</left>
 				<bottom>0</bottom>

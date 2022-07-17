@@ -88,6 +88,29 @@
 					<onclick>Skin.ToggleSetting(SkinSearch_ShowTags)</onclick>
 					<selected>Skin.HasSetting(SkinSearch_ShowTags)</selected>
 				</control>
+				<control type="radiobutton" id="50005">
+					<width>560</width>
+					<include>SideBladeMenuButton</include>
+					<label>TMDB Helper - $LOCALIZE[137]</label>
+					<onclick>Skin.ToggleSetting(SkinSearch_TMDB)</onclick>
+					<selected>Skin.HasSetting(SkinSearch_TMDB)</selected>
+					<visible>System.HasAddon(plugin.video.themoviedb.helper) + System.AddonIsEnabled(plugin.video.themoviedb.helper)</visible>
+				</control>
+				<control type="radiobutton" id="50006">
+					<width>560</width>
+					<include>SideBladeMenuButton</include>
+					<label>YOUTUBE - $LOCALIZE[137]</label>
+					<onclick>Skin.ToggleSetting(SkinSearch_YOUTUBE)</onclick>
+					<selected>Skin.HasSetting(SkinSearch_YOUTUBE)</selected>
+					<visible>System.HasAddon(plugin.video.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
+				</control>
+				<control type="radiobutton" id="50007">
+					<width>560</width>
+					<include>SideBladeMenuButton</include>
+					<label>ADDON - $LOCALIZE[137]</label>
+					<onclick>Skin.ToggleSetting(SkinSearch_ADDON)</onclick>
+					<selected>Skin.HasSetting(SkinSearch_ADDON</selected>
+				</control>
 			</control>
 		</control>	
     </controls>

@@ -101,7 +101,16 @@
         <!-- tagline or clearlogo at bottom -->
         <control type="group" id="77552">
             <visible>!Skin.HasSetting(EnableTouchSupport)</visible>
-            
+            <control type="image" id="8821">
+                <width>100%</width>
+                <bottom>20</bottom>
+                <height>90</height>
+                <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                <texture background="true">$VAR[HomeMenuWidgetInfoclearlogo]</texture>
+                <animation time="200" effect="fade" delay="0">Visible</animation>
+                <animation time="0" effect="fade" delay="0">Hidden</animation>
+                <visible>Control.IsVisible(77551)</visible>
+            </control>
             <control type="fadelabel">
                 <left>0</left>
                 <bottom>0</bottom>
@@ -116,20 +125,11 @@
                 <scrollout>true</scrollout>
                 <pauseatend>0</pauseatend>
                 <visible>String.IsEmpty(Control.GetLabel(8821))</visible>
-                <animation time="300" effect="fade" delay="500">Visible</animation>
-                <animation time="200" effect="fade" delay="500">Hidden</animation>
+                <animation time="200" effect="fade" delay="500">Visible</animation>
+                <animation time="0" effect="fade" delay="0">Hidden</animation>
                 <visible>Control.IsVisible(77551)</visible>
             </control>
-            <control type="image" id="8821">
-                <width>100%</width>
-                <bottom>20</bottom>
-                <height>90</height>
-                <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                <texture background="true">$VAR[HomeMenuWidgetInfoclearlogo]</texture>
-                <animation time="300" effect="fade" delay="500">Visible</animation>
-                <animation time="200" effect="fade" delay="500">Hidden</animation>
-                <visible>Control.IsVisible(77551)</visible>
-            </control>
+            
         </control>
             
         <!-- widgets -->
@@ -499,13 +499,13 @@
 		<animation effect="slide" delay="0" start="0,0" end="0,40" time="0" condition="![Window.IsActive(3018) | Window.IsActive(3017)] + Skin.String(HomeLayout,1small) + !String.IsEqual(Window(Home).Property(ShowWidget),show) + Skin.HasSetting(HideWidgetDetailsPanel) + Skin.HasSetting(LowerWidgets) + Skin.HasSetting(AutoShowWidgets)">Conditional</animation>
 		
 		
-		<animation effect="slide" start="0" end="140" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + Skin.HasSetting(VerticalHomeLargeWidget) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,4)">Conditional</animation>
+		<!--animation effect="slide" start="0" end="140" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + Skin.HasSetting(VerticalHomeLargeWidget) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,4)">Conditional</animation>
         <animation effect="slide" start="0" end="261" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,6) + !String.Contains(Skin.String(HomeLayout),ver)">Conditional</animation>
         <animation effect="slide" start="0" end="261" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,5) + !String.Contains(Skin.String(HomeLayout),ver)">Conditional</animation>
         <animation effect="slide" start="0" end="261" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,4)">Conditional</animation>
         <animation effect="slide" start="0" end="261" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,3)">Conditional</animation>
         <animation effect="slide" start="0" end="261" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,2)">Conditional</animation>
-        <animation effect="slide" start="0" end="261" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,1)">Conditional</animation>
+        <animation effect="slide" start="0" end="261" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,1)">Conditional</animation-->
         
 		<include condition="!Skin.HasSetting(NetflixHomeDisableFirstRow) + String.Contains(Skin.String(HomeLayout),net)">Netflix_WidgetFade</include>
 		
@@ -787,7 +787,7 @@
 			</control>
         </focusedlayout>
         
-        <animation effect="slide" start="0" end="140" time="0" condition="Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + Skin.HasSetting(VerticalHomeLargeWidget) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,7)">Conditional</animation>
+        <!--animation effect="slide" start="0" end="140" time="0" condition="Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + Skin.HasSetting(VerticalHomeLargeWidget) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,7)">Conditional</animation>
         <animation effect="slide" start="0" end="182" time="0" condition="Skin.HasSetting(WidgetAlignRight) + !String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,9)">Conditional</animation>
         <animation effect="slide" start="0" end="182" time="0" condition="Skin.HasSetting(WidgetAlignRight) + !String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,8)">Conditional</animation>
         <animation effect="slide" start="0" end="182" time="0" condition="Skin.HasSetting(WidgetAlignRight) + !String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,7)">Conditional</animation>
@@ -803,7 +803,7 @@
         <animation effect="slide" start="0" end="162" time="0" condition="Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,4)">Conditional</animation>
         <animation effect="slide" start="0" end="162" time="0" condition="Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,3)">Conditional</animation>
         <animation effect="slide" start="0" end="162" time="0" condition="Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,2)">Conditional</animation>
-        <animation effect="slide" start="0" end="162" time="0" condition="Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,1)">Conditional</animation>
+        <animation effect="slide" start="0" end="162" time="0" condition="Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,1)">Conditional</animation-->
     </include>
 	   
     <!-- widget square layout -->
@@ -826,13 +826,13 @@
 		<animation effect="slide" delay="0" start="0,0" end="0,160" time="0" condition="![Window.IsActive(3018) | Window.IsActive(3017)] + Skin.String(HomeLayout,1small) + !String.IsEqual(Window(Home).Property(ShowWidget),show) + Skin.HasSetting(HideWidgetDetailsPanel) + Skin.HasSetting(LowerWidgets) + Skin.HasSetting(AutoShowWidgets)">Conditional</animation>
 		
         
-        <animation effect="slide" start="0" end="140" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + Skin.HasSetting(VerticalHomeLargeWidget) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,4)">Conditional</animation>
+        <!--animation effect="slide" start="0" end="140" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + Skin.HasSetting(VerticalHomeLargeWidget) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,4)">Conditional</animation>
         <animation effect="slide" start="0" end="262" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,6) + !String.Contains(Skin.String(HomeLayout),ver)">Conditional</animation>
         <animation effect="slide" start="0" end="262" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,5) + !String.Contains(Skin.String(HomeLayout),ver)">Conditional</animation>
         <animation effect="slide" start="0" end="262" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,4)">Conditional</animation>
         <animation effect="slide" start="0" end="262" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,3)">Conditional</animation>
         <animation effect="slide" start="0" end="262" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,2)">Conditional</animation>
-        <animation effect="slide" start="0" end="262" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,1)">Conditional</animation>
+        <animation effect="slide" start="0" end="262" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,1)">Conditional</animation-->
         
 		<include condition="!Skin.HasSetting(NetflixHomeDisableFirstRow) + Window.IsActive(Home) + String.Contains(Skin.String(HomeLayout),net)">Netflix_WidgetFade</include>
 		
@@ -915,7 +915,7 @@
 		<animation effect="slide" delay="0" start="0,0" end="0,280" time="0" condition="![Window.IsActive(3018) | Window.IsActive(3017)] + Skin.String(HomeLayout,1small) + !String.IsEqual(Window(Home).Property(ShowWidget),show) + Skin.HasSetting(HideWidgetDetailsPanel) + Skin.HasSetting(LowerWidgets) + Skin.HasSetting(AutoShowWidgets)">Conditional</animation>
 		
 		
-        <animation effect="slide" start="0" end="130" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,13) + !String.Contains(Skin.String(HomeLayout),ver)">Conditional</animation>
+        <!--animation effect="slide" start="0" end="130" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,13) + !String.Contains(Skin.String(HomeLayout),ver)">Conditional</animation>
         <animation effect="slide" start="0" end="130" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,12) + !String.Contains(Skin.String(HomeLayout),ver)">Conditional</animation>
         <animation effect="slide" start="0" end="130" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,11) + !String.Contains(Skin.String(HomeLayout),ver)">Conditional</animation>
         <animation effect="slide" start="0" end="130" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,10) + !String.Contains(Skin.String(HomeLayout),ver)">Conditional</animation>
@@ -927,7 +927,7 @@
         <animation effect="slide" start="0" end="130" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,4)">Conditional</animation>
         <animation effect="slide" start="0" end="130" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,3)">Conditional</animation>
         <animation effect="slide" start="0" end="130" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,2)">Conditional</animation>
-        <animation effect="slide" start="0" end="130" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,1)">Conditional</animation>
+        <animation effect="slide" start="0" end="130" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,1)">Conditional</animation-->
         
 		<include condition="!Skin.HasSetting(NetflixHomeDisableFirstRow) + Window.IsActive(Home) + String.Contains(Skin.String(HomeLayout),net)">Netflix_WidgetFade</include>
 		
@@ -1008,14 +1008,14 @@
 		<animation effect="slide" delay="0" start="0,0" end="0,190" time="0" condition="![Window.IsActive(3018) | Window.IsActive(3017)] + Skin.String(HomeLayout,1small) + !String.IsEqual(Window(Home).Property(ShowWidget),show) + Skin.HasSetting(HideWidgetDetailsPanel) + Skin.HasSetting(LowerWidgets) + Skin.HasSetting(AutoShowWidgets)">Conditional</animation>
 
 
-        <animation effect="slide" start="0" end="140" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + Skin.HasSetting(VerticalHomeLargeWidget) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,3)">Conditional</animation>
+        <!--animation effect="slide" start="0" end="140" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + Skin.HasSetting(VerticalHomeLargeWidget) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,3)">Conditional</animation>
         <animation effect="slide" start="0" end="366" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,4)">Conditional</animation>
         <animation effect="slide" start="0" end="366" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,3)">Conditional</animation>
         <animation effect="slide" start="0" end="366" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,2)">Conditional</animation>
         <animation effect="slide" start="0" end="366" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + !String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,1)">Conditional</animation>
         <animation effect="slide" start="0" end="326" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,3)">Conditional</animation>
         <animation effect="slide" start="0" end="326" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,2)">Conditional</animation>
-        <animation effect="slide" start="0" end="326" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,1)">Conditional</animation>
+        <animation effect="slide" start="0" end="326" time="0" condition="String.IsEmpty(Window(Home).Property(netflixview)) + Skin.HasSetting(WidgetAlignRight) + String.Contains(Skin.String(HomeLayout),ver) + !Integer.IsGreater(Container($PARAM[widgetid]).NumItems,1)">Conditional</animation-->
         
 		<include condition="!Skin.HasSetting(NetflixHomeDisableFirstRow) + Window.IsActive(Home) + String.Contains(Skin.String(HomeLayout),net)">Netflix_WidgetFade</include>
 				
@@ -1127,7 +1127,7 @@
 					<onfocus>SetProperty(widgetstyle,netflixspotlight)</onfocus>
 					<onfocus>SetProperty(SkinHelper.WidgetContainer,$PARAM[widgetid],home)</onfocus>
 					<onfocus>SetProperty(LastFocusWidgetPos,$INFO[Container($PARAM[widgetid]).CurrentItem],Home)</onfocus>
-					<onfocus condition="[String.IsEmpty(ListItem.Trailer) + ![ListItem.IsCollection | String.Contains(ListItem.Path,http)]">RunScript(script.embuary.helper,action=lookforfile,file='"$INFO[listitem.path]$INFO[listitem.FolderName,,-trailer.mp4]"',prop=trailer_avail)</onfocus>
+					<onfocus condition="!Skin.HasSetting(Library_NoOnlineLookupTrailer) + [String.IsEmpty(ListItem.Trailer) + ![ListItem.IsCollection | String.Contains(ListItem.Path,http)]">RunScript(script.embuary.helper,action=lookforfile,file='"$INFO[listitem.path]$INFO[listitem.FolderName,,-trailer.mp4]"',prop=trailer_avail)</onfocus>
 					<onfocus condition="[String.IsEmpty(ListItem.Trailer) + [ListItem.IsCollection | String.Contains(ListItem.Path,http)]">SetProperty(ForceOnlineTrailer,true,Home)</onfocus>
 					<include content="WidgetProperties">
 						<param name="widgetid" value="$PARAM[widgetid]" />
@@ -2082,7 +2082,6 @@
     <!-- mod: leftalign adds left attribute to ** -->
     <include name="widget_header_multi">
          <control type="group" id="20$PARAM[widgetid]">
-			
 			<visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$PARAM[submenuid]) | Skin.HasSetting(ShowAllWidgets)</visible>
             <width>100%</width>
 			<left>-5</left>
@@ -2108,7 +2107,7 @@
 					<label>[B]$PARAM[widgetName][/B]</label>
 					<visible>String.IsEmpty(Container($PARAM[widgetid]).ListItem.Property(similartitle))</visible>
            		</control>
-				<control type="textbox">
+				<control type="label">
 					<description>Header Similiar Widget</description>
 					<top>18</top>
                     <width>auto</width>
@@ -2222,7 +2221,8 @@
             <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$PARAM[submenuid]) | Skin.HasSetting(ShowAllWidgets)</visible>
             <animation effect="slide" delay="0" start="0" end="0,150" time="0" condition="String.Contains(Skin.String(HomeLayout),horizontal) + Skin.HasSetting(AutoShowWidgets) + !String.IsEqual(Window(Home).Property(ShowWidget),show)">Conditional</animation>
             <control type="multiimage">
-                <left>10</left>
+                <top>-35</top>
+				<left>10</left>
                 <width>98%</width>
                 <height>40</height>
                 <include condition="Skin.HasSetting(WidgetAlignRight) + !Skin.String(Homelayout,enhanced)">widget_header_rightalign</include>
@@ -2946,21 +2946,21 @@
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Title))">[B]$INFO[Window(Home).Property(ListItem.Title)][/B]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Label))">[B]$INFO[Window(Home).Property(ListItem.Label)][/B]</value>
         <!--widgets fallback-->
-        <value condition="String.Contains(Container(300).ListItem.Property(widgetPath), plugin.video.youtube)">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.label)][CR]$INFO[Window(Home).Property(SkinHelper.ListItem.label2)][/B]</value>
-        <value condition="String.IsEqual(Window(Home).Property(SkinHelper.ListItem.DBTYPE), systeminfo)">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.label)][/B] $INFO[Window(Home).Property(SkinHelper.ListItem.label2)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Title)) + String.Contains(Window(Home).Property(SkinHelper.ListItem.FolderPath), pvr://)">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Title)][/B]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Season)) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Episode)) + !String.IsEqual(Window(Home).Property(SkinHelper.ListItem.TvShowTitle),Window(Home).Property(SkinHelper.ListItem.Title))">[B][UPPERCASE]S$INFO[Window(Home).Property(SkinHelper.ListItem.Season)]E$INFO[Window(Home).Property(SkinHelper.ListItem.Episode)]:[/UPPERCASE] $INFO[Window(Home).Property(SkinHelper.ListItem.Title)][/B]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Title))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Title)][/B]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Label))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Label)][/B]</value>
+        <value condition="!ControlGroup(77777).HasFocus + String.Contains(Container(300).ListItem.Property(widgetPath), plugin.video.youtube)">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.label)][CR]$INFO[Window(Home).Property(SkinHelper.ListItem.label2)][/B]</value>
+        <value condition="!ControlGroup(77777).HasFocus + String.IsEqual(Window(Home).Property(SkinHelper.ListItem.DBTYPE), systeminfo)">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.label)][/B] $INFO[Window(Home).Property(SkinHelper.ListItem.label2)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Title)) + String.Contains(Window(Home).Property(SkinHelper.ListItem.FolderPath), pvr://)">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Title)][/B]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Season)) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Episode)) + !String.IsEqual(Window(Home).Property(SkinHelper.ListItem.TvShowTitle),Window(Home).Property(SkinHelper.ListItem.Title))">[B][UPPERCASE]S$INFO[Window(Home).Property(SkinHelper.ListItem.Season)]E$INFO[Window(Home).Property(SkinHelper.ListItem.Episode)]:[/UPPERCASE] $INFO[Window(Home).Property(SkinHelper.ListItem.Title)][/B]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Title))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Title)][/B]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Label))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Label)][/B]</value>
     </variable>
     <variable name="HomeMenuWidgetInfoLabel2">
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Tagline))">$INFO[Window(Home).Property(ListItem.Tagline)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.TvShowTitle))">$INFO[Window(Home).Property(ListItem.TvShowTitle)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Artist))">$INFO[Window(Home).Property(ListItem.Artist)]</value>
         
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Tagline))">$INFO[Window(Home).Property(SkinHelper.ListItem.Tagline)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.TvShowTitle))">$INFO[Window(Home).Property(SkinHelper.ListItem.TvShowTitle)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Artist))">$INFO[Window(Home).Property(SkinHelper.ListItem.Artist)]</value>
+        <value condition="!Control.HasFocus(1505) + !Control.HasFocus(2505) + !Control.HasFocus(3505) + !Control.HasFocus(4505) + !Control.HasFocus(5505) + !Control.HasFocus(6505) + !Control.HasFocus(7505) + !Control.HasFocus(8505) + !Control.HasFocus(9505) + !Control.HasFocus(10505) + !Control.HasFocus(11505) + !Control.HasFocus(12505) + !Control.HasFocus(13505) + !Control.HasFocus(14505) + !Control.HasFocus(15505) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Tagline))">$INFO[Window(Home).Property(SkinHelper.ListItem.Tagline)]</value>
+        <value condition="!Control.HasFocus(1505) + !Control.HasFocus(2505) + !Control.HasFocus(3505) + !Control.HasFocus(4505) + !Control.HasFocus(5505) + !Control.HasFocus(6505) + !Control.HasFocus(7505) + !Control.HasFocus(8505) + !Control.HasFocus(9505) + !Control.HasFocus(10505) + !Control.HasFocus(11505) + !Control.HasFocus(12505) + !Control.HasFocus(13505) + !Control.HasFocus(14505) + !Control.HasFocus(15505) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.TvShowTitle))">$INFO[Window(Home).Property(SkinHelper.ListItem.TvShowTitle)]</value>
+        <value condition="!Control.HasFocus(1505) + !Control.HasFocus(2505) + !Control.HasFocus(3505) + !Control.HasFocus(4505) + !Control.HasFocus(5505) + !Control.HasFocus(6505) + !Control.HasFocus(7505) + !Control.HasFocus(8505) + !Control.HasFocus(9505) + !Control.HasFocus(10505) + !Control.HasFocus(11505) + !Control.HasFocus(12505) + !Control.HasFocus(13505) + !Control.HasFocus(14505) + !Control.HasFocus(15505) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Artist))">$INFO[Window(Home).Property(SkinHelper.ListItem.Artist)]</value>
     </variable>
     <variable name="HomeMenuWidgetInfoclearlogo">
         <value condition="!ControlGroup(77777).HasFocus + Control.IsVisible(1508) + !String.IsEmpty(Container(1508).ListItem.Art(clearlogo))">$INFO[Container(1508).ListItem.Art(clearlogo)]</value>
@@ -2968,8 +2968,8 @@
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.ChannelLogo))">$INFO[Window(Home).Property(ListItem.ChannelLogo)]</value>
         <value condition="!String.IsEmpty(Window(home).Property(ListItem.Art.ClearLogo))">$INFO[Window(home).Property(ListItem.Art.ClearLogo)]</value>
         
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.ChannelLogo))">$INFO[Window(Home).Property(SkinHelper.ListItem.ChannelLogo)]</value>
-        <value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Art.ClearLogo))">$INFO[Window(home).Property(SkinHelper.ListItem.Art.ClearLogo)]</value>
+        <value condition="!Control.HasFocus(1505) + !Control.HasFocus(2505) + !Control.HasFocus(3505) + !Control.HasFocus(4505) + !Control.HasFocus(5505) + !Control.HasFocus(6505) + !Control.HasFocus(7505) + !Control.HasFocus(8505) + !Control.HasFocus(9505) + !Control.HasFocus(10505) + !Control.HasFocus(11505) + !Control.HasFocus(12505) + !Control.HasFocus(13505) + !Control.HasFocus(14505) + !Control.HasFocus(15505) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.ChannelLogo))">$INFO[Window(Home).Property(SkinHelper.ListItem.ChannelLogo)]</value>
+        <value condition="!Control.HasFocus(1505) + !Control.HasFocus(2505) + !Control.HasFocus(3505) + !Control.HasFocus(4505) + !Control.HasFocus(5505) + !Control.HasFocus(6505) + !Control.HasFocus(7505) + !Control.HasFocus(8505) + !Control.HasFocus(9505) + !Control.HasFocus(10505) + !Control.HasFocus(11505) + !Control.HasFocus(12505) + !Control.HasFocus(13505) + !Control.HasFocus(14505) + !Control.HasFocus(15505) + !String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Art.ClearLogo))">$INFO[Window(home).Property(SkinHelper.ListItem.Art.ClearLogo)]</value>
 		<value condition="String.Contains(Container.FolderPath,pvr://)">resource://resource.images.skinbackgrounds.titanium/hover_my tv.jpg</value>
 		
     </variable>
@@ -3004,12 +3004,12 @@
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.ChannelLogo))">$INFO[Window(Home).Property(ListItem.ChannelLogo)]</value>
         <value condition="!String.IsEmpty(Window(home).Property(ListItem.Art.ChannelLogo))">$INFO[Window(home).Property(ListItem.Art.ChannelLogo)]</value>
         <!-- skinhelper fallback -->
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.clearlogo))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.clearlogo)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.landscape))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.landscape)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.poster))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.poster)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.ChannelLogo))">$INFO[Window(Home).Property(SkinHelper.ListItem.ChannelLogo)]</value>
-        <value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Art.ChannelLogo))">$INFO[Window(home).Property(SkinHelper.ListItem.Art.ChannelLogo)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Icon))">$INFO[Window(Home).Property(SkinHelper.ListItem.Icon)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.clearlogo))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.clearlogo)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.landscape))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.landscape)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.poster))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.poster)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.ChannelLogo))">$INFO[Window(Home).Property(SkinHelper.ListItem.ChannelLogo)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Art.ChannelLogo))">$INFO[Window(home).Property(SkinHelper.ListItem.Art.ChannelLogo)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Icon))">$INFO[Window(Home).Property(SkinHelper.ListItem.Icon)]</value>
     </variable>
     <variable name="HomeMenuWidgetInfoPlot">
         <!-- workaround - contains ''director: " is a workaround to ignore bad scraped outline plots, it should be solved at scraper level -->
@@ -3040,22 +3040,23 @@
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.PictureComment))">$INFO[Window(Home).Property(ListItem.PictureComment)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.PictureKeywords))">$INFO[Window(Home).Property(ListItem.PictureKeywords)]</value>
         <!-- skinhelper fallback-->
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.PlotOutline)) + Skin.HasSetting(WidgetsPreferPlotOutline) + !String.Contains(Window(Home).Property(SkinHelper.ListItem.PlotOutline),$LOCALIZE[20339]: )">$INFO[Window(Home).Property(SkinHelper.ListItem.PlotOutline)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Plot))">$INFO[Window(Home).Property(SkinHelper.ListItem.Plot)]$INFO[Window(Home).Property(SkinHelper.ListItem.label2),[CR]]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Album_Description))">$INFO[Window(Home).Property(SkinHelper.ListItem.Album_Description)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Artist_Description))">$INFO[Window(Home).Property(SkinHelper.ListItem.Artist_Description)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.PictureDesc))">$INFO[Window(Home).Property(SkinHelper.ListItem.PictureDesc)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.PictureComment))">$INFO[Window(Home).Property(SkinHelper.ListItem.PictureComment)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.PictureKeywords))">$INFO[Window(Home).Property(SkinHelper.ListItem.PictureKeywords)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.PlotOutline)) + Skin.HasSetting(WidgetsPreferPlotOutline) + !String.Contains(Window(Home).Property(SkinHelper.ListItem.PlotOutline),$LOCALIZE[20339]: )">$INFO[Window(Home).Property(SkinHelper.ListItem.PlotOutline)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Plot))">$INFO[Window(Home).Property(SkinHelper.ListItem.Plot)]$INFO[Window(Home).Property(SkinHelper.ListItem.label2),[CR]]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Album_Description))">$INFO[Window(Home).Property(SkinHelper.ListItem.Album_Description)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Artist_Description))">$INFO[Window(Home).Property(SkinHelper.ListItem.Artist_Description)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.PictureDesc))">$INFO[Window(Home).Property(SkinHelper.ListItem.PictureDesc)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.PictureComment))">$INFO[Window(Home).Property(SkinHelper.ListItem.PictureComment)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.PictureKeywords))">$INFO[Window(Home).Property(SkinHelper.ListItem.PictureKeywords)]</value>
     </variable>
     <variable name="HomeMenuWidgetInfoPlotAlt">
         <!-- Landscspe and Poster details widget (filled first)-->
 		<!-- muss noch mit skinhelper fallback abgeglichen werden -->
-        <value condition="!String.IsEmpty(ListItem.TvShowTitle)">[B]$INFO[ListItem.TvShowTitle,]$INFO[ListItem.Premiered, • ]$INFO[ListItem.MPAA, • ]$VAR[ListItemDuration, • ]$INFO[ListItem.Genre, • ][/B][CR][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
+        <value condition="!String.IsEmpty(ListItem.TvShowTitle)">[B]$INFO[ListItem.TvShowTitle,]$INFO[ListItem.Premiered, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.airdaytime.label), • ]$INFO[ListItem.MPAA, • ]$VAR[ListItemDuration, • ]$INFO[ListItem.Genre, • ][/B][CR][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
         <value condition="!String.IsEmpty(ListItem.Artist)">[B]$INFO[ListItem.Artist]$INFO[ListItem.Album, • ]$VAR[ListItemDuration, • ]$INFO[ListItem.Genre, • ][/B][CR][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
         <value condition="!String.IsEmpty(ListItem.Year)">[B]$INFO[ListItem.Year,]$INFO[ListItem.MPAA, • ]$VAR[ListItemDuration, • ]$INFO[ListItem.Genre, • ][/B][CR][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
         <value condition="!String.IsEmpty(ListItem.Property(StartDateTime))">[B]$INFO[ListItem.Channel,, • ]$INFO[ListItem.Property(StartDateTime),, • ]$VAR[ListItemDuration,, • ]$INFO[ListItem.Genre][/B][CR][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
         <value condition="!String.IsEmpty(ListItem.Property(DateTime)) + !String.IsEmpty(ListItem.Label2)">[B]$INFO[ListItem.Label2,, • ]$INFO[ListItem.Property(DateTime),, • ]$VAR[ListItemDuration,, • ]$INFO[ListItem.Genre][/B][CR][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
+		<value condition="!String.IsEmpty(ListItem.Property(StartTime)) + !String.IsEmpty(ListItem.Label2)">[B]$INFO[ListItem.Label2,, • ]$INFO[ListItem.Property(StartTime),, • ]$VAR[ListItemDuration,, • ]$INFO[ListItem.Genre][/B][CR][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
         <value condition="!String.IsEmpty(ListItem.StartTime)">[B]$INFO[ListItem.Label,, • ]$INFO[ListItem.StartTime,, • ]$VAR[ListItemDuration,, • ]$INFO[ListItem.Genre][/B][CR][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
 		<!-- spotlight widget -->
         <value condition="!ControlGroup(77777).HasFocus + Control.IsVisible(1508) + !String.IsEmpty(Container(1508).ListItem.TvShowTitle)">[B]$INFO[Container(1508).ListItem.TvShowTitle]$INFO[Container(1508).ListItem.Year, • ]$INFO[Container(1508).ListItem.Premiered, • ]$INFO[Container(1508).ListItem.Duration, • ]$INFO[Container(1508).ListItem.Genre, • ][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
@@ -3072,12 +3073,12 @@
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Property(DateTime))) + !String.IsEmpty(Window(Home).Property(ListItem.Label2))">[B]$INFO[Window(Home).Property(ListItem.Label2),, • ]$INFO[Window(Home).Property(ListItem.Property(DateTime)),, • ]$INFO[Window(Home).Property(ListItem.Duration),, min. • ]$INFO[Window(Home).Property(ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.StartTime))">[B]$INFO[Window(Home).Property(ListItem.Label),, • ]$INFO[Window(Home).Property(ListItem.StartTime),, • ]$INFO[Window(Home).Property(ListItem.Duration),, min. • ]$INFO[Window(Home).Property(ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
         <!-- skinhelper fallback -->
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.TvShowTitle))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.TvShowTitle),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Year),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Premiered),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Runtime),, min • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Year)) + String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Artist))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Year),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Premiered),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Runtime),, min • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Artist))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Artist),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Album),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Year),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Duration),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.StartDateTime))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Label),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.StartDateTime),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Runtime),, min. • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Property(DateTime))) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Label2))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Label2),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Property(DateTime)),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Runtime),, min • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.StartTime))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Label),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.StartTime),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Runtime),, min • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.TvShowTitle))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.TvShowTitle),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Year),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Premiered),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Runtime),, min • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Year)) + String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Artist))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Year),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Premiered),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Runtime),, min • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Artist))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Artist),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Album),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Year),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Duration),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.StartDateTime))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Label),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.StartDateTime),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Runtime),, min. • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Property(DateTime))) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Label2))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Label2),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Property(DateTime)),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Runtime),, min • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.StartTime))">[B]$INFO[Window(Home).Property(SkinHelper.ListItem.Label),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.StartTime),, • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Runtime),, min • ]$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)][/B][CR]$VAR[HomeMenuWidgetInfoPlot]</value>
         <value>$VAR[HomeMenuWidgetInfoPlot]</value>
     </variable>
 
@@ -3086,22 +3087,22 @@
         <value condition="Skin.HasSetting(EnableAnimatedPosters) + !String.IsEmpty(ListItem.Art(animatedposter))">$INFO[ListItem.Art(animatedposter)]</value>
         <!-- use episode thumb for episode widgets if widget style is poster -->
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Art.Thumb)) + String.Contains(Window.Property(widgetstyle),poster) + String.Contains(Window(Home).Property(ListItem.dbtype),episode)">$INFO[Window(Home).Property(ListItem.Art.Thumb)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Thumb)) + String.Contains(Window.Property(widgetstyle),poster) + String.Contains(Window(Home).Property(SkinHelper.ListItem.dbtype),episode)">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Thumb)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Thumb)) + String.Contains(Window.Property(widgetstyle),poster) + String.Contains(Window(Home).Property(SkinHelper.ListItem.dbtype),episode)">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Thumb)]</value>
         <!-- use thumb if widget style is square -->
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Art.Thumb)) + String.Contains(Window.Property(widgetstyle),square)">$INFO[Window(Home).Property(ListItem.Art.Thumb)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Thumb)) + String.Contains(Window.Property(widgetstyle),square)">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Thumb)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Thumb)) + String.Contains(Window.Property(widgetstyle),square)">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Thumb)]</value>
         <!-- use thumb for weather widget -->
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Thumb)) + String.Contains(Window.Property(ListItem.DBTYPE),weather)">$INFO[Window(Home).Property(ListItem.Thumb)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Thumb)) + String.Contains(Window.Property(SkinHelper.ListItem.DBTYPE),weather)">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Thumb)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Thumb)) + String.Contains(Window.Property(SkinHelper.ListItem.DBTYPE),weather)">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Thumb)]</value>
         <!-- use poster image if widget style is landscaped-->
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Art.Poster)) + String.Contains(Window.Property(widgetstyle),landscape)">$INFO[Window(Home).Property(ListItem.Art.Poster)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Art.Fanart))">$INFO[Window(Home).Property(ListItem.Art.Fanart)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Art.Thumb))">$INFO[Window(Home).Property(ListItem.Art.Thumb)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(ListItem.Icon))">$INFO[Window(Home).Property(ListItem.Icon)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Poster)) + String.Contains(Window.Property(widgetstyle),landscape)">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Poster)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Fanart))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Fanart)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Thumb))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Thumb)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Icon))">$INFO[Window(Home).Property(SkinHelper.ListItem.Icon)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Poster)) + String.Contains(Window.Property(widgetstyle),landscape)">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Poster)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Fanart))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Fanart)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Thumb))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Thumb)]</value>
+        <value condition="!ControlGroup(77777).HasFocus + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Icon))">$INFO[Window(Home).Property(SkinHelper.ListItem.Icon)]</value>
     </variable>
     
 	

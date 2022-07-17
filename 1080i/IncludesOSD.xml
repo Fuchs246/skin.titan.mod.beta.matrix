@@ -184,7 +184,16 @@
 					<animation effect="slide" start="0" end="0,-130" time="200" condition="Skin.HasSetting(OSDLargeSeekingLabel) + !Player.Playing">Conditional</animation>
 					<animation effect="slide" end="0,-110" time="200" condition="Skin.HasSetting(OSDLargeSeekingLabel) + !Player.Playing + !Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
 				</control>
-				
+				<control type="label">
+					<posy>-50</posy>
+					<width>100%</width>
+					<align>center</align>
+					<font>font12</font>
+					<textcolor>$INFO[Skin.String(OSDPrimaryTextColor)]</textcolor>
+					<shadowcolor>$INFO[Skin.String(OSDPrimaryTextShadowColor)]</shadowcolor>	
+					<label>[B]Timeshift:[/B] $INFO[PVR.TimeshiftCur] (-$INFO[PVR.TimeshiftOffset])</label>
+					<visible>PVR.IsTimeShift</visible>
+				</control>
 				<!-- OSD label 3 Genre Chapter Info -->
 				<control type="label">
 					<right>525</right>
@@ -258,8 +267,7 @@
 					<posy>60</posy>
 					<height>20</height>
 					<width>825</width>
-					<info>Player.ProgressCache</info>
-					 
+					<info>PVR.TimeshiftProgressBufferEnd</info> 
 					<texturebg border="5" colordiffuse="00ffffff">diffuse/panel.png</texturebg>
 					<lefttexture></lefttexture>
 					<midtexture border="5" colordiffuse="$INFO[Skin.String(OSDProgressBarCacheColor)]">diffuse/panel.png</midtexture>
@@ -275,7 +283,7 @@
 					<width>825</width>
 					<info>Player.Progress</info>
 					<!-- !Player.ChannelPreviewActive -->
-					<visible>!VideoPlayer.HasEpg</visible>
+					<visible>!VideoPlayer.Content(LiveTV)</visible>
 					<texturebg border="5" colordiffuse="$VAR[OSDProgressBarBackgroundColor]">diffuse/panel_trans.png</texturebg>
 					<lefttexture></lefttexture>
 					<midtexture border="5" colordiffuse="$INFO[Skin.String(OSDProgressBarColor)]">diffuse/panel.png</midtexture>
@@ -316,6 +324,24 @@
                     <textureslidernibfocus>colors/color_white.png</textureslidernibfocus>
                     <visible>Player.Seeking + Player.HasVideo</visible>
 				</control>
+				<control type="ranges">
+					<posx>571</posx>
+					<posy>60</posy>
+					<width>823</width>
+					<height>1.5</height>
+					<texturebg colordiffuse="00FFFFFF">colors/color_trans_50.png</texturebg>
+					<midtexture colordiffuse="FFFF0000">colors/color_white.png</midtexture>
+					<info>Player.Cutlist</info>
+				</control>
+				<control type="ranges">
+					<posx>570</posx>
+					<posy>55</posy>
+					<width>825</width>
+					<height>2</height>
+					<texturebg colordiffuse="00FFFFFF">colors/color_trans_50.png</texturebg>
+					<righttexture colordiffuse="FFFFFFFF">seekslider6.png</righttexture>
+					<info>Player.Chapters</info>
+				</control>				
 
 				<!--Process/Seekbar-->
 				<control type="label">
@@ -576,8 +602,16 @@
 				<shadowcolor>$INFO[Skin.String(OSDPrimaryTextShadowColor)]</shadowcolor>
 				<label>$VAR[PlayerActionLabelLarge]</label>
 				<visible>!Skin.HasSetting(OSDLargeSeekingLabel)</visible>
-				<animation effect="slide" start="0" end="0,-100" time="100" condition="!Player.Playing + !Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
-				<animation effect="slide" start="0" end="0,-100" time="100" condition="Player.Playing + Player.Seeking + !Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
+				<animation effect="slide" start="0" end="0,-110" time="0" condition="PVR.IsTimeShift + !Player.Playing + !Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
+				<animation effect="slide" start="0" end="0,-110" time="0" condition="PVR.IsTimeShift + Player.Playing + Player.Seeking + !Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
+				
+				<animation effect="slide" start="0" end="0,-30" time="0" condition="PVR.IsTimeShift + !Player.Playing + Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
+				<animation effect="slide" start="0" end="0,-30" time="0" condition="PVR.IsTimeShift + Player.Playing + Player.Seeking + Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
+				
+				<animation effect="slide" start="0" end="0,-100" time="0" condition="!PVR.IsTimeShift + !Player.Playing + !Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
+				<animation effect="slide" start="0" end="0,-100" time="0" condition="!PVR.IsTimeShift + Player.Playing + Player.Seeking + !Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
+				
+				
 			</control>
 			
 			<!-- PLOT-->
@@ -626,7 +660,19 @@
 					<animation effect="slide" end="0,-120" time="0" condition="!Skin.HasSetting(OSDLargeSeekingLabel) + !Player.Playing + !Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
 					<animation effect="slide" end="0,-120" time="0" condition="Player.Playing + !Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
 				</control> 
-			
+				<control type="label">
+					<posx>0</posx>
+					<posy>-180</posy>
+					<width>100%</width>
+					<align>center</align>
+					<font>Reg32</font>
+					<textcolor>$INFO[Skin.String(OSDPrimaryTextColor)]</textcolor>
+					<shadowcolor>$INFO[Skin.String(OSDPrimaryTextShadowColor)]</shadowcolor>
+					<label>[B]Timeshift:[/B] $INFO[PVR.TimeshiftCur] (-$INFO[PVR.TimeshiftOffset])</label>
+					<visible>PVR.IsTimeShift</visible>
+					<animation effect="slide" start="0" end="0,80" time="100" condition="Skin.HasSetting(EnableOSDInfo)">Conditional</animation>
+					
+				</control>
                 <!-- media flags -->
                 <control type="group">
                     <posx>600</posx>
@@ -641,12 +687,11 @@
 
 				<control type="progress" id="1">
 					<description>ProgressbarCache</description>
-					<left>1</left>
-					<right>40</right>
+					
 					<width>100%</width>
 					<posy>-40</posy>
 					<height>20</height>
-					<info>Player.ProgressCache</info>
+					<info>PVR.TimeshiftProgressBufferEnd</info>
 					<texturebg border="5" colordiffuse="00ffffff">diffuse/panel.png</texturebg>
 					<lefttexture></lefttexture>
 					<midtexture border="5" colordiffuse="$INFO[Skin.String(OSDProgressBarCacheColor)]">diffuse/panel.png</midtexture>
@@ -657,8 +702,7 @@
 				</control>
 				<control type="progress" id="23">
 					<description>Progress Bar</description>
-					<left>1</left>
-					<right>40</right>
+					
 					<width>100%</width>
 					<posy>-40</posy>
 					<height>20</height>
@@ -673,8 +717,7 @@
 				</control>
 				<control type="progress" id="23">
 					<description>Progress Bar PVR </description>
-					<left>1</left>
-					<right>40</right>
+					
 					<width>100%</width>
 					<posy>-40</posy>
 					<height>20</height>
@@ -688,17 +731,33 @@
 				</control>
                 <control type="slider" id="401">
                     <description>Seek Slider</description>
-                    <left>1</left>
-					<right>40</right>
+                    
 					<width>100%</width>
 					<posy>-47</posy>
 					<height>18</height>
                     <texturesliderbar>colors/color_transparent.png</texturesliderbar>
                     <textureslidernib colordiffuse="$INFO[Skin.String(OSDProgressBarColor)]">diffuse/seekslider_ball.png</textureslidernib>
                     <textureslidernibfocus>colors/color_white.png</textureslidernibfocus>
-                    <visible>Player.Seeking</visible>
+                    <visible>Player.Seeking + Player.HasVideo</visible>
                 </control>
-
+			<control type="ranges">
+					
+					<width>100%</width>
+					<posy>-42</posy>
+					<height>1.5</height>
+					<texturebg colordiffuse="00FFFFFF">colors/color_trans_50.png</texturebg>
+					<midtexture colordiffuse="FFFF0000">colors/color_white.png</midtexture>
+					<info>Player.Cutlist</info>
+				</control>
+			<control type="ranges">
+					
+					<width>100%</width>
+					<posy>-44</posy>
+					<height>2</height>
+					<texturebg colordiffuse="00FFFFFF">colors/color_trans_50.png</texturebg>
+					<righttexture  colordiffuse="FFFFFFFF">seekslider6.png</righttexture>
+				<info>Player.Chapters</info>
+			</control>
 				<!--Process/Seekbar-->
 				<control type="label">
 					<!--Play Time-->
@@ -824,10 +883,10 @@
 					<posy>165</posy>
 					<height>15</height>
 					<width>1152</width>
-					<info>Player.ProgressCache</info>
+					<info>PVR.TimeshiftProgressBufferEnd</info>
 					 
 					<!-- check, colordiffuse changed from white to custom -->
-					<texturebg border="5" colordiffuse="$INFO[Skin.String(OSDProgressBarCacheColor)]">diffuse/panel.png</texturebg>
+					<texturebg border="5" colordiffuse="00ffffff">diffuse/panel.png</texturebg>
 					<lefttexture></lefttexture>
 					<midtexture border="5" colordiffuse="$INFO[Skin.String(OSDProgressBarCacheColor)]">diffuse/panel.png</midtexture>
 					<righttexture></righttexture>
@@ -882,7 +941,24 @@
 					<textureslidernibfocus>colors/color_white.png</textureslidernibfocus>
 					<visible>Player.Seeking</visible>
 				</control>
-
+				<control type="ranges">
+					<posx>386</posx>
+					<posy>165</posy>
+					<height>1.5</height>
+					<width>1148</width>
+					<texturebg colordiffuse="00FFFFFF">colors/color_trans_50.png</texturebg>
+					<midtexture colordiffuse="FFFF0000">colors/color_white.png</midtexture>
+					<info>Player.Cutlist</info>
+				</control>
+				<control type="ranges">
+					<posx>384</posx>
+					<posy>155</posy>
+					<height>2</height>
+					<width>1152</width>
+				<texturebg border="3" colordiffuse="00FFFFFF">colors/color_trans_50.png</texturebg>
+				<righttexture colordiffuse="FFFFFFFF">seekslider6.png</righttexture>
+				<info>Player.Chapters</info>
+				</control>
 				<!--Process/Seekbar-->
 				<control type="label">
 					<!--Play Time-->
@@ -921,10 +997,20 @@
 					<animation effect="zoom" alignx="true" end="65,65" time="0" condition="Skin.String(osdmediaflagsstyle,large) | Skin.String(osdmediaflagsstyle,large_color)">Conditional</animation>
 				</control>
 			</control>
-
+			<control type="label">
+					
+					<posy>105</posy>
+					<width>100%</width>
+					<align>center</align>
+					<font>Reg32</font>
+					<textcolor>$INFO[Skin.String(OSDPrimaryTextColor)]</textcolor>
+					<shadowcolor>$INFO[Skin.String(OSDPrimaryTextShadowColor)]</shadowcolor>
+					<label>[B]Timeshift:[/B] $INFO[PVR.TimeshiftCur] (-$INFO[PVR.TimeshiftOffset])</label>
+					<visible>PVR.IsTimeShift</visible>
+			</control>
 			<control type="label" id="79591">
 				<!--PlayerActionLabel-->
-				<posy>110</posy>
+				<posy>70</posy>
 				<width>1920</width>
 				<align>center</align>
 				<font>Light30</font>
@@ -1256,7 +1342,7 @@
 					<width>1230</width>
 					<posy>150</posy>
 					<height>20</height>
-					<info>Player.ProgressCache</info>
+					<info>PVR.TimeshiftProgressBufferEnd</info>
 					<texturebg border="5" colordiffuse="00ffffff">diffuse/panel.png</texturebg>
 					<lefttexture></lefttexture>
 					<midtexture border="5" colordiffuse="$INFO[Skin.String(OSDProgressBarCacheColor)]">diffuse/panel.png</midtexture>
@@ -1973,6 +2059,26 @@
                 <textureslidernibfocus>colors/color_white.png</textureslidernibfocus>
 				<visible>Player.Seeking</visible>
 			</control>
+			<control type="ranges">
+				<left>0</left>
+				<top>70</top>
+				<width>100%</width>
+				<height>8</height>
+				<texturebg border="3" colordiffuse="00FFFFFF">colors/color_trans_50.png</texturebg>
+				<lefttexture>colors/color_white.png</lefttexture>
+				<midtexture colordiffuse="FFFF0000">colors/color_white.png</midtexture>
+				<righttexture>colors/color_white.png</righttexture>
+				<info>Player.Cutlist</info>
+			</control>
+			<control type="ranges">
+				<left>0</left>
+				<top>82</top>
+				<width>100%</width>
+				<height>4</height>
+				<texturebg border="3" colordiffuse="00FFFFFF">colors/color_trans_50.png</texturebg>
+				<righttexture>colors/color_white.png</righttexture>
+				<info>Player.Chapters</info>
+			</control>
 		</control>
     </include>
 	
@@ -2243,15 +2349,16 @@
 		<value condition="player.hasaudio">$INFO[MusicPlayer.Duration]</value>
 	</variable>
 	<variable name="PlayerDurationHoursMins">
+		<value condition="Skin.HasSetting(UseModernOSDPanel) + [player.forwarding | player.rewinding]">$VAR[PlayerDuration,[B]$LOCALIZE[180][/B][CR] ,]</value>
 		<value condition="player.hasaudio + !player.paused">$VAR[PlayerDuration,[B]$LOCALIZE[180]:[/B] ,]</value>
 		
 		<value condition="[Skin.HasSetting(UseSlimOSDPanel) + !Skin.HasSetting(EnableOSDInfo)] + [PVR.IsPlayingTV | VideoPlayer.HasEpg] + !player.hasaudio + !player.paused">[B]$INFO[PVR.EpgEventDuration(h),$LOCALIZE[180]: ,h]$INFO[PVR.EpgEventDuration(mm),,min][/B]</value>
 		<value condition="[Skin.HasSetting(UseSlimOSDPanel) + Skin.HasSetting(EnableOSDInfo)] + [PVR.IsPlayingTV | VideoPlayer.HasEpg] + !player.hasaudio + !player.paused">$INFO[PVR.EpgEventDuration(h),[B]$LOCALIZE[180][/B][CR],h]$INFO[PVR.EpgEventDuration(mm),,min]</value>
-		<value condition="[Skin.HasSetting(UseModernOSDPanel) + Skin.HasSetting(EnableOSDInfo) | !Skin.HasSetting(EnableOSDInfo)] + [PVR.IsPlayingTV | VideoPlayer.HasEpg] + !player.hasaudio + !player.paused">$INFO[PVR.EpgEventDuration(h),[B]$LOCALIZE[180]:[/B] ,h]$INFO[PVR.EpgEventDuration(mm),,min]</value>
+		<value condition="[Skin.HasSetting(UseModernOSDPanel) + Skin.HasSetting(EnableOSDInfo) | !Skin.HasSetting(EnableOSDInfo)] + [PVR.IsPlayingTV | VideoPlayer.HasEpg] + !player.hasaudio + !player.paused">$INFO[PVR.EpgEventDuration(h),[B]$LOCALIZE[180]:[/B],h]$INFO[PVR.EpgEventDuration(mm),,min]</value>
 		
 		<value condition="[Skin.HasSetting(UseSlimOSDPanel) + !Skin.HasSetting(EnableOSDInfo)] + !player.hasaudio + !player.paused">[B]$INFO[Player.Duration(h),$LOCALIZE[180]: ,h]$INFO[Player.Duration(mm),,min][/B]</value>
 		<value condition="[Skin.HasSetting(UseSlimOSDPanel) + Skin.HasSetting(EnableOSDInfo)] + !player.hasaudio + !player.paused">$INFO[Player.Duration(h),[B]$LOCALIZE[180][/B][CR],h]$INFO[Player.Duration(mm),,min]</value>
-		<value condition="[Skin.HasSetting(UseModernOSDPanel) + Skin.HasSetting(EnableOSDInfo) | !Skin.HasSetting(EnableOSDInfo)] + !player.hasaudio + !player.paused">$INFO[Player.Duration(h),[B]$LOCALIZE[180]:[/B] ,h]$INFO[Player.Duration(mm),,min]</value>
+		<value condition="[Skin.HasSetting(UseModernOSDPanel) + Skin.HasSetting(EnableOSDInfo) | !Skin.HasSetting(EnableOSDInfo)] + !player.hasaudio + !player.paused">$INFO[Player.Duration(h),[B]$LOCALIZE[180]:[/B],h]$INFO[Player.Duration(mm),,min]</value>
 		
 		<value condition="player.hasaudio + player.paused">$VAR[PlayerDuration,[B]$LOCALIZE[180][/B][CR] ,]</value>
 		
@@ -2325,7 +2432,7 @@
         <value condition="Player.HasAudio + !Pvr.IsPlayingRadio">$INFO[MusicPlayer.Artist][CR]• $INFO[MusicPlayer.Title] •</value>
 		<value condition="Player.HasAudio + RDS.HasRds + !String.IsEmpty(RDS.Artist)">$INFO[MusicPlayer.ChannelName][CR]$INFO[RDS.Artist] - $INFO[MusicPlayer.Title]</value>
 		<value condition="Player.HasAudio + RDS.HasRds + String.IsEmpty(RDS.Artist)">$INFO[MusicPlayer.ChannelName][CR]$INFO[Player.Title]</value>
-		<value condition="Player.HasAudio + Pvr.IsPlayingRadio + !RDS.HasRds">$INFO[MusicPlayer.Artist][CR]• $INFO[MusicPlayer.Title] •</value>
+		<value condition="Player.HasAudio + Pvr.IsPlayingRadio + !RDS.HasRds + VideoPlayer.HasEpg">$INFO[MusicPlayer.ChannelName][CR]• $INFO[MusicPlayer.Title] •</value>
 		<value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]</value>
         <value condition="Player.HasAudio + String.IsEmpty(MusicPlayer.Artist) + !String.IsEmpty(MusicPlayer.ChannelName)">$INFO[MusicPlayer.ChannelName]</value>
         <value condition="Player.HasAudio + String.IsEmpty(MusicPlayer.Artist) + String.IsEmpty(MusicPlayer.ChannelName) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.AddonName))">$INFO[Window(Home).Property(SkinHelper.Player.AddonName)]</value>
@@ -2368,6 +2475,16 @@
 		<value condition="!String.IsEmpty(Player.SeekStepSize) + ![player.forwarding | player.rewinding] + Player.seeking">[B]$LOCALIZE[31255][/B] $INFO[Player.SeekStepSize]</value>
 		<value condition="Player.DisplayAfterSeek + ![player.forwarding | player.rewinding] + !String.IsEmpty(Player.SeekOffset)">[B]$LOCALIZE[31255][/B] $INFO[Player.SeekOffset]</value>
 		<value condition="Player.seeking">[B]$LOCALIZE[31255][/B] $INFO[Player.SeekTime] - $VAR[PlayerDuration]</value>
+		<value condition="Skin.HasSetting(UseModernOSDPanel) + player.forwarding2x">[B]$LOCALIZE[31253][/B][CR] x2</value>
+		<value condition="Skin.HasSetting(UseModernOSDPanel) + player.forwarding4x">[B]$LOCALIZE[31253][/B][CR] x4</value>
+		<value condition="Skin.HasSetting(UseModernOSDPanel) + player.forwarding8x">[B]$LOCALIZE[31253][/B][CR] x8</value>
+		<value condition="Skin.HasSetting(UseModernOSDPanel) + player.forwarding16x">[B]$LOCALIZE[31253][/B][CR] x16</value>
+		<value condition="Skin.HasSetting(UseModernOSDPanel) + player.forwarding32x">[B]$LOCALIZE[31253][/B][CR] x32</value>
+		<value condition="Skin.HasSetting(UseModernOSDPanel) + player.rewinding2x">[B]$LOCALIZE[31254][/B][CR] x2</value>
+		<value condition="Skin.HasSetting(UseModernOSDPanel) + player.rewinding4x">[B]$LOCALIZE[31254][/B][CR] x4</value>
+		<value condition="Skin.HasSetting(UseModernOSDPanel) + player.rewinding8x">[B]$LOCALIZE[31254][/B][CR] x8</value>
+		<value condition="Skin.HasSetting(UseModernOSDPanel) + player.rewinding16x">[B]$LOCALIZE[31254][/B][CR] x16</value>
+		<value condition="Skin.HasSetting(UseModernOSDPanel) + player.rewinding32x">[B]$LOCALIZE[31254][/B][CR] x32</value>
 		<value condition="player.forwarding2x">[B]$LOCALIZE[31253][/B] x2</value>
 		<value condition="player.forwarding4x">[B]$LOCALIZE[31253][/B] x4</value>
 		<value condition="player.forwarding8x">[B]$LOCALIZE[31253][/B] x8</value>

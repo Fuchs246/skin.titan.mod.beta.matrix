@@ -184,6 +184,45 @@
                     <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5001).NumItems,0) | Container(5001).IsUpdating">Conditional</animation>
                     <content target="videos">videodb://movies/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[Skin.String(SearchTerm)]%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D</content>
                 </include>
+				
+		<!-- TMDB Movie -->
+                <include content="SkinSearch_ContainerHeader">
+                    <param name="groupid" value="7578" />
+                    <param name="id" value="5078" />
+                    <param name="label" value="$INFO[Skin.String(SearchTerm),TMDB - $LOCALIZE[342]  $LOCALIZE[1411]  &quot; , &quot;]" />
+                    <visible>Control.IsVisible(5078)</visible>
+                </include>
+                <include condition="!Skin.HasSetting(search_info_widget) + Skin.HasSetting(SkinSearch_TMDB)" content="Search_Container">
+                    <param name="type" value="panel" />
+					<param name="id" value="5078" />
+					<param name="width" value="216" />
+					<param name="height" value="324" />
+					<param name="layout" value="PosterPanelLayout" />
+					<param name="layouticon" value="$VAR[PosterThumb]" />
+					<param name="info_panelwidth" value="670" />
+					<param name="info_plotwidth" value="420" />
+					<param name="info_plotheight" value="210" />
+                    <param name="visible" value="Integer.IsGreater(Container(5078).NumItems,0) | Container(5078).IsUpdating" />
+                    <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5078).NumItems,0) | Container(5078).IsUpdating">Conditional</animation>
+                    <content target="videos" sortby="file" limit="15">plugin://plugin.video.themoviedb.helper?info=search&amp;type=movie&amp;query=$INFO[Skin.String(SearchTerm)]</content>
+                    <visible>System.HasAddon(plugin.video.themoviedb.helper)</visible>
+                </include>
+				<include condition="Skin.HasSetting(search_info_widget) + Skin.HasSetting(SkinSearch_TMDB)" content="Search_Container">
+                    <param name="type" value="fixedlist" />
+					<param name="id" value="5078" />
+					<param name="width" value="216" />
+					<param name="height" value="324" />
+					<param name="layout" value="PosterPanelLayout" />
+					<param name="layouticon" value="$VAR[PosterThumb]" />
+					<param name="info_panelwidth" value="670" />
+					<param name="info_plotwidth" value="420" />
+					<param name="info_plotheight" value="210" />
+                    <param name="visible" value="Integer.IsGreater(Container(5078).NumItems,0) | Container(5078).IsUpdating" />
+                    <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5078).NumItems,0) | Container(5078).IsUpdating">Conditional</animation>
+                    <content target="videos" sortby="file" limit="15">plugin://plugin.video.themoviedb.helper?info=search&amp;type=movie&amp;query=$INFO[Skin.String(SearchTerm)]</content>
+                    <visible>System.HasAddon(plugin.video.themoviedb.helper)</visible>
+                </include>
+				
 		<!-- TV shows TITLES contains SearchString-->
 				<include content="SkinSearch_ContainerHeader">
                     <param name="groupid" value="7502" />
@@ -219,6 +258,83 @@
                     <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5002).NumItems,0) | Container(5002).IsUpdating">Conditional</animation>
                     <content target="videos">videodb://tvshows/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[Skin.String(SearchTerm)]%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D</content>
                 </include>
+				
+		<!-- TMDB TV Show -->
+                <include content="SkinSearch_ContainerHeader">
+                    <param name="groupid" value="7579" />
+                    <param name="id" value="5079" />
+                    <param name="label" value="$INFO[Skin.String(SearchTerm),TMDB - $LOCALIZE[20343]  $LOCALIZE[1411]  &quot; , &quot;]" />
+                    <visible>Control.IsVisible(5079)</visible>
+                </include>
+                <include condition="!Skin.HasSetting(search_info_widget) + Skin.HasSetting(SkinSearch_TMDB)" content="Search_Container">
+                    <param name="type" value="panel" />
+					<param name="id" value="5079" />
+					<param name="width" value="216" />
+					<param name="height" value="324" />
+					<param name="layout" value="PosterPanelLayout" />
+					<param name="layouticon" value="$VAR[PosterThumb]" />
+					<param name="info_panelwidth" value="670" />
+					<param name="info_plotwidth" value="420" />
+					<param name="info_plotheight" value="210" />
+                    <param name="visible" value="Integer.IsGreater(Container(5079).NumItems,0) | Container(5079).IsUpdating" />
+                    <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5079).NumItems,0) | Container(5079).IsUpdating">Conditional</animation>
+                    <content target="videos" sortby="file" limit="15">plugin://plugin.video.themoviedb.helper?info=search&amp;type=tv&amp;query=$INFO[Skin.String(SearchTerm)]</content>
+                    <visible>System.HasAddon(plugin.video.themoviedb.helper)</visible>
+                </include>
+				<include condition="Skin.HasSetting(search_info_widget) + Skin.HasSetting(SkinSearch_TMDB)" content="Search_Container">
+                    <param name="type" value="fixedlist" />
+					<param name="id" value="5079" />
+					<param name="width" value="216" />
+					<param name="height" value="324" />
+					<param name="layout" value="PosterPanelLayout" />
+					<param name="layouticon" value="$VAR[PosterThumb]" />
+					<param name="info_panelwidth" value="670" />
+					<param name="info_plotwidth" value="420" />
+					<param name="info_plotheight" value="210" />
+                    <param name="visible" value="Integer.IsGreater(Container(5079).NumItems,0) | Container(5079).IsUpdating" />
+                    <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5079).NumItems,0) | Container(5079).IsUpdating">Conditional</animation>
+                    <content target="videos" sortby="file" limit="15">plugin://plugin.video.themoviedb.helper?info=search&amp;type=tv&amp;query=$INFO[Skin.String(SearchTerm)]</content>
+                    <visible>System.HasAddon(plugin.video.themoviedb.helper)</visible>
+                </include>				
+				
+		<!-- TMDB person -->
+                <include content="SkinSearch_ContainerHeader">
+                    <param name="groupid" value="7518" />
+                    <param name="id" value="5018" />
+                    <param name="label" value="$INFO[Skin.String(SearchTerm),TMDB - Person  $LOCALIZE[1411]  &quot; , &quot;]" />
+                    <visible>Control.IsVisible(5018)</visible>
+                </include>
+                <include condition="!Skin.HasSetting(search_info_widget) + Skin.HasSetting(SkinSearch_TMDB)" content="Search_Container">
+                    <param name="type" value="panel" />
+					<param name="id" value="5018" />
+					<param name="width" value="216" />
+					<param name="height" value="324" />
+					<param name="layout" value="PosterPanelLayout" />
+					<param name="layouticon" value="$VAR[PosterThumb]" />
+					<param name="info_panelwidth" value="670" />
+					<param name="info_plotwidth" value="420" />
+					<param name="info_plotheight" value="210" />
+                    <param name="visible" value="Integer.IsGreater(Container(5018).NumItems,0) | Container(5018).IsUpdating" />
+                    <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5018).NumItems,0) | Container(5018).IsUpdating">Conditional</animation>
+                    <content target="videos" sortby="file" limit="15">RunScript(script.embuary.info,call=person,query='"$INFO[Skin.String(SearchTerm)]"')</content>
+                    <visible>System.HasAddon(plugin.video.themoviedb.helper)</visible>
+                </include>
+				<include condition="Skin.HasSetting(search_info_widget) + Skin.HasSetting(SkinSearch_TMDB)" content="Search_Container">
+                    <param name="type" value="fixedlist" />
+					<param name="id" value="5018" />
+					<param name="width" value="216" />
+					<param name="height" value="324" />
+					<param name="layout" value="PosterPanelLayout" />
+					<param name="layouticon" value="$VAR[PosterThumb]" />
+					<param name="info_panelwidth" value="670" />
+					<param name="info_plotwidth" value="420" />
+					<param name="info_plotheight" value="210" />
+                    <param name="visible" value="Integer.IsGreater(Container(5018).NumItems,0) | Container(5018).IsUpdating" />
+                    <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5018).NumItems,0) | Container(5018).IsUpdating">Conditional</animation>
+                    <content target="videos" sortby="file" limit="15">RunScript(script.embuary.info,call=person,query='"$INFO[Skin.String(SearchTerm)]"')</content>
+                    <visible>System.HasAddon(plugin.video.themoviedb.helper)</visible>
+                </include>				
+				
 			<!-- Episodes TITLES contains SearchString-->
                 <include content="SkinSearch_ContainerHeader">
                     <param name="groupid" value="7503" />
@@ -728,41 +844,7 @@
                     <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5016).NumItems,0) | Container(5016).IsUpdating">Conditional</animation>
                     <content target="videos">videodb://musicvideos/titles/?xsp=%7b%22order%22%3a%7b%22direction%22%3a%22ascending%22%2c%22ignorefolders%22%3a0%2c%22method%22%3a%22sorttitle%22%7d%2c%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22artist%22%2c%22operator%22%3a%22contains%22%2c%22value%22%3a%5b%22$INFO[Skin.String(SearchTerm)]%22%5d%7d%5d%7d%2c%22type%22%3a%22musicvideos%22%7d</content>
                 </include>
-				<!-- games -->
-                <include content="SkinSearch_ContainerHeader">
-                    <param name="groupid" value="7518" />
-                    <param name="id" value="5018" />
-                    <param name="label" value="$INFO[Skin.String(SearchTerm),$LOCALIZE[31062] [CAPITALIZE]$LOCALIZE[36913][/CAPITALIZE]  $LOCALIZE[1411]  &quot; , &quot;]" />
-                    <visible>Control.IsVisible(5018)</visible>
-                </include>
-                <include condition="!Skin.HasSetting(search_info_widget)" content="Search_Container">
-                    <param name="type" value="panel" />
-					<param name="id" value="5018" />
-					<param name="width" value="425" />
-					<param name="height" value="250" />
-					<param name="layout" value="ThumbsViewLayout" />
-					<param name="layouticon" value="$VAR[LandscapeImage]" />
-					<param name="info_panelwidth" value="900" />
-					<param name="info_plotwidth" value="445" />
-					<param name="info_plotheight" value="150" />
-                    <param name="visible" value="Integer.IsGreater(Container(5018).NumItems,0) | Container(5018).IsUpdating" />
-                    <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5018).NumItems,0) | Container(5018).IsUpdating">Conditional</animation>
-					<content target="games">games,addons://sources/game/titles/?xsp=%7b%22order%22%3a%7b%22direction%22%3a%22ascending%22%2c%22ignorefolders%22%3a0%2c%22method%22%3a%22sorttitle%22%7d%2c%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22artist%22%2c%22operator%22%3a%22contains%22%2c%22value%22%3a%5b%22$INFO[Skin.String(SearchTerm)]%22%5d%7d%5d%7d%2c%22type%22%3a%22games%22%7d</content>
-                </include>
-				<include condition="Skin.HasSetting(search_info_widget)" content="Search_Container">
-                    <param name="type" value="fixedlist" />
-					<param name="id" value="5018" />
-					<param name="width" value="425" />
-					<param name="height" value="250" />
-					<param name="layout" value="ThumbsViewLayout" />
-					<param name="layouticon" value="$VAR[LandscapeImage]" />
-					<param name="info_panelwidth" value="900" />
-					<param name="info_plotwidth" value="445" />
-					<param name="info_plotheight" value="150" />
-                    <param name="visible" value="Integer.IsGreater(Container(5018).NumItems,0) | Container(5018).IsUpdating" />
-                    <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5018).NumItems,0) | Container(5018).IsUpdating">Conditional</animation>
-                    <content target="games">games,addons://sources/game/titles/?xsp=%7b%22order%22%3a%7b%22direction%22%3a%22ascending%22%2c%22ignorefolders%22%3a0%2c%22method%22%3a%22sorttitle%22%7d%2c%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22artist%22%2c%22operator%22%3a%22contains%22%2c%22value%22%3a%5b%22$INFO[Skin.String(SearchTerm)]%22%5d%7d%5d%7d%2c%22type%22%3a%22games%22%7d</content>
-                </include>
+				
 		<!-- youtube -->
                 <include content="SkinSearch_ContainerHeader">
                     <param name="groupid" value="7509" />
@@ -770,7 +852,7 @@
                     <param name="label" value="$INFO[Skin.String(SearchTerm),$LOCALIZE[31062] [CAPITALIZE]$LOCALIZE[36913][/CAPITALIZE]  $LOCALIZE[1411]  &quot; , &quot;]" />
                     <visible>Control.IsVisible(5009)</visible>
                 </include>
-                <include condition="!Skin.HasSetting(search_info_widget)" content="Search_Container">
+                <include condition="!Skin.HasSetting(search_info_widget) + Skin.HasSetting(SkinSearch_YOUTUBE)" content="Search_Container">
                     <param name="type" value="panel" />
 					<param name="id" value="5009" />
 					<param name="width" value="425" />
@@ -785,7 +867,7 @@
                     <content target="videos" sortby="file" limit="25">plugin://plugin.video.youtube/search/?q=$INFO[Skin.String(SearchTerm)]</content>
                     <visible>System.HasAddon(plugin.video.youtube)</visible>
                 </include>
-				<include condition="Skin.HasSetting(search_info_widget)" content="Search_Container">
+				<include condition="Skin.HasSetting(search_info_widget) + Skin.HasSetting(SkinSearch_YOUTUBE)" content="Search_Container">
                     <param name="type" value="fixedlist" />
 					<param name="id" value="5009" />
 					<param name="width" value="425" />
@@ -807,7 +889,7 @@
                     <param name="label" value="$INFO[Skin.String(SearchTerm),$LOCALIZE[24001]  $LOCALIZE[1411]  &quot; , &quot;]" />
                     <visible>Control.IsVisible(5014)</visible>
                 </include>
-                <include condition="!Skin.HasSetting(search_info_widget)" content="Search_Container">
+                <include condition="!Skin.HasSetting(search_info_widget) + Skin.HasSetting(SkinSearch_ADDON)" content="Search_Container">
                     <param name="type" value="panel" />
 					<param name="id" value="5014" />
 					<param name="width" value="425" />
@@ -820,8 +902,9 @@
                     <param name="visible" value="Integer.IsGreater(Container(5014).NumItems,0) | Container(5014).IsUpdating" />
                     <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5014).NumItems,0) | Container(5014).IsUpdating">Conditional</animation>
                     <content target="addons">addons://search/$INFO[Skin.String(SearchTerm)]</content>
+					<onclick>Info</onclick>
                 </include>
-				<include condition="Skin.HasSetting(search_info_widget)" content="Search_Container">
+				<include condition="Skin.HasSetting(search_info_widget) + Skin.HasSetting(SkinSearch_ADDON)" content="Search_Container">
                     <param name="type" value="fixedlist" />
 					<param name="id" value="5014" />
 					<param name="width" value="425" />
@@ -834,6 +917,7 @@
                     <param name="visible" value="Integer.IsGreater(Container(5014).NumItems,0) | Container(5014).IsUpdating" />
                     <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(5014).NumItems,0) | Container(5014).IsUpdating">Conditional</animation>
                     <content target="addons">addons://search/$INFO[Skin.String(SearchTerm)]</content>
+					<onclick>Info</onclick>
                 </include>
             </control>
         </control>

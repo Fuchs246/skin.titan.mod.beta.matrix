@@ -330,7 +330,7 @@
 					<description>Hardware decoding</description>
 					<left>45</left>
 					<top>40</top>
-					<width>250</width>
+					<width>310</width>
 					<height>25</height>
 					<label>$LOCALIZE[31782]: </label> 
 					<align>left</align>
@@ -339,7 +339,7 @@
 				</control>
 				<control type="label">
 					<description>Hardware decoding</description>
-					<left>270</left>
+					<left>370</left>
 					<top>40</top>
 					<width>490</width>
 					<height>25</height>
@@ -353,7 +353,7 @@
 				</control>
 				<control type="label">
 					<description>Hardware decoding</description>
-					<left>270</left>
+					<left>370</left>
 					<top>40</top>
 					<width>490</width>
 					<height>25</height>
@@ -369,7 +369,7 @@
 					<description>Decoder</description>
 					<left>45</left>
 					<top>65</top>
-					<width>250</width>
+					<width>310</width>
 					<height>25</height>
 					<label>$LOCALIZE[31784]: </label> 
 					<align>left</align>
@@ -378,9 +378,9 @@
 				</control>
 				<control type="label">
 					<description>Decoder</description>
-					<left>270</left>
+					<left>370</left>
 					<top>65</top>
-					<width>490</width>
+					<width>650</width>
 					<height>25</height>
 					<label fallback="$LOCALIZE[13205]">$INFO[Player.Process(videodecoder)]$INFO[Player.Process(pixformat), • ]$VAR[VideoHWDecoder, (,)]</label> 
 					<align>left</align>
@@ -393,7 +393,7 @@
 					<description>Deinterlace</description>
 					<left>45</left>
 					<top>90</top>
-					<width>250</width>
+					<width>310</width>
 					<height>25</height>
 					<label>$LOCALIZE[16020]: </label> 
 					<align>left</align>
@@ -402,7 +402,7 @@
 				</control>
 				<control type="label">
 					<description>Deinterlace</description>
-					<left>270</left>
+					<left>370</left>
 					<top>90</top>
 					<width>490</width>
 					<height>25</height>
@@ -417,7 +417,7 @@
 					<description>Resolution</description>
 					<left>45</left>
 					<top>115</top>
-					<width>250</width>
+					<width>310</width>
 					<height>25</height>
 					<label>$LOCALIZE[21805]: </label> 
 					<align>left</align>
@@ -426,9 +426,9 @@
 				</control>
 				<control type="label">
 					<description>Resolution</description>
-					<left>270</left>
+					<left>370</left>
 					<top>115</top>
-					<width>490</width>
+					<width>550</width>
 					<height>25</height>
 					<label fallback="$LOCALIZE[13205]">$INFO[Player.Process(videowidth),,x]$INFO[Player.Process(videoheight),, px]$INFO[Player.Process(videodar), • , AR]$INFO[Player.Process(videofps), • , FPS]</label> 
 					<align>left</align>
@@ -453,7 +453,7 @@
 					<description>Decoder</description>
 					<left>45</left>
 					<top>175</top>
-					<width>250</width>
+					<width>310</width>
 					<height>25</height>
 					<label>$LOCALIZE[31784]: </label> 
 					<align>left</align>
@@ -462,7 +462,7 @@
 				</control>
 				<control type="label">
 					<description>Decoder</description>
-					<left>270</left>
+					<left>370</left>
 					<top>175</top>
 					<width>490</width>
 					<height>25</height>
@@ -477,7 +477,7 @@
 					<description>Channels</description>
 					<left>45</left>
 					<top>200</top>
-					<width>250</width>
+					<width>310</width>
 					<height>25</height>
 					<label>$LOCALIZE[14301]: </label> 
 					<align>left</align>
@@ -486,7 +486,7 @@
 				</control>
 				<control type="label">
 					<description>Channels</description>
-					<left>270</left>
+					<left>370</left>
 					<top>200</top>
 					<width>490</width>
 					<height>25</height>
@@ -513,7 +513,7 @@
 					<description>CPU</description>
 					<left>45</left>
 					<top>260</top>
-					<width>250</width>
+					<width>310</width>
 					<height>25</height>
 					<label>$LOCALIZE[13271] </label> 
 					<align>left</align>
@@ -522,7 +522,7 @@
 				</control>
 				<control type="progress">
 					<description>Progressbar</description>
-					<left>270</left>
+					<left>370</left>
 					<top>267</top>
 					<width>275</width>
 					<height>14</height>
@@ -530,7 +530,7 @@
 				</control>
 				<control type="label">
 					<description>CPU value</description>
-					<left>555</left>
+					<left>660</left>
 					<top>260</top>
 					<width>800</width>
 					<height>25</height>
@@ -545,7 +545,7 @@
 					<description>Memory</description>
 					<left>45</left>
 					<top>285</top>
-					<width>250</width>
+					<width>310</width>
 					<height>25</height>
 					<label>$LOCALIZE[31257]: </label> 
 					<align>left</align>
@@ -554,7 +554,7 @@
 				</control>
 				<control type="progress">
 					<description>Progressbar</description>
-					<left>270</left>
+					<left>370</left>
 					<top>292</top>
 					<width>275</width>
 					<height>14</height>
@@ -562,7 +562,7 @@
 				</control>
 				<control type="label">
 					<description>Memory value</description>
-					<left>555</left>
+					<left>660</left>
 					<top>285</top>
 					<width>800</width>
 					<height>25</height>
@@ -576,7 +576,7 @@
 					<description>CacheLevel</description>
 					<left>45</left>
 					<top>310</top>
-					<width>250</width>
+					<width>310</width>
 					<height>25</height>
 					<label>$LOCALIZE[14200] $LOCALIZE[439]: </label> 
 					<align>left</align>
@@ -585,7 +585,7 @@
 				</control>
 				<control type="progress">
 					<description>Progressbar</description>
-					<left>270</left>
+					<left>370</left>
 					<top>317</top>
 					<width>275</width>
 					<height>14</height>
@@ -593,7 +593,7 @@
 				</control>
 				<control type="label">
 					<description>CacheLevel</description>
-					<left>555</left>
+					<left>660</left>
 					<top>310</top>
 					<width>800</width>
 					<height>25</height>
