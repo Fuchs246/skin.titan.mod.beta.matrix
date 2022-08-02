@@ -1888,6 +1888,13 @@
                 <selected>Skin.HasSetting(OSDShowClearLogo)</selected>
                 <visible>Skin.HasSetting(UseNetflixOSDPanel)</visible>
             </control>
+			<!-- PVR nextup -->
+			<control type="radiobutton" id="31952">
+					<label>PVR NextUp PopUp</label>
+					<include>SkinSettings_Button</include>
+					<onclick>Skin.ToggleSetting(pvr_nextup)</onclick>
+					<selected>Skin.HasSetting(pvr_nextup)</selected>
+			</control>
 			<!-- disable subtitles on video start -->
 			<control type="radiobutton" id="8012">
                 <include>SkinSettings_Button</include>

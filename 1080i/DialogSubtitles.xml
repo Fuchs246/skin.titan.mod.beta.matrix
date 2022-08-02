@@ -153,7 +153,7 @@
                                 <top>5</top>
                                 <width>60</width>
                                 <height>40</height>
-                                <texture background="true">$VAR[LanguageFlagIconPath]$INFO[ListItem.Thumb].png</texture>
+                                <texture background="true">$VAR[LanguageFlagIconPath_SUB]$INFO[ListItem.Thumb].png</texture>
                                 <aspectratio>keep</aspectratio>
                             </control>
                             

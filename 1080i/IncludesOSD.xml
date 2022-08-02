@@ -267,6 +267,21 @@
 					<posy>60</posy>
 					<height>20</height>
 					<width>825</width>
+					<info>Player.ProgressCache</info> 
+					<texturebg border="5" colordiffuse="00ffffff">diffuse/panel.png</texturebg>
+					<lefttexture></lefttexture>
+					<midtexture border="5" colordiffuse="$INFO[Skin.String(OSDProgressBarCacheColor)]">diffuse/panel.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture></overlaytexture>
+                    <visible>!Skin.String(OSDProgressBarCacheColor,None)</visible>
+					<visible>!VideoPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="progress">
+					<description>TimeshiftProgressBuffer</description>
+					<posx>570</posx>
+					<posy>60</posy>
+					<height>20</height>
+					<width>825</width>
 					<info>PVR.TimeshiftProgressBufferEnd</info> 
 					<texturebg border="5" colordiffuse="00ffffff">diffuse/panel.png</texturebg>
 					<lefttexture></lefttexture>
@@ -274,6 +289,7 @@
 					<righttexture></righttexture>
 					<overlaytexture></overlaytexture>
                     <visible>!Skin.String(OSDProgressBarCacheColor,None)</visible>
+					<visible>VideoPlayer.Content(LiveTV)</visible>
 				</control>
 				<control type="progress" id="23">
 					<description>Progress Bar</description>
@@ -687,7 +703,20 @@
 
 				<control type="progress" id="1">
 					<description>ProgressbarCache</description>
-					
+					<width>100%</width>
+					<posy>-40</posy>
+					<height>20</height>
+					<info>Player.ProgressCache</info>
+					<texturebg border="5" colordiffuse="00ffffff">diffuse/panel.png</texturebg>
+					<lefttexture></lefttexture>
+					<midtexture border="5" colordiffuse="$INFO[Skin.String(OSDProgressBarCacheColor)]">diffuse/panel.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture></overlaytexture>
+					<visible>!Skin.String(OSDProgressBarCacheColor,None)</visible>
+					<visible>!VideoPlayer.Content(LiveTV)</visible> 
+				</control>
+				<control type="progress" id="1">
+					<description>TimeshiftProgressBuffer</description>
 					<width>100%</width>
 					<posy>-40</posy>
 					<height>20</height>
@@ -698,11 +727,10 @@
 					<righttexture></righttexture>
 					<overlaytexture></overlaytexture>
 					<visible>!Skin.String(OSDProgressBarCacheColor,None)</visible>
-					 
+					<visible>VideoPlayer.Content(LiveTV)</visible> 
 				</control>
 				<control type="progress" id="23">
 					<description>Progress Bar</description>
-					
 					<width>100%</width>
 					<posy>-40</posy>
 					<height>20</height>
@@ -883,6 +911,23 @@
 					<posy>165</posy>
 					<height>15</height>
 					<width>1152</width>
+					<info>Player.ProgressCache</info>
+					 
+					<!-- check, colordiffuse changed from white to custom -->
+					<texturebg border="5" colordiffuse="00ffffff">diffuse/panel.png</texturebg>
+					<lefttexture></lefttexture>
+					<midtexture border="5" colordiffuse="$INFO[Skin.String(OSDProgressBarCacheColor)]">diffuse/panel.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture></overlaytexture>
+					<visible>!Skin.String(OSDProgressBarCacheColor,None)</visible>
+					<visible>!VideoPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="progress">
+					<description>TimeshiftProgressBuffer</description>
+					<posx>384</posx>
+					<posy>165</posy>
+					<height>15</height>
+					<width>1152</width>
 					<info>PVR.TimeshiftProgressBufferEnd</info>
 					 
 					<!-- check, colordiffuse changed from white to custom -->
@@ -892,6 +937,7 @@
 					<righttexture></righttexture>
 					<overlaytexture></overlaytexture>
 					<visible>!Skin.String(OSDProgressBarCacheColor,None)</visible>
+					<visible>VideoPlayer.Content(LiveTV)</visible>
 				</control>
 				<control type="progress" id="23">
 					<description>Progress Bar</description>
@@ -1720,7 +1766,6 @@
 			</control>
 			<control type="button" id="102">
 				<description>Video Settings</description>
-				<description>Video Settings</description>
 				<width>$PARAM[size]</width>
 				<height>$PARAM[size]</height>
 				<label>13395</label>
@@ -1734,7 +1779,6 @@
 			</control>
 			<control type="button" id="104">
 				<description>Subtitles</description>
-				<description>Subtitles</description>
 			    <width>$PARAM[size]</width>
 				<height>$PARAM[size]</height>
 				<label>287</label>
@@ -1747,10 +1791,9 @@
 			</control>
 			<control type="button" id="105">
 				<description>teletext</description>
-				<description>teletext</description>
 				<width>$PARAM[size]</width>
 				<height>$PARAM[size]</height>
-				<label>287</label>
+				<label>10550</label>
 				<font></font>
 				<texturefocus colordiffuse="$INFO[Skin.String(OSDButtonsFocusColor)]">$PARAM[iconspath]TeleText_fo.png</texturefocus>
 				<texturenofocus colordiffuse="$INFO[Skin.String(OSDButtonsColor)]">$PARAM[iconspath]TeleText.png</texturenofocus>

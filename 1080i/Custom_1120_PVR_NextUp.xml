@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window type="dialog" id="1120">
+	<onload>Dialog.Close(fullscreeninfo,true)</onload>
+	<visible>!Window.IsVisible(VideoOSD.xml) + !Window.IsVisible(DialogPVRChannelsOSD.xml) + !Window.IsVisible(DialogPVRChannelGuide.xml) + !Window.IsVisible(DialogFullScreenInfo.xml)</visible>
+	<controls>
+		<control type="group">
+			<visible>!Window.IsVisible(videoosd) + Window.IsVisible(fullscreenvideo) + [String.IsEqual(PVR.EpgEventRemainingTime,00:30) | String.IsEqual(PVR.EpgEventRemainingTime,00:29) | String.IsEqual(PVR.EpgEventRemainingTime,00:28) | String.IsEqual(PVR.EpgEventRemainingTime,00:27) | String.IsEqual(PVR.EpgEventRemainingTime,00:26) | String.IsEqual(PVR.EpgEventRemainingTime,00:25) | String.IsEqual(PVR.EpgEventRemainingTime,00:24) | String.IsEqual(PVR.EpgEventRemainingTime,00:23) | String.IsEqual(PVR.EpgEventRemainingTime,00:22) | String.IsEqual(PVR.EpgEventRemainingTime,00:21) | String.IsEqual(PVR.EpgEventRemainingTime,00:20) | String.IsEqual(PVR.EpgEventRemainingTime,00:19) | String.IsEqual(PVR.EpgEventRemainingTime,00:18) | String.IsEqual(PVR.EpgEventRemainingTime,00:17) | String.IsEqual(PVR.EpgEventRemainingTime,00:16) | String.IsEqual(PVR.EpgEventRemainingTime,00:15) | String.IsEqual(PVR.EpgEventRemainingTime,00:14) | String.IsEqual(PVR.EpgEventRemainingTime,00:13) | String.IsEqual(PVR.EpgEventRemainingTime,00:12) | String.IsEqual(PVR.EpgEventRemainingTime,00:11) | String.IsEqual(PVR.EpgEventRemainingTime,00:10) | String.IsEqual(PVR.EpgEventRemainingTime,00:09) | String.IsEqual(PVR.EpgEventRemainingTime,00:08) | String.IsEqual(PVR.EpgEventRemainingTime,00:07) | String.IsEqual(PVR.EpgEventRemainingTime,00:06) | String.IsEqual(PVR.EpgEventRemainingTime,00:05)| String.IsEqual(PVR.EpgEventRemainingTime,00:04) | String.IsEqual(PVR.EpgEventRemainingTime,00:03) | String.IsEqual(PVR.EpgEventRemainingTime,00:02) | String.IsEqual(PVR.EpgEventRemainingTime,00:01)]</visible>
+			<visible>VideoPlayer.Content(livetv) + Skin.HasSetting(pvr_nextup)</visible>
+			<right>10</right>
+			<top>0</top>
+			<width>650</width>
+			<height>160</height>
+			<control type="image">
+				<top>30</top>
+				<width>650</width>
+				<height>160</height>
+				<texture>colors/color_white.png</texture>
+				<colordiffuse>$INFO[Skin.String(OSDPanelColor)]</colordiffuse>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+			</control>
+			
+			<control type="textbox">
+				<top>65</top>
+				<left>5</left>
+				<width>540</width>
+				<height>140</height>
+				<font>font12</font>
+				<wrapmultiline>true</wrapmultiline>
+				<label>[B]$INFO[VideoPlayer.NextTitle][/B]</label>
+				<textcolor>$INFO[Skin.String(OSDSecondaryTextColor)]</textcolor>
+				<shadowcolor>$INFO[Skin.String(OSDSecondaryTextShadowColor)]</shadowcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<visible>true</visible>
+			</control>
+			<control type="image">
+				<top>30</top>
+				<width>650</width>
+				<height>50</height>
+				<texture colordiffuse="$INFO[Skin.String(HeaderPanelColor)]">colors/color_white.png</texture>
+				<visible>true</visible>
+			</control>
+			<control type="label">
+				<top>30</top>
+				<width>650</width>
+				<height>50</height>
+				<font>font12</font>
+				<textcolor>white</textcolor>
+				
+				<align>left</align>
+				<aligny>center</aligny>
+				<textoffsetx>5</textoffsetx>
+				<label>[B]$LOCALIZE[19031]:[/B]</label>
+			</control>
+			<control type="textbox">
+				<top>150</top>
+				<right>15</right>
+				<width>75</width>
+				<height>30</height>
+				<font>font12</font>
+				<textcolor>white</textcolor>
+				<align>center</align>
+				<label>$INFO[PVR.EpgEventRemainingTime(ss)]s</label>
+			</control>
+			 <control type="group">
+					<top>87</top>
+					<right>64</right>
+                    <height>64</height>
+                    <width>64</width>
+                    <centertop>150</centertop>
+                    <centerleft>92%</centerleft>
+                    <control type="image">
+                        <height>64</height>
+                        <width>64</width>
+                        <aspectratio scalediffuse="false">keep</aspectratio>
+                        <texture colordiffuse="ddffffff">$INFO[PVR.EpgEventRemainingTime(ss),nextupicons/,.png]</texture>
+					</control>
+               </control>
+			</control>
+		</controls>
+</window>
