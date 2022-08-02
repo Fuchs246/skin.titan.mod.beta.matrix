@@ -102,9 +102,10 @@
         <control type="group" id="77552">
             <visible>!Skin.HasSetting(EnableTouchSupport)</visible>
             <control type="image" id="8821">
-                <width>100%</width>
-                <bottom>20</bottom>
-                <height>90</height>
+                <centerleft>50%</centerleft>
+                <width>500</width>
+                <bottom>10</bottom>
+                <height>100</height>
                 <aspectratio align="center" aligny="bottom">keep</aspectratio>
                 <texture background="true">$VAR[HomeMenuWidgetInfoclearlogo]</texture>
                 <animation time="200" effect="fade" delay="0">Visible</animation>
